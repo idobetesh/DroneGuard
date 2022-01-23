@@ -12,7 +12,7 @@
 # SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 # BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
  
-echo === Update current ubuntu === 
+echo === Update current OS === 
 sudo apt install ntp;
 sudo apt clean; sudo apt update; sudo apt list --upgradable;
 sudo apt dist-upgrade;
