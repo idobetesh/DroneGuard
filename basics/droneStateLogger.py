@@ -1,6 +1,12 @@
 from datetime import datetime
 from djitellopy import tello
 
-def log(drone):
-    print(f' ============= {datetime.now()} ============= ')
-    print(f'Battery: {drone.get_battery()}%')
+def log(drone: tello.Tello) -> None:
+    with open('./logs/logs.txt', 'a') as file:
+        file.write(f'''============= {datetime.now()} =============
+                       Battery: {drone.get_battery()}%
+                       Height: {drone.get_height()}cm
+                       Barometer: {drone.get_barometer()}
+                       YAW: {drone.get_yaw()}    
+                       Current State: {drone.get_current_state()}
+                ''')

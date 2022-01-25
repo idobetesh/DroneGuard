@@ -10,26 +10,24 @@ import cv2
 kp.init()
 drone = tello.Tello()
 drone.connect()
-print(f'Battery: {drone.get_battery()}%')
-logger.log(drone)
 global img
 drone.streamon()
 
-def getKeyboardInput():
+def getKeyboardInput() -> list:
     speed = 50
     lr = 0 # left/right
     fb = 0 # forward/backward
     ud = 0 # up/down
     yv = 0 # yaw/velocity
 
-    if kp.getKey('LEFT'):
+    if kp.getKey('LEFT'): # arrow key left => move left
         lr = -speed
-    elif kp.getKey('RIGHT'):
+    elif kp.getKey('RIGHT'): # arrow key right => move right
         lr = speed
 
-    if kp.getKey('UP'):
+    if kp.getKey('UP'): # arrow key up => move forward
         fb = speed
-    elif kp.getKey('DOWN'):
+    elif kp.getKey('DOWN'): # arrow key down => move backward
         fb = -speed
 
     if kp.getKey('w'): # up
@@ -52,6 +50,14 @@ def getKeyboardInput():
     if kp.getKey('c'): # take a photo
         cv2.imwrite(f"./tello-captures/{str(uuid.uuid4()).split('-')[0]}-{datetime.now().date()}.jpg", img)
         time.sleep(0.3)
+
+    if kp.getKey('l'): # write current state log
+        logger.log(drone)
+        time.sleep(0.3)
+
+    if kp.getKey('x'): # exit program
+        if drone.get_height() == 0:
+            exit()
 
     return [lr, fb, ud, yv]
 

@@ -4,7 +4,7 @@ def init():
     pygame.init()
     window = pygame.display.set_mode((400,400))
 
-def getKey(keyName):
+def getKey(keyName: str) -> bool:
     answer = False
     for event in pygame.event.get():
         pass
