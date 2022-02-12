@@ -1,0 +1,103 @@
+ 
+                ============= 2022-01-25 15:37:00.408640 =============
+                Battery: 72%
+                Barometer: 23161.0
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': -16, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 89, 'temph': 91, 'tof': 10, 'h': 0, 'bat': 72, 'baro': 231.61, 'time': 11, 'agx': -3.0, 'agy': -1.0, 'agz': -1003.0}
+                Height: 0
+                YAW: -16    
+         
+                ============= 2022-01-25 15:37:43.598025 =============
+                Battery: 72%
+                Barometer: 23165.0
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': -16, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 90, 'temph': 92, 'tof': 10, 'h': 0, 'bat': 72, 'baro': 231.65, 'time': 11, 'agx': -2.0, 'agy': -2.0, 'agz': -1000.0}
+                Height: 0
+                YAW: -16    
+         
+                ============= 2022-01-25 15:37:45.442515 =============
+                Battery: 72%
+                Barometer: 23161.0
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': -16, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 90, 'temph': 93, 'tof': 10, 'h': 0, 'bat': 72, 'baro': 231.61, 'time': 11, 'agx': -1.0, 'agy': 0.0, 'agz': -999.0}
+                Height: 0
+                YAW: -16    
+         
+                ============= 2022-01-25 15:37:46.436009 =============
+                Battery: 72%
+                Barometer: 23166.0
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': -16, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 91, 'temph': 93, 'tof': 10, 'h': 0, 'bat': 72, 'baro': 231.66, 'time': 11, 'agx': -1.0, 'agy': 0.0, 'agz': -1000.0}
+                Height: 0
+                YAW: -16    
+         
+                ============= 2022-01-25 15:39:48.241810 =============
+                Battery: 72%
+                Barometer: 23337.0
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': -20, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 72, 'temph': 73, 'tof': 171, 'h': 140, 'bat': 72, 'baro': 233.37, 'time': 81, 'agx': -11.0, 'agy': -5.0, 'agz': -996.0}
+                Height: 140
+                YAW: -20    
+         
+                ============= 2022-01-25 15:40:24.176016 =============
+                Battery: 72%
+                Barometer: 23335.0
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': 86, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 68, 'temph': 71, 'tof': 168, 'h': 140, 'bat': 72, 'baro': 233.35, 'time': 117, 'agx': -8.0, 'agy': -1.0, 'agz': -997.0}
+                Height: 140
+                YAW: 86    
+        ============= 2022-01-25 15:50:51.032596 =============
+                Battery: 55%
+                Height: 80cm
+                Barometer: 23101.0
+                YAW: 83    
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': 83, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 84, 'temph': 87, 'tof': 87, 'h': 80, 'bat': 55, 'baro': 231.01, 'time': 153, 'agx': -11.0, 'agy': -7.0, 'agz': -1003.0}
+                ============= 2022-01-25 15:50:54.986163 =============
+                Battery: 55%
+                Height: 80cm
+                Barometer: 23115.0
+                YAW: 83    
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': 83, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 84, 'temph': 85, 'tof': 89, 'h': 80, 'bat': 55, 'baro': 231.15, 'time': 157, 'agx': -13.0, 'agy': -7.0, 'agz': -1008.0}
+                ============= 2022-01-25 15:50:56.962129 =============
+                Battery: 55%
+                Height: 80cm
+                Barometer: 23106.0
+                YAW: 83    
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': 83, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 83, 'temph': 84, 'tof': 87, 'h': 80, 'bat': 55, 'baro': 231.06, 'time': 159, 'agx': -13.0, 'agy': -9.0, 'agz': -1004.0}
+                ============= 2022-01-25 15:50:57.404021 =============
+                Battery: 55%
+                Height: 80cm
+                Barometer: 23186.0
+                YAW: 83    
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': 83, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 83, 'temph': 84, 'tof': 87, 'h': 80, 'bat': 55, 'baro': 231.86, 'time': 160, 'agx': -14.0, 'agy': -6.0, 'agz': -998.0}
+                ============= 2022-01-25 15:50:57.941987 =============
+                Battery: 55%
+                Height: 80cm
+                Barometer: 23102.0
+                YAW: 83    
+                Current State: {'pitch': 0, 'roll': 0, 'yaw': 83, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 82, 'temph': 84, 'tof': 87, 'h': 80, 'bat': 55, 'baro': 231.02, 'time': 160, 'agx': -5.0, 'agy': -7.0, 'agz': -1001.0}
+                ============= 2022-01-25 15:53:30.364066 =============
+                Battery: 52%
+                Height: 0cm
+                Barometer: 23132.0
+                YAW: 43    
+                Current State: {'pitch': -2, 'roll': -9, 'yaw': 43, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 80, 'temph': 83, 'tof': 10, 'h': 0, 'bat': 52, 'baro': 231.32, 'time': 212, 'agx': -55.0, 'agy': 108.0, 'agz': -1004.0}
+                ============= 2022-01-25 15:53:36.763014 =============
+                Battery: 52%
+                Height: 0cm
+                Barometer: 23130.0
+                YAW: 46    
+                Current State: {'pitch': -2, 'roll': -61, 'yaw': 46, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 81, 'temph': 83, 'tof': 34, 'h': 0, 'bat': 52, 'baro': 231.3, 'time': 212, 'agx': -47.0, 'agy': 841.0, 'agz': -463.0}
+                ============= 2022-01-25 15:53:43.930520 =============
+                Battery: 52%
+                Height: 0cm
+                Barometer: 23168.0
+                YAW: 26    
+                Current State: {'pitch': 0, 'roll': -8, 'yaw': 26, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 82, 'temph': 84, 'tof': 10, 'h': 0, 'bat': 52, 'baro': 231.68, 'time': 212, 'agx': -5.0, 'agy': 147.0, 'agz': -971.0}
+                ============= 2022-01-25 15:53:54.495090 =============
+                Battery: 51%
+                Height: 0cm
+                Barometer: 23168.0
+                YAW: -55    
+                Current State: {'pitch': -55, 'roll': 37, 'yaw': -55, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 82, 'temph': 84, 'tof': 10, 'h': 0, 'bat': 51, 'baro': 231.68, 'time': 212, 'agx': -816.0, 'agy': -340.0, 'agz': -446.0}
+                ============= 2022-01-25 15:59:40.908013 =============
+                       Battery: 43%
+                       Height: 0cm
+                       Barometer: 23045.0
+                       YAW: 84    
+                       Current State: {'pitch': 0, 'roll': 0, 'yaw': 84, 'vgx': 0, 'vgy': 0, 'vgz': 0, 'templ': 93, 'temph': 95, 'tof': 10, 'h': 0, 'bat': 43, 'baro': 230.45, 'time': 212, 'agx': -3.0, 'agy': -1.0, 'agz': -1000.0}
+                
