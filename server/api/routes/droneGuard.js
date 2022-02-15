@@ -1,7 +1,6 @@
 const express = require('express');
 
 const UserController = require('../controllers/user-controller.js')
-const LifuguardController = require('../controllers/lifeguard-controller.js')
 const BeachController = require('../controllers/beach-controller.js')
 const RecordController = require('../controllers/record-controller.js')
 
@@ -13,19 +12,14 @@ const router = express.Router();
 
 
 /* User Endpoints */
-router.get('/user', Middlewares, UserController.getCurrentUser);
-router.post('/login', loggerMiddleware, UserController.loginUser);
-router.post('/register', loggerMiddleware, UserController.registerUser);
-
-/* Lifuguard Endpoints */
-router.get('/api/lifeguard', Middlewares, LifuguardController.getLifeguards);
-router.post('/api/lifeguard', Middlewares, LifuguardController.createLifeguard);
-router.delete('/api/lifeguard', Middlewares, LifuguardController.deleteLifeguard);
+router.post('/api/register', loggerMiddleware, UserController.registerUser);
+router.post('/api/login', loggerMiddleware, UserController.loginUser);
+router.get('/api/user', Middlewares, UserController.getCurrentUser);
 
 /* Beach Endpoints */
 router.get('/api/beach', Middlewares, BeachController.getBeaches);
 router.post('/api/beach', Middlewares, BeachController.createBeach);
-router.delete('/api/beach', Middlewares, BeachController.deleteBeach);
+router.delete('/api/beach/:id', Middlewares, BeachController.deleteBeach);
 
 /* Record Endpoints */
 router.get('/api/record', Middlewares, RecordController.getRecords);

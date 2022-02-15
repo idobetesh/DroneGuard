@@ -1,4 +1,5 @@
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
+
 const Record = require('../models/record.js');
 
 /**
@@ -24,14 +25,14 @@ const createRecord = asyncHandler(async (url, user) => {
  */
 const getRecords = asyncHandler(async (user) => {
     const { userType, id } = user;
-    let results;
+    let records;
     if (userType === 'Admin') {
-        results = await Record.find();
+        records = await Record.find();
     } else {
-        results = await Record.find({ user: id });
+        records = await Record.find({ user: id });
     }
 
-    return results;
+    return records;
 });
 
 /**

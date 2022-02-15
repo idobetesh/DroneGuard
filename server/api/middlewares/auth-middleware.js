@@ -4,7 +4,7 @@ const { StatusCodes: HttpStatus } = require('http-status-codes');
 const UserMapper = require('../mappers/user-mapper.js');
 
 const authMiddleware = asyncHandler(async (req, res, next) => {
-    let token;
+    let token = null;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
@@ -24,6 +24,7 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
 
     if (!token) {
         res.status(HttpStatus.UNAUTHORIZED);
+        throw new Error('Missing bearer token');
     }
 });
 

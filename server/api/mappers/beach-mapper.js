@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+
 const Beach = require('../models/beach.js');
 
 /**
@@ -9,22 +10,29 @@ const Beach = require('../models/beach.js');
  * @returns {Object} The created beach
  * @throws Will throw an error on failure
  */
-const createBeach = asyncHandler(async (name) => {
-    const beach = Beach.create({ name });
+const createBeach = asyncHandler(async (name, city) => {
+    const beach = await Beach.create({ name, city });
 
     return beach;
 });
 
 /**
- * Get all beaches
- *
- * @returns {Array} array of all beaches
+ * Get all beaches according to admin/user permissions
+ * 
+ * @param {Object} user
+ * @returns {Array} contains all beaches
  * @throws Will throw an error on failure
  */
-const getBeaches = asyncHandler(async () => {
-    const results = await Beach.find();
+const getBeaches = asyncHandler(async (user) => {
+    const { userType, id } = user;
+    let beaches;
+    if (userType === 'Admin') {
+        beaches = await Beach.find();
+    } else {
+        beaches = await Beach.find({ user: id });
+    }
 
-    return results;
+    return beaches;
 });
 
 /**
@@ -46,8 +54,8 @@ const getBeaches = asyncHandler(async () => {
  * @returns {Array} array of all beaches
  * @throws Will throw an error on failure
  */
-const deleteBeach = asyncHandler(async (name) => {
-    const results = await Beach.findOneAndDelete({ name });
+const deleteBeach = asyncHandler(async (id) => {
+    const results = await Beach.findOneAndDelete({ id });
 
     return results;
 });

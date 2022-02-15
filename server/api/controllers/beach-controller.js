@@ -1,52 +1,59 @@
+const asyncHandler = require('express-async-handler');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
+
 const BeachMapper = require('../mappers/beach-mapper.js');
 
 
-const createBeach = async (req, res) => {
-    const { name } = req.body;
+const createBeach = asyncHandler(async (req, res) => {
+    const { name, city } = req.body;
     let results;
-    if (name) {
+    if (name && city) {
         try {
-            results = await BeachMapper.createBeach(name);
-        } catch {
-            console.log(error);
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' });
+            const isExsits = await BeachMapper.getBeachByName(name);
+            if (isExsits) {
+                throw new Error('Beach already exsits');
+            }
+            results = await BeachMapper.createBeach(name, city);
+        } catch (error) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw error;
         }
     } else {
-        res.status(HttpStatus.BAD_REQUEST).json({ message: 'Bad request' });
+        res.status(HttpStatus.BAD_REQUEST);
+        throw new Error('Some fields are missing');
     }
 
     res.status(HttpStatus.CREATED).send(results);
-};
+});
 
-const getBeaches = async (req, res) => {
+const getBeaches = asyncHandler(async (req, res) => {
     let results;
     try {
-        results = await BeachMapper.getBeaches();
+        results = await BeachMapper.getBeaches(req.user);
     } catch (error) {
-        console.error(error);
-        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' });
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR);
+        throw error;
     }
 
     res.status(HttpStatus.OK).send(results);
-};
+});
 
-const deleteBeach = async (req, res) => {
-    const { name } = req.body;
+const deleteBeach = asyncHandler(async (req, res) => {
+    const { id } = req.params;
     let results;
-    if (name) {
+    if (id) {
         try {
-            results = await BeachMapper.deleteBeach(name);
+            results = await BeachMapper.deleteBeach(id);
         } catch (error) {
-            console.error(error);
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' });
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw error;
         }
     } else {
         res.status(HttpStatus.BAD_REQUEST).json({ message: 'Bad request' });
     }
 
     res.status(HttpStatus.OK).send(results);
-};
+});
 
 
 exports.getBeaches = getBeaches;

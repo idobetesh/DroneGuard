@@ -12,9 +12,9 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', DroneGuardRoutes);
-
 Database.connect();
+
+app.use('/', DroneGuardRoutes);
 
 app.use(errorHandlerMiddleware);
 

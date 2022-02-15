@@ -1,16 +1,20 @@
+const asyncHandler = require('express-async-handler');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
+
 const RecordMapper = require('../mappers/record-mapper.js');
+const UserMapper = require('../mappers/user-mapper');
 
 
-const createRecord = async (req, res) => {
+const createRecord = asyncHandler(async (req, res) => {
     const { url } = req.body;
     let results;
     if (url) {
         try {
             results = await RecordMapper.createRecord(url, req.user);
+            await UserMapper.addBeach(req.user, results.id);
         } catch {
-            console.error(error);
-            throw new Error('Failed to create new record');
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw error;
         }
     } else {
         res.status(HttpStatus.BAD_REQUEST);
@@ -18,22 +22,21 @@ const createRecord = async (req, res) => {
     }
 
     res.status(HttpStatus.CREATED).send(results);
-};
+});
 
-const getRecords = async (req, res) => {
+const getRecords = asyncHandler(async (req, res) => {
     let results;
     try {
         results = await RecordMapper.getRecords(req.user);
     } catch (error) {
-        console.error(error);
         res.status(HttpStatus.INTERNAL_SERVER_ERROR);
-        throw new Error('Failed to get records');
+        throw error;
     }
 
     res.status(HttpStatus.OK).send(results);
-};
+});
 
-const deleteRecord = async (req, res) => {
+const deleteRecord = asyncHandler(async (req, res) => {
     const { id } = req.params;
     let results;
     if (id) {
@@ -49,9 +52,9 @@ const deleteRecord = async (req, res) => {
     }
 
     res.status(HttpStatus.OK).send(results);
-};
+});
 
-const addRecordComment = async (req, res) => {
+const addRecordComment = asyncHandler(async (req, res) => {
     const { id, comment } = req.body;
     let results;
     if (id && comment) {
@@ -67,7 +70,7 @@ const addRecordComment = async (req, res) => {
     }
 
     res.status(HttpStatus.OK).send(results);
-};
+});
 
 
 exports.addRecordComment = addRecordComment;

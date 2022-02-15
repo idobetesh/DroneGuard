@@ -7,8 +7,8 @@ const recordSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Types.ObjectId,
-        ref: 'User'
-        // required: true
+        ref: 'User',
+        required: true
     },
     beachId: {
         type: mongoose.Types.ObjectId,

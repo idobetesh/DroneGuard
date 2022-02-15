@@ -1,10 +1,10 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
 
-const UserMapper = require('../mappers/user-mapper.js')
+const UserMapper = require('../mappers/user-mapper.js');
+const { ReasonPhrases } = require('http-status-codes');
 
 
 const generateToken = (id) => {

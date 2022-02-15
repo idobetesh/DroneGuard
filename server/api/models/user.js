@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     lastLogin: Date,
+    beaches: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Beach'
+    }],
     userType: {
         type: String,
         enum: ['Admin', 'Lifeguard']
