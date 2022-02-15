@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 
 const adminSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+        unique: true,
+        ref: 'User'
+    },
     name: {
         type: String,
         required: true
     },
-    beachId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Beach'
-    },
-    records: [{
-        recordId: mongoose.Types.ObjectId
-    }]
 }, { timestamp: true });
 
 const Admin = mongoose.model('Admin', adminSchema);

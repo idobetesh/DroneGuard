@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
+const asyncHandler = require('express-async-handler');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
 const UserMapper = require('../mappers/user-mapper.js');
 
-const protectMiddleware = async (req, res, next) => {
+const authMiddleware = asyncHandler(async (req, res, next) => {
     let token;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -17,12 +18,13 @@ const protectMiddleware = async (req, res, next) => {
         } catch (error) {
             console.error(error);
             res.status(HttpStatus.UNAUTHORIZED);
+            throw new Error('Not authorized')
         }
     }
 
     if (!token) {
         res.status(HttpStatus.UNAUTHORIZED);
     }
-};
+});
 
-module.exports = { protectMiddleware };
+module.exports = { authMiddleware };

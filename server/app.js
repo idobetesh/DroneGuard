@@ -1,6 +1,8 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
+
 const DroneGuardRoutes = require('./api/routes/droneGuard').router;
+const { errorHandlerMiddleware } = require('./api/middlewares/error-handler-middleware.js')
 const Database = require('./api/db/database.js');
 
 require('dotenv').config();
@@ -13,6 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', DroneGuardRoutes);
 
 Database.connect();
+
+app.use(errorHandlerMiddleware);
 
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
 

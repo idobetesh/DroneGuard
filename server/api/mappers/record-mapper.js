@@ -1,3 +1,4 @@
+const asyncHandler = require('express-async-handler')
 const Record = require('../models/record.js');
 
 /**
@@ -8,19 +9,20 @@ const Record = require('../models/record.js');
  * @returns {Object} The created lifeduard
  * @throws Will throw an error on failure
  */
-const createRecord = async (url) => {
-    const record = Record.create({ url });
+const createRecord = asyncHandler(async (url, user) => {
+    const record = Record.create({ url, user: user.id });
 
     return record;
-};
+});
 
 /**
- * Get all records
+ * Get all records according to admin/user permissions
  * 
+ * @param {Object} user
  * @returns {Array} contains all records
  * @throws Will throw an error on failure
  */
-const getRecords = async (user) => {
+const getRecords = asyncHandler(async (user) => {
     const { userType, id } = user;
     let results;
     if (userType === 'Admin') {
@@ -30,7 +32,7 @@ const getRecords = async (user) => {
     }
 
     return results;
-};
+});
 
 /**
  * Delete record given its id
@@ -39,11 +41,11 @@ const getRecords = async (user) => {
  * @returns {Object} The deleted record
  * @throws Will throw an error on failure
  */
-const deleteRecord = async (id) => {
+const deleteRecord = asyncHandler(async (id) => {
     const results = await Record.findOneAndDelete({ id });
 
     return results;
-};
+});
 
 /**
  * Add comment to specific record
@@ -52,7 +54,7 @@ const deleteRecord = async (id) => {
  * @param {String} comment
  * @throws Will throw an error on failure
  */
-const addRecordComment = async (id, comment) => {
+const addRecordComment = asyncHandler(async (id, comment) => {
     const newComment = {
         comment,
         date: Date.now()
@@ -62,7 +64,7 @@ const addRecordComment = async (id, comment) => {
     record.comments.push(newComment);
     
     await record.save();
-};
+});
 
 
 exports.addRecordComment = addRecordComment;

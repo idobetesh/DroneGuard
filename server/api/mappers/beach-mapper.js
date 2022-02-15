@@ -1,3 +1,4 @@
+const asyncHandler = require('express-async-handler');
 const Beach = require('../models/beach.js');
 
 /**
@@ -8,11 +9,11 @@ const Beach = require('../models/beach.js');
  * @returns {Object} The created beach
  * @throws Will throw an error on failure
  */
-const createBeach = async (name) => {
+const createBeach = asyncHandler(async (name) => {
     const beach = Beach.create({ name });
 
     return beach;
-};
+});
 
 /**
  * Get all beaches
@@ -20,11 +21,11 @@ const createBeach = async (name) => {
  * @returns {Array} array of all beaches
  * @throws Will throw an error on failure
  */
-const getBeaches = async () => {
+const getBeaches = asyncHandler(async () => {
     const results = await Beach.find();
 
     return results;
-};
+});
 
 /**
  * Get specific beach by name
@@ -32,11 +33,11 @@ const getBeaches = async () => {
  * @returns {Array} array of all beaches with the given name
  * @throws Will throw an error on failure
  */
- const getBeachByName = async (name) => {
+ const getBeachByName = asyncHandler(async (name) => {
     const results = await Beach.find({ name });
 
     return results;
-};
+});
 
 /**
  * Delete beach
@@ -45,11 +46,11 @@ const getBeaches = async () => {
  * @returns {Array} array of all beaches
  * @throws Will throw an error on failure
  */
-const deleteBeach = async (name) => {
+const deleteBeach = asyncHandler(async (name) => {
     const results = await Beach.findOneAndDelete({ name });
 
     return results;
-};
+});
 
 
 exports.getBeaches = getBeaches;

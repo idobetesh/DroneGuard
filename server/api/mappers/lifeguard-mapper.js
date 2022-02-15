@@ -7,8 +7,8 @@ const Lifeguard = require('../models/lifeguard.js');
  * @returns {Object} The created lifeduard
  * @throws Will throw an error on failure
  */
-const createLifeguard = async (name) => {
-    const lifeguard = await Lifeguard.create({ name });
+const createLifeguard = async (userId, name) => {
+    const lifeguard = await Lifeguard.create({ userId, name });
 
     return lifeguard;
 };
