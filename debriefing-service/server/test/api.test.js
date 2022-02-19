@@ -19,9 +19,9 @@ describe('API DroneGuard Debriefing System 🚁', () => {
     };
     const newComment = `foo bar at ${Date.now()} !@#$%^&*()`;
 
-    describe('POST /api/login', () => {
+    describe('POST /api/user/login', () => {
         it('Should success (return a JSON containing logged-in user details)', async () => {
-            return await request(app).post('/api/login')
+            return await request(app).post('/api/user/login')
                 .send(fakeUser)
                 .expect('Content-Type', /json/)
                 .expect(HttpStatus.OK)
