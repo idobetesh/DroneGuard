@@ -12,8 +12,8 @@ const router = express.Router();
 
 
 /* User Endpoints */
-router.post('/api/register', loggerMiddleware, UserController.registerUser);
-router.post('/api/login', loggerMiddleware, UserController.loginUser);
+router.post('/api/user/register', loggerMiddleware, UserController.registerUser);
+router.post('/api/user/login', loggerMiddleware, UserController.loginUser);
 router.get('/api/user', Middlewares, UserController.getCurrentUser);
 
 /* Beach Endpoints */

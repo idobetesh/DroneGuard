@@ -1,4 +1,5 @@
 const app = require('express')();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const DroneGuardRoutes = require('./api/routes/droneGuard').router;
@@ -11,6 +12,8 @@ const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cors());
 
 Database.connect();
 
