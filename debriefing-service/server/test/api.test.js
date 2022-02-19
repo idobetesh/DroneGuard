@@ -37,6 +37,36 @@ describe('API DroneGuard Debriefing System 🚁', () => {
         });
     });
 
+    describe('POST /api/user/register', () => {
+        const userData = {
+            name: 'some name',
+            password: 'some_password',
+            email: 'email@email.com',
+            userType: 'Lifeguard'
+        };
+        it('Should success (return a JSON containing the new user details)', async () => {
+            return await request(app).post('/api/user/register')
+                .send(userData)
+                .expect('Content-Type', /json/)
+                .expect(HttpStatus.CREATED)
+                .then((res) => {
+                    expect(res.body).toEqual(
+                        expect.objectContaining({
+                            id: expect.any(String),
+                            email: expect.any(String),
+                            name: expect.any(String),
+                            token: expect.any(String)
+                        }))
+                })
+        });
+        it('Should fail (user already exists)', async () => {
+            return await request(app).post('/api/user/register')
+                .send(userData)
+                .expect('Content-Type', /json/)
+                .expect(HttpStatus.BAD_REQUEST)
+        });
+    });
+
     describe('GET /api/user', () => {
         it('Should fail (user is unauthorized)', async () => {
             return await request(app).get('/api/user')
@@ -102,15 +132,15 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .then((res) => expect(typeof (res.body) === {}))
         });
     });
-    
+
     describe(`DELETE /api/record`, () => {
         it('Should success (delete specific record)', async () => {
             return await request(app).delete(`/api/record/${process.env.RECORD_ID}`)
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .expect(HttpStatus.OK)
-            });
-            it('Should fail (specific record was not found)', async () => {
-                return await request(app).delete('/api/record')
+        });
+        it('Should fail (specific record was not found)', async () => {
+            return await request(app).delete('/api/record')
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .expect(HttpStatus.NOT_FOUND)
         });
