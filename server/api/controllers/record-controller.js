@@ -38,12 +38,18 @@ const getRecords = asyncHandler(async (req, res) => {
 
 const deleteRecord = asyncHandler(async (req, res) => {
     const { id } = req.params;
+    const { user } = req;
+
+    if (user.userType !== 'Admin') {
+        res.status(HttpStatus.UNAUTHORIZED);
+        throw new Error(`${user.userType} unauthorized to delete records!`);
+    }
+
     let results;
     if (id) {
         try {
             results = await RecordMapper.deleteRecord(id);
         } catch (error) {
-            console.error(error);
             throw new Error('Failed to delete record');
         }
     } else {
@@ -61,7 +67,6 @@ const addRecordComment = asyncHandler(async (req, res) => {
         try {
             results = await RecordMapper.addRecordComment(id, comment);
         } catch (error) {
-            console.error(error);
             throw new Error('Failed to add new comment');
         }
     } else {

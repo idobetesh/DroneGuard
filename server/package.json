@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "test": "jest --forceExit",
+    "start": "nodemon app.js --ignore test/"
   },
   "keywords": [],
   "author": "DroneGuard",
@@ -22,6 +22,8 @@
   },
   "devDependencies": {
     "dotenv": "^14.3.2",
-    "nodemon": "^2.0.15"
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   }
 }

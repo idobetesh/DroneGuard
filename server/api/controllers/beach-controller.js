@@ -9,10 +9,6 @@ const createBeach = asyncHandler(async (req, res) => {
     let results;
     if (name && city) {
         try {
-            const isExsits = await BeachMapper.getBeachByName(name);
-            if (isExsits) {
-                throw new Error('Beach already exsits');
-            }
             results = await BeachMapper.createBeach(name, city);
         } catch (error) {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR);
