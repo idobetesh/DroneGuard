@@ -10,7 +10,7 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     message: '',
-}
+};
 
 export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
     try {

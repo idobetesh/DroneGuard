@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001/api/user';
+const baseUrl = 'http://localhost:3001/api/user';
 
 const register = async (newUserData) => {
-    const response = await axios.post(`${API_URL}/register`, newUserData);
+    const response = await axios.post(`${baseUrl}/register`, newUserData);
 
     const data = response.data;
 
@@ -15,7 +15,7 @@ const register = async (newUserData) => {
 };
 
 const login = async (userData) => {
-    const response = await axios.post(`${API_URL}/login`, userData);
+    const response = await axios.post(`${baseUrl}/login`, userData);
 
     const data = response.data;
 

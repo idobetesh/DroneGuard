@@ -1,6 +1,8 @@
 const request = require('supertest');
-const app = require('../app');
+const app = require('../app.js');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
+
+const User = require('../api/models/user.js');
 
 require('dotenv').config();
 
@@ -15,9 +17,10 @@ describe('API DroneGuard Debriefing System 🚁', () => {
         id: process.env.USER_ID,
         name: process.env.USER_NAME,
         email: process.env.USER_EMAIL,
-        userType: "Admin",
+        userType: 'Admin',
     };
     const newComment = `foo bar at ${Date.now()} !@#$%^&*()`;
+    let testRecordId = null;
 
     describe('POST /api/user/login', () => {
         it('Should success (return a JSON containing logged-in user details)', async () => {
@@ -44,6 +47,8 @@ describe('API DroneGuard Debriefing System 🚁', () => {
             email: 'email@email.com',
             userType: 'Lifeguard'
         };
+        let userIdToDelete = null;
+
         it('Should success (return a JSON containing the new user details)', async () => {
             return await request(app).post('/api/user/register')
                 .send(userData)
@@ -55,8 +60,12 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                             id: expect.any(String),
                             email: expect.any(String),
                             name: expect.any(String),
+                            userType: expect.any(String),
                             token: expect.any(String)
                         }))
+
+                    /* save for later delete */
+                    userIdToDelete = res.body.id;
                 })
         });
         it('Should fail (user already exists)', async () => {
@@ -64,6 +73,9 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .send(userData)
                 .expect('Content-Type', /json/)
                 .expect(HttpStatus.BAD_REQUEST)
+                .then((userIdToDelete) => {
+                    User.findOneAndDelete({ _id: userIdToDelete });
+                });
         });
     });
 
@@ -76,7 +88,7 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .then((res) => {
                     expect(res.body).toEqual(
                         expect.objectContaining({
-                            message: "Missing bearer token",
+                            message: 'Missing bearer token',
                         }))
                 })
         });
@@ -112,6 +124,19 @@ describe('API DroneGuard Debriefing System 🚁', () => {
         });
     });
 
+    describe(`POST /api/record`, () => {
+        const testRecord = { url: 'https://foo.bar.com' }
+        it('Should success (create new record)', async () => {
+            return await request(app).post('/api/record/')
+                .auth(fakeBearerToken, { type: 'bearer' })
+                .send(testRecord)
+                .expect(HttpStatus.CREATED)
+                .then((res) => {
+                    testRecordId = res.body._id;
+                })
+        });
+    });
+
     describe('POST /api/record/comment', () => {
         it('Should fail (no record id)', async () => {
             return await request(app).post('/api/record/comment')
@@ -119,23 +144,19 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .send({ id: null, comment: newComment })
                 .expect(HttpStatus.BAD_REQUEST)
         });
-
-        /* change record id to real one */
-        const id = process.env.RECORD_ID;
-
         it('Should success (add new comment to a specific record)', async () => {
+            /* change record id to real one [created with `POST /api/record` test] */
             return await request(app).post('/api/record/comment')
                 .auth(fakeBearerToken, { type: 'bearer' })
-                .send({ id, comment: newComment })
-                .expect('Content-Type', /json/)
-                .expect(HttpStatus.OK)
+                .send({ id: testRecordId, comment: newComment })
+                .expect(HttpStatus.CREATED)
                 .then((res) => expect(typeof (res.body) === {}))
         });
     });
 
-    describe(`DELETE /api/record`, () => {
+    describe('DELETE /api/record', () => {
         it('Should success (delete specific record)', async () => {
-            return await request(app).delete(`/api/record/${process.env.RECORD_ID}`)
+            return await request(app).delete(`/api/record/${testRecordId}`)
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .expect(HttpStatus.OK)
         });

@@ -10,8 +10,8 @@ const Record = require('../models/record.js');
  * @returns {Object} The created lifeduard
  * @throws Will throw an error on failure
  */
-const createRecord = asyncHandler(async (url, user) => {
-    const record = Record.create({ url, user: user.id });
+const createRecord = asyncHandler(async (url, thumbnailUrl, user) => {
+    const record = Record.create({ url, thumbnailUrl, user: user.id });
 
     return record;
 });
@@ -43,7 +43,7 @@ const getRecords = asyncHandler(async (user) => {
  * @throws Will throw an error on failure
  */
 const deleteRecord = asyncHandler(async (id) => {
-    const results = await Record.findOneAndDelete({ id });
+    const results = await Record.findOneAndDelete(id);
 
     return results;
 });
@@ -63,7 +63,7 @@ const addRecordComment = asyncHandler(async (id, comment) => {
 
     let record = await Record.findById(id);
     record.comments.push(newComment);
-    
+
     await record.save();
 });
 

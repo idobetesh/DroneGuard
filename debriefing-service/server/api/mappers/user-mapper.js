@@ -42,7 +42,7 @@ const getUserById = asyncHandler(async (id) => {
 const createUser = asyncHandler(async (email, password, name, userType) => {
     const user = await User.create({ email, password, name, userType });
 
-    return { id: user.id, name: user.name, email: user.email };
+    return { id: user.id, name: user.name, email: user.email, userType: user.userType };
 });
 
 /**
@@ -52,11 +52,11 @@ const createUser = asyncHandler(async (email, password, name, userType) => {
  * @param {String} beach id
  * @throws Will throw an error on failure
  */
- const addBeach = asyncHandler(async (user, beach) => {
+const addBeach = asyncHandler(async (user, beach) => {
     const { id } = user;
     let currentUser = await User.findById(id);
     currentUser.beaches.push(beach);
-    
+
     await currentUser.save();
 });
 

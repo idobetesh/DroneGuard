@@ -8,12 +8,12 @@ import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
 
 const Login = () => {
-    const [newUserData, setNewUserData] = useState({
+    const [userData, setUserData] = useState({
         email: '',
         password: '',
     });
 
-    const { email, password } = newUserData;
+    const { email, password } = userData;
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -29,11 +29,11 @@ const Login = () => {
             navigate('/')
         }
 
-        dispatch(reset())
+        dispatch(reset());
     }, [user, isError, isSuccess, message, navigate, dispatch]);
 
     const onChange = (e) => {
-        setNewUserData((prevState) => ({
+        setUserData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }))
@@ -51,7 +51,7 @@ const Login = () => {
     }
 
     if (isLoading) {
-        return <Spinner />
+        return <Spinner />;
     }
 
     return <>
@@ -83,6 +83,7 @@ const Login = () => {
                         name='password'
                         value={password}
                         placeholder='Enter password'
+                        autoComplete='on'
                         onChange={onChange}
                     />
                 </div>
@@ -92,6 +93,6 @@ const Login = () => {
             </form>
         </section>
     </>
-}
+};
 
 export default Login

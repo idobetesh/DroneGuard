@@ -18,15 +18,11 @@ const recordSchema = new mongoose.Schema({
     thumbnailUrl: {
         type: String
     },
-    date: {
-        type: Date,
-        // required: true
-    },
     comments: [{                                                                                                     
         comment: String,
         date: Date
     }]
-}, { timestamp: true });
+}, { timestamps: true });
 
 const Record = mongoose.model('Record', recordSchema);
 

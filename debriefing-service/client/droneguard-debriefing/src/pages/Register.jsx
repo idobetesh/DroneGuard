@@ -18,8 +18,8 @@ const Register = () => {
 
     const { name, email, password, re_password, userType } = newUserData
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
@@ -42,7 +42,7 @@ const Register = () => {
     };
 
     const onSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (password !== re_password) {
             toast.error('Passwords do not match!');
@@ -59,7 +59,7 @@ const Register = () => {
     };
 
     if (isLoading) {
-        return <Spinner />
+        return <Spinner />;
     }
 
     return <>
@@ -102,7 +102,7 @@ const Register = () => {
                         name='password'
                         value={password}
                         placeholder='Enter password'
-                        autocomplete="on"
+                        autoComplete='on'
                         onChange={onChange}
                     />
                 </div>
@@ -114,7 +114,7 @@ const Register = () => {
                         name='re_password'
                         value={re_password}
                         placeholder='Confirm password'
-                        autocomplete="on"
+                        autoComplete='on'
                         onChange={onChange}
                     />
                 </div>
@@ -135,6 +135,6 @@ const Register = () => {
             </form>
         </section>
     </>
-}
+};
 
 export default Register

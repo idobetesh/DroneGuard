@@ -6,11 +6,11 @@ const UserMapper = require('../mappers/user-mapper');
 
 
 const createRecord = asyncHandler(async (req, res) => {
-    const { url } = req.body;
+    const { url, thumbnailUrl } = req.body;
     let results;
-    if (url) {
+    if (url && thumbnailUrl) {
         try {
-            results = await RecordMapper.createRecord(url, req.user);
+            results = await RecordMapper.createRecord(url, thumbnailUrl, req.user);
             await UserMapper.addBeach(req.user, results.id);
         } catch {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -74,7 +74,7 @@ const addRecordComment = asyncHandler(async (req, res) => {
         throw new Error('Some fields are missing');
     }
 
-    res.status(HttpStatus.OK).send(results);
+    res.status(HttpStatus.CREATED).send(results);
 });
 
 
