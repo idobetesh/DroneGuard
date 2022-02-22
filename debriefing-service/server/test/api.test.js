@@ -7,7 +7,7 @@ const User = require('../api/models/user.js');
 require('dotenv').config();
 
 describe('API DroneGuard Debriefing System 🚁', () => {
-    /* Keep token up to date by copy & past it in .env file! */
+    /* Keep token up to date by copy & paste it in .env file! */
     const fakeBearerToken = process.env.USER_TOKEN;
     const fakeUser = {
         email: process.env.USER_EMAIL,
@@ -19,7 +19,9 @@ describe('API DroneGuard Debriefing System 🚁', () => {
         email: process.env.USER_EMAIL,
         userType: 'Admin',
     };
-    const testNote = `foo bar at ${Date.now()} !@#$%^&*()`;
+    const testNote = {
+        text: `foo bar at ${Date.now()} !@#$%^&*()`
+    };
     let testRecordId = null;
 
     describe('POST /api/user/login', () => {
@@ -125,7 +127,10 @@ describe('API DroneGuard Debriefing System 🚁', () => {
     });
 
     describe(`POST /api/record`, () => {
-        const testRecord = { url: 'https://foo.bar.com' }
+        const testRecord = {
+            url: 'https://foo.bar.com',
+            thumbnailUrl: 'https://some-thumbnail.com'
+        }
         it('Should succeed (create new record)', async () => {
             return await request(app).post('/api/record/')
                 .auth(fakeBearerToken, { type: 'bearer' })
@@ -137,16 +142,16 @@ describe('API DroneGuard Debriefing System 🚁', () => {
         });
     });
 
-    describe('POST /api/record/???????????/note', () => {
+    describe('POST /api/record/<some-record-id>/note', () => {
         it('Should fail (no record id)', async () => {
-            return await request(app).post('/api/record/????????/note')
+            return await request(app).post('/api/record/<some-record-id>/note')
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .send({ testNote })
                 .expect(HttpStatus.BAD_REQUEST)
         });
         it('Should succeed (add note to a specific record)', async () => {
             /* change record id to real one [created with `POST /api/record` test] */
-            return await request(app).post('/api/record/?????????/note')
+            return await request(app).post(`/api/record/${testRecordId}/note`)
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .send({ testNote })
                 .expect(HttpStatus.CREATED)

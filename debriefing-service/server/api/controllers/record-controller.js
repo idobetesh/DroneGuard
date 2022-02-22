@@ -63,11 +63,10 @@ const deleteRecord = asyncHandler(async (req, res) => {
 const addRecordNote = asyncHandler(async (req, res) => {
     const { text } = req.body;
     const { id } = req.params;
-    let results;
 
     if (id && text) {
         try {
-            results = await RecordMapper.addRecordNote(id, text);
+            await RecordMapper.addRecordNote(id, text);
         } catch (error) {
             throw new Error('Failed to add note');
         }
@@ -76,7 +75,7 @@ const addRecordNote = asyncHandler(async (req, res) => {
         throw new Error('Some fields are missing');
     }
 
-    res.status(HttpStatus.CREATED).send({id, text});
+    res.status(HttpStatus.CREATED).send({ id, text });
 });
 
 
