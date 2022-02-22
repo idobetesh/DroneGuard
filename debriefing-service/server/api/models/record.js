@@ -18,7 +18,7 @@ const recordSchema = new mongoose.Schema({
     thumbnailUrl: {
         type: String
     },
-    note: {                                                                                                 
+    note: {
         type: String
     }
 }, { timestamps: true });

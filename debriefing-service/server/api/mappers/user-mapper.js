@@ -49,7 +49,7 @@ const createUser = asyncHandler(async (email, password, name, userType) => {
  * Add new beach to beaches array
  * 
  * @param {Object} user
- * @param {String} beach id
+ * @param {String} beach_id
  * @throws Will throw an error on failure
  */
 const addBeach = asyncHandler(async (user, beach) => {

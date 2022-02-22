@@ -6,7 +6,9 @@ const Record = require('../models/record.js');
  * Create new record
  *
  * @param {String} url
+ * @param {String} thumbnailUrl
  * @param {String} TBD
+ * @param {Object} user 
  * @returns {Object} The created lifeduard
  * @throws Will throw an error on failure
  */
