@@ -1,33 +1,27 @@
 import axios from 'axios';
+import Config from '../../config/config';
 
-const baseUrl = 'http://localhost:3001/api/record';
-
-const getConfig = (token) => {
-    return {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    };
-};
+const baseUrl = `${Config.getBaseUrl()}/record`;
 
 const getRecords = async (token) => {
-    const response = await axios.get(baseUrl, getConfig(token));
+    const response = await axios.get(baseUrl, Config.getConfig(token));
 
     return response.data;
 };
 
 const deleteRecord = async (id, token) => {
-    const response = await axios.delete(`${baseUrl}/${id}`, getConfig(token));
+    const response = await axios.delete(`${baseUrl}/${id}`, Config.getConfig(token));
 
     return response.data;
 };
 
-const addComment = async (newComment, token) => {
-    const response = await axios.post(`${baseUrl}/comment`, newComment, getConfig(token));
+const addNote = async (note, token) => {
+    const { id, text } = note;
+    const response = await axios.post(`${baseUrl}/${id}/note`, { text }, Config.getConfig(token));
 
     return response.data;
 };
 
 
-const recordService = { getRecords, deleteRecord, addComment };
+const recordService = { getRecords, deleteRecord, addNote };
 export default recordService;

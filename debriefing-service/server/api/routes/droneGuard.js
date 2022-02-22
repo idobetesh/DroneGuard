@@ -24,7 +24,7 @@ router.delete('/api/beach/:id', Middlewares, BeachController.deleteBeach);
 /* Record Endpoints */
 router.get('/api/record', Middlewares, RecordController.getRecords);
 router.post('/api/record', Middlewares, RecordController.createRecord);
-router.post('/api/record/comment', Middlewares, RecordController.addRecordComment);
+router.post('/api/record/:id/note', Middlewares, RecordController.addRecordNote);
 router.delete('/api/record/:id', Middlewares, RecordController.deleteRecord);
 
 

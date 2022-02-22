@@ -7,7 +7,7 @@ const loggerMiddleware = (req, res, next) => {
         ...req.user && { user: req.user.id }
     };
 
-    console.log(`[logger ${startTime.toLocaleString()}]: ${JSON.stringify(logData)}`);
+    console.log(`[logger ${startTime.toLocaleString('en-GB')}]: ${JSON.stringify(logData)}`);
 
     next();
 };

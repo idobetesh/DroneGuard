@@ -1,6 +1,7 @@
 import axios from 'axios';
+import Config from '../../config/config';
 
-const baseUrl = 'http://localhost:3001/api/user';
+const baseUrl = `${Config.getBaseUrl()}/user`;
 
 const register = async (newUserData) => {
     const response = await axios.post(`${baseUrl}/register`, newUserData);

@@ -60,25 +60,27 @@ const deleteRecord = asyncHandler(async (req, res) => {
     res.status(HttpStatus.OK).send(results);
 });
 
-const addRecordComment = asyncHandler(async (req, res) => {
-    const { id, comment } = req.body;
+const addRecordNote = asyncHandler(async (req, res) => {
+    const { text } = req.body;
+    const { id } = req.params;
     let results;
-    if (id && comment) {
+
+    if (id && text) {
         try {
-            results = await RecordMapper.addRecordComment(id, comment);
+            results = await RecordMapper.addRecordNote(id, text);
         } catch (error) {
-            throw new Error('Failed to add new comment');
+            throw new Error('Failed to add note');
         }
     } else {
         res.status(HttpStatus.BAD_REQUEST);
         throw new Error('Some fields are missing');
     }
 
-    res.status(HttpStatus.CREATED).send(results);
+    res.status(HttpStatus.CREATED).send({id, text});
 });
 
 
-exports.addRecordComment = addRecordComment;
+exports.addRecordNote = addRecordNote;
 exports.getRecords = getRecords;
 exports.createRecord = createRecord;
 exports.deleteRecord = deleteRecord;

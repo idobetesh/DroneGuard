@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify';
 
 import Spinner from '../components/Spinner'
 import RecordItem from '../components/RecordItem';
@@ -15,7 +16,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message);
+      toast.error(message);
     }
 
     if (!user) {
@@ -32,6 +33,7 @@ const Dashboard = () => {
   if (isLoading) {
     return <Spinner />;
   }
+
   return <>
     <section className='heading'>
       <h1>Welcome {user && user.name}</h1>
@@ -41,7 +43,7 @@ const Dashboard = () => {
       {records.length > 0 ? (
         <div className='records'>
           {records.map((record) => (
-            <RecordItem key={record._id} record={record} />
+              <RecordItem key={record._id} record={record} />
           ))}
         </div>
       ) : (<h3>No records for {user && user.name}</h3>)}

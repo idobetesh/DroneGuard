@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux'
-import { FaTrashAlt, FaRegCommentAlt } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { deleteRecord, addComment } from '../features/records/recordSlice';
+import { deleteRecord } from '../features/records/recordSlice';
 
 import defaultThumbnail from '../assets/defaultThumbnail.png'
+import NoteModal from '../components/NoteModal';
 
 const RecordItem = ({ record }) => {
     const { user } = useSelector((state) => state.auth);
@@ -12,10 +13,16 @@ const RecordItem = ({ record }) => {
     return (
         <div className='record'>
             <div>{new Date(record.createdAt).toLocaleString('en-GB')}</div>
+            {/* TODO set beach name on record model and uncomment next line */}
+            {/* <div>{(record.beach)}</div> */}
             {record.thumbnailUrl ? (
-                <img onClick={() => console.log('clicked!')} src={record.thumbnailUrl} alt={'record.thumbnailUrl'} />
+                <a href={record.url} target='_blank' rel='noreferrer'>
+                    <img src={record.thumbnailUrl} alt={'record.thumbnailUrl'} />
+                </a>
             ) : (
-                <img onClick={() => console.log('clicked!')} src={defaultThumbnail} alt={'defaultThumbnail'}/>
+                <a href={record.url} target='_blank' rel='noreferrer'>
+                    <img src={defaultThumbnail} alt={'defaultThumbnail'} />
+                </a>
             )}
             {user.userType === 'Admin' && (
                 <button className='close'
@@ -23,10 +30,7 @@ const RecordItem = ({ record }) => {
                     <FaTrashAlt />
                 </button>
             )}
-            <button className='close' style={{ marginRight: '7%', marginTop: '.2%' }}
-                onClick={() => dispatch(addComment({id: record._id, comment: 'hi'}))}>
-                <FaRegCommentAlt />
-            </button>
+            <NoteModal record={record} />
         </div>
     )
 };

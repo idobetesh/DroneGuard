@@ -22,11 +22,11 @@ const Login = () => {
 
     useEffect(() => {
         if (isError) {
-            toast.error(message)
+            toast.error(message);
         }
 
         if (isSuccess || user) {
-            navigate('/')
+            navigate('/');
         }
 
         dispatch(reset());
@@ -95,4 +95,4 @@ const Login = () => {
     </>
 };
 
-export default Login
+export default Login;

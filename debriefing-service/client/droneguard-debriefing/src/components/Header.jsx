@@ -13,7 +13,7 @@ const Header = () => {
     const onLogout = () => {
         dispatch(logout());
         dispatch(reset());
-        navigate('/');
+        navigate('/login');
     };
 
     return (
@@ -45,6 +45,6 @@ const Header = () => {
             </ul>
         </header>
     )
-}
+};
 
-export default Header
+export default Header;

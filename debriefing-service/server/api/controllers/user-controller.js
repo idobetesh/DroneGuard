@@ -4,8 +4,6 @@ const asyncHandler = require('express-async-handler');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
 
 const UserMapper = require('../mappers/user-mapper.js');
-const { ReasonPhrases } = require('http-status-codes');
-
 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {

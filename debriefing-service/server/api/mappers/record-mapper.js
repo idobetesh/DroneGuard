@@ -49,26 +49,21 @@ const deleteRecord = asyncHandler(async (id) => {
 });
 
 /**
- * Add comment to specific record
+ * Add note to a specific record
  *
  * @param {String} id
- * @param {String} comment
+ * @param {String} note
  * @throws Will throw an error on failure
  */
-const addRecordComment = asyncHandler(async (id, comment) => {
-    const newComment = {
-        comment,
-        date: Date.now()
-    };
-
+const addRecordNote = asyncHandler(async (id, note) => {
     let record = await Record.findById(id);
-    record.comments.push(newComment);
+    record.note = note;
 
     await record.save();
 });
 
 
-exports.addRecordComment = addRecordComment;
+exports.addRecordNote = addRecordNote;
 exports.getRecords = getRecords;
 exports.createRecord = createRecord;
 exports.deleteRecord = deleteRecord;

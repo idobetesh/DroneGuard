@@ -7,7 +7,7 @@ const initialState = {
     isError: false,
     isSuccess: false,
     isLoading: false,
-    message: '',
+    message: ''
 };
 
 export const getRecords = createAsyncThunk('records/getAllRecords', async (_, thunkAPI) => {
@@ -34,11 +34,11 @@ export const deleteRecord = createAsyncThunk('records/delete', async (id, thunkA
     }
 });
 
-export const addComment = createAsyncThunk('records/comment', async (newComment, thunkAPI) => {
+export const addNote = createAsyncThunk('records/note', async (note, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
 
-        return await recordService.addComment(newComment, token);
+        return await recordService.addNote(note, token);
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
@@ -76,12 +76,17 @@ export const recordSlice = createSlice({
                 state.isSuccess = true;
                 state.records = state.records.filter((record) => record._id !== action.payload._id);
             })
-            .addCase(addComment.pending, (state) => {
+            .addCase(addNote.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(addComment.fulfilled, (state, action) => {
+            .addCase(addNote.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
+            })
+            .addCase(addNote.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
             })
     }
 });
