@@ -4,6 +4,6 @@ const Spinner = () => {
             <div className='loadingSpinner'></div>
         </div>
     )
-}
+};
 
-export default Spinner
+export default Spinner;

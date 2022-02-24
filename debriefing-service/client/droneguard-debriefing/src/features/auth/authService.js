@@ -20,7 +20,7 @@ const login = async (userData) => {
 
     const data = response.data;
 
-    if (response.data) {
+    if (data) {
         localStorage.setItem('user', JSON.stringify(data));
     }
 
@@ -32,5 +32,5 @@ const logout = async () => {
 };
 
 
-const authService = { register, login, logout }
+const authService = { register, login, logout };
 export default authService;

@@ -120,14 +120,14 @@ const Register = () => {
                 </div>
                 <div style={{ padding: '3%', justifyContent: 'space-between', display: 'table' }}>
                     <input style={{ paddingLeft: '30%' }}
-                        type='radio'
+                        type='checkbox'
                         className='form-control'
                         id='userType'
                         name='userType'
                         value='Admin'
                         onChange={onChange}
                     />
-                    <label for='Admin'>Admin</label>
+                    <label for='Admin'> Admin</label>
                 </div>
                 <div className='form-group'>
                     <button type='submit' className='btn btn-block'>Submit</button>
@@ -137,4 +137,4 @@ const Register = () => {
     </>
 };
 
-export default Register
+export default Register;

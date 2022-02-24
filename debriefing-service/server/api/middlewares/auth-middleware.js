@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
+
 const UserMapper = require('../mappers/user-mapper.js');
 
 const authMiddleware = asyncHandler(async (req, res, next) => {

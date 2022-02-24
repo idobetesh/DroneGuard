@@ -7,7 +7,9 @@ const RecordController = require('../controllers/record-controller.js')
 const { loggerMiddleware } = require('../middlewares/logger-middleware.js');
 const { authMiddleware } = require('../middlewares/auth-middleware.js');
 
+
 const Middlewares = [authMiddleware, loggerMiddleware];
+
 const router = express.Router();
 
 

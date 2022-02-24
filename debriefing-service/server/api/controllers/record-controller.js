@@ -8,7 +8,7 @@ const UserMapper = require('../mappers/user-mapper');
 const createRecord = asyncHandler(async (req, res) => {
     const { url, thumbnailUrl } = req.body;
     let results;
-    if (url && thumbnailUrl) {
+    if (url) {
         try {
             results = await RecordMapper.createRecord(url, thumbnailUrl, req.user);
             await UserMapper.addBeach(req.user, results.id);
