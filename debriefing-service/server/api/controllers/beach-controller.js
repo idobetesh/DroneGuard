@@ -51,7 +51,26 @@ const deleteBeach = asyncHandler(async (req, res) => {
     res.status(HttpStatus.OK).send(results);
 });
 
+const setDefaultDroneGuardBeaches = asyncHandler(async (req, res) => {
+    const { password } = req.params;
+    let results;
+
+    if (password && password === process.env.PASSWORD) {
+        try {
+            results = await BeachMapper.setDefaultDroneGuardBeaches(password);
+        } catch (error) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw error;
+        }
+    } else {
+        res.status(HttpStatus.BAD_REQUEST).json({ message: 'Bad request' });
+    }
+
+    res.status(HttpStatus.OK).send(results);
+});
+
 
 exports.getBeaches = getBeaches;
 exports.createBeach = createBeach;
 exports.deleteBeach = deleteBeach;
+exports.setDefaultDroneGuardBeaches = setDefaultDroneGuardBeaches;
