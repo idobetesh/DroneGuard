@@ -4,9 +4,8 @@
 - [Etcher](https://www.balena.io/etcher/)
 - [OS img](https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy))
 
-- [Working with GPS Data using a Raspberry Pi, Node.js](https://www.youtube.com/watch?v=ijfBeMTuWhU&t=1431s)
-- [Setup Raspberry Pi Zero](https://www.youtube.com/watch?v=3VO4vGlQ1pg&t=124s)
--  [Setup Raspberry Pi Zero (2022 version)](youtube.com/watch?v=yn59qX-Td3E&t=207s)
+- [Working with GPS Data using a Raspberry Pi, Node.js](https://www.youtube.com/watch?v=ijfBeMTuWhU)
+- [Setup Raspberry Pi Zero](https://youtu.be/yn59qX-Td3E)
 
 ## SD card essentials files
 - Create ssh file: <br/>
