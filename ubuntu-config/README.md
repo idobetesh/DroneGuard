@@ -9,7 +9,7 @@
 -  [Setup Raspberry Pi Zero (2022 version)](youtube.com/watch?v=yn59qX-Td3E&t=207s)
 
 ## SD card essentials files
-Create ssh file: <br/>
+- Create ssh file: <br/>
 > `$touch ssh`
-Update wpa_supplicant.conf file: <br/>
+- Update wpa_supplicant.conf file: <br/>
 > `$vim wpa_supplicant.conf`
