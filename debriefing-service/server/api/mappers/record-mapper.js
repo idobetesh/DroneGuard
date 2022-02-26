@@ -22,17 +22,22 @@ const createRecord = asyncHandler(async (url, thumbnailUrl, user) => {
  * Get all records according to admin/user permissions
  * 
  * @param {Object} user
- * @returns {Array} contains all records
+ * @returns {Array} contains all records [sorted by date]
  * @throws Will throw an error on failure
  */
 const getRecords = asyncHandler(async (user) => {
     const { userType, id } = user;
     let records;
+
     if (userType === 'Admin') {
         records = await Record.find();
     } else {
         records = await Record.find({ user: id });
     }
+
+    records.sort((recordA, recordB) => {
+        return recordA.createdAt - recordB.createdAt;
+    });
 
     return records;
 });

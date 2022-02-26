@@ -13,8 +13,7 @@ const RecordItem = ({ record }) => {
     return (
         <div className='record'>
             <div>{new Date(record.createdAt).toLocaleString('en-GB')}</div>
-            {/* TODO set beach name on record model and uncomment next line */}
-            {/* <div>{(record.beach)}</div> */}
+            <div>{(record.beach)} Beach</div>
             {record.thumbnailUrl ? (
                 <a href={record.url} target='_blank' rel='noreferrer'>
                     <img src={record.thumbnailUrl} alt={'record.thumbnailUrl'} />

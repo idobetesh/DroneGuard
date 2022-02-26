@@ -22,6 +22,7 @@ router.get('/api/user', Middlewares, UserController.getCurrentUser);
 router.get('/api/beach', Middlewares, BeachController.getBeaches);
 router.post('/api/beach', Middlewares, BeachController.createBeach);
 router.delete('/api/beach/:id', Middlewares, BeachController.deleteBeach);
+router.post('/api/beach/default/:password', Middlewares, BeachController.setDefaultDroneGuardBeaches);
 
 /* Record Endpoints */
 router.get('/api/record', Middlewares, RecordController.getRecords);

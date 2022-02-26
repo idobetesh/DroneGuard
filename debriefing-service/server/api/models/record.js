@@ -10,9 +10,8 @@ const recordSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    beachId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Beach'
+    beach: {
+        type: String,
         // required: true
     },
     thumbnailUrl: {

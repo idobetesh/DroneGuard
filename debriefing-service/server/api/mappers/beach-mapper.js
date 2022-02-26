@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 
 const Beach = require('../models/beach.js');
+const { defaultBeaches } = require('../utils/beach-default-data.js');
 
 /**
  * Create new beach
@@ -41,7 +42,7 @@ const getBeaches = asyncHandler(async (user) => {
  * @returns {Array} array of all beaches with the given name
  * @throws Will throw an error on failure
  */
- const getBeachByName = asyncHandler(async (name) => {
+const getBeachByName = asyncHandler(async (name) => {
     const results = await Beach.find({ name });
 
     return results;
@@ -60,8 +61,24 @@ const deleteBeach = asyncHandler(async (id) => {
     return results;
 });
 
+/**
+ * Set default beaches DB collection
+ * 
+ * @returns {Object} deleted count and array of beaches created
+ * @throws Will throw an error on failure
+ */
+const setDefaultDroneGuardBeaches = asyncHandler(async () => {
+    const results = Promise.all([
+        await Beach.deleteMany(),
+        await Beach.insertMany(defaultBeaches.beaches)
+    ]);
 
-exports.getBeaches = getBeaches;
+    return results;
+});
+
+
 exports.getBeachByName = getBeachByName;
+exports.getBeaches = getBeaches;
 exports.createBeach = createBeach;
 exports.deleteBeach = deleteBeach;
+exports.setDefaultDroneGuardBeaches = setDefaultDroneGuardBeaches;
