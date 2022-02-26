@@ -9,7 +9,8 @@ import math
 from geographiclib.constants import Constants 
 from geographiclib.geodesic import Geodesic
 
-image_name = '39081697872_536d8bd641_o.jpg'
+image_name = './Views/39081697872_536d8bd641_o.jpg'
+# Photo origin: https://www.flickr.com/photos/132646954@N02/39081697872/
 
 # Sensors Length/Width
 SENw = 6.16

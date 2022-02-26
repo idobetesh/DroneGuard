@@ -6,8 +6,7 @@ import decimal_coodinates, navigation
 # function to display the coordinates of
 # of the points clicked on the image
 
-# image_name = '48879831437_34b36f2c7a_o.jpg'
-image_name = '39081697872_536d8bd641_o.jpg'
+image_name = './Views/39081697872_536d8bd641_o.jpg'
 
 def click_event(event, x, y, flags, params):
 
