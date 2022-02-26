@@ -66,7 +66,7 @@ const setDefaultDroneGuardBeaches = asyncHandler(async (req, res) => {
         res.status(HttpStatus.BAD_REQUEST).json({ message: 'Bad request' });
     }
 
-    res.status(HttpStatus.OK).send(results);
+    res.status(HttpStatus.CREATED).send(results);
 });
 
 
