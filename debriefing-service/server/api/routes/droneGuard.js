@@ -1,4 +1,5 @@
 const express = require('express');
+const { StatusCodes: HttpStatus } = require('http-status-codes');
 
 const UserController = require('../controllers/user-controller.js')
 const BeachController = require('../controllers/beach-controller.js')
@@ -29,6 +30,14 @@ router.get('/api/record', Middlewares, RecordController.getRecords);
 router.post('/api/record', Middlewares, RecordController.createRecord);
 router.post('/api/record/:id/note', Middlewares, RecordController.addRecordNote);
 router.delete('/api/record/:id', Middlewares, RecordController.deleteRecord);
+
+/* Health Endpoint */
+router.get('/api/health', loggerMiddleware, (req, res) => {
+    res.status(HttpStatus.OK).json({
+        Time: new Date().toLocaleString('en-GB'),
+        Health: 'OK'
+    });
+});
 
 
 exports.router = router;

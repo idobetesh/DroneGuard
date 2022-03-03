@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "express-async-handler": "^1.2.0",
+    "figlet": "^1.5.2",
     "gps": "^0.6.1",
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
