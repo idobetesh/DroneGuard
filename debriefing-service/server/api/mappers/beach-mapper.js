@@ -24,14 +24,26 @@ const createBeach = asyncHandler(async (name, city) => {
  * @returns {Array} contains all beaches
  * @throws Will throw an error on failure
  */
-const getBeaches = asyncHandler(async (user) => {
-    const { userType, id } = user;
-    let beaches;
-    if (userType === 'Admin') {
-        beaches = await Beach.find();
-    } else {
-        beaches = await Beach.find({ user: id });
-    }
+// const getBeaches = asyncHandler(async (user) => {
+//     const { userType, id } = user;
+//     let beaches;
+//     if (userType === 'Admin') {
+//         beaches = await Beach.find();
+//     } else {
+//         beaches = await Beach.find({ user: id });
+//     }
+
+//     return beaches;
+// });
+
+/**
+ * Get all beaches
+ * 
+ * @returns {Array} contains all beaches
+ * @throws Will throw an error on failure
+ */
+const getBeaches = asyncHandler(async () => {
+    const beaches = await Beach.find();
 
     return beaches;
 });

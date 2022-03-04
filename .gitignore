@@ -103,3 +103,20 @@ dist
 
 # TernJS port file
 .tern-port
+
+node_modules/
+.expo/
+.vscode/
+.expo-shared/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
