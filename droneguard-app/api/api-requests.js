@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Config from '../config/config.js';
+import DroneGuardUtils from '../utils/droneguard-utils.js';
 
 
 const login = async (userData) => {
@@ -14,5 +15,19 @@ const login = async (userData) => {
     return response;
 };
 
-const Api = { login };
+const getBeaches = async () => {
+    let response;
+    const user = await DroneGuardUtils.getFromStore('user');
+
+    try {
+        response = await axios.get(`${Config.getBaseUrl()}/beach`, Config.getConfig(user.token));
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+
+    return response;
+};
+
+const Api = { login, getBeaches };
 export default Api;

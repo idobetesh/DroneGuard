@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'rea
 
 import Loader from '../components/Loader.js';
 import Api from '../api/api-requests.js';
+import DroneGuardUtils from '../utils/droneguard-utils.js';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -12,12 +13,22 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
 
     const onSubmit = async () => {
+
+        setEmail('');
+        setPassword('');
+
         if (email && password) {
             const response = await Api.login({ email, password });
             if (response) {
-                console.log(response);
+                console.log('res from login ==> ', response);
+                await DroneGuardUtils.saveToStore('user', response.data);
             }
         }
+
+        const res = await DroneGuardUtils.getFromStore('user');
+        console.log('==> ', res);
+        const beaches = await Api.getBeaches();
+        console.log(beaches);
     };
 
     if (loading) {
