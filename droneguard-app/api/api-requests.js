@@ -7,7 +7,7 @@ const login = async (userData) => {
     let response;
     try {
         response = await axios.post(`${Config.getBaseUrl()}/user/login`, userData);
-        console.log(response.data);
+        console.log('login ==>',response.data);
     } catch (error) {
         console.error(error);
     }

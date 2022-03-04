@@ -13,12 +13,13 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
 
     const onSubmit = async () => {
-
-        setEmail('');
-        setPassword('');
+        console.log({email, password});
+        // setEmail('');
+        // setPassword('');
 
         if (email && password) {
             const response = await Api.login({ email, password });
+
             if (response) {
                 console.log('res from login ==> ', response);
                 await DroneGuardUtils.saveToStore('user', response.data);
