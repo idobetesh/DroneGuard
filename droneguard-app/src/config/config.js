@@ -1,9 +1,6 @@
-require('dotenv').config();
-
-const getBaseUrl = (env = 'localhost') => {
+const getBaseUrl = () => {
     // TBD Heroku URL on production
-    // return 'http://${process.env.IP}:3001/api';
-    return `http://${env}:3001/api`;
+    return 'http://localhost:3001/api';
 };
 
 const getConfig = (token) => {

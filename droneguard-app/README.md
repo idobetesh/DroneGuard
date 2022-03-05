@@ -1,45 +1,44 @@
-# DroneGuard Mobile App 🏖
-```
-   __  ____                        ____                     _      __ __  
-  / / |  _ \ _ __ ___  _ __   ___ / ___|_   _  __ _ _ __ __| |    / / \ \ 
- / /  | | | | '__/ _ \| '_ \ / _ \ |  _| | | |/ _` | '__/ _` |   / /   \ \
- \ \  | |_| | | | (_) | | | |  __/ |_| | |_| | (_| | | | (_| |  / /    / /
-  \_\ |____/|_|  \___/|_| |_|\___|\____|\__,_|\__,_|_|  \__,_| /_/    /_/ 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-```
-# Backend:
+## Available Scripts
 
-Navigate to the debriefing-service/server folder: 
-> `$cd ./debriefing-service/server`
+In the project directory, you can run:
 
-Make sure all dependencies are installed & Run Node.js server:
-> `$npm install && npm start`
+### `npm start`
 
-Server runs on http://localhost:3001<br>
-Check its status on http://localhost:3001/api/health<br>
-Response Example:
-```json
-{
-    "Time": "04/03/2022, 16:02:31",
-    "Health": "OK"
-}
-```
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-# Mobile App:
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-Navigate to the droneguard-app folder:
-> `$cd ./droneguard-app`
+### `npm test`
 
-Install all dependencies & Run the app in development mode:
-> `$npm install && npm start`
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-DroneGuard Mobile App is live!<br/> 
+### `npm run build`
 
-**Note**, DroneGuard App Supports:<br/>
-- Android 👾
-- ~~iOS 🍏~~
-## Expo instructions
-- Install Expo mobile app [Support Android]
-- Add `IP=<your_ip_address>` to your local `.env` file
-- Scan QR code from terminal or watch it on your browser<br>
-[The page will reload if you make edits]
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
