@@ -4,12 +4,14 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import Login from './screens/Login';
 import Loader from './components/Loader';
+import Streaming from './screens/Streaming.js';
 
 export default function App() {
 
   return (
     <View style={styles.container}>
-      <Login />
+      <Streaming />
+      {/* <Login /> */}
       {/* <Loader /> */}
       <StatusBar style="auto" />
     </View>

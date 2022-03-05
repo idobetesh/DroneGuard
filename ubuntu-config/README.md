@@ -1,4 +1,13 @@
 # Hardware Configuration 
+
+```
+   __  ____                        ____                     _      __ __  
+  / / |  _ \ _ __ ___  _ __   ___ / ___|_   _  __ _ _ __ __| |    / / \ \ 
+ / /  | | | | '__/ _ \| '_ \ / _ \ |  _| | | |/ _` | '__/ _` |   / /   \ \
+ \ \  | |_| | | | (_) | | | |  __/ |_| | |_| | (_| | | | (_| |  / /    / /
+  \_\ |____/|_|  \___/|_| |_|\___|\____|\__,_|\__,_|_|  \__,_| /_/    /_/ 
+
+```
 ## Relevant Links
 
 - <a href="https://www.balena.io/etcher/" target="_blank">Etcher</a>
@@ -10,5 +19,12 @@
 ## SD card essentials files
 - Create ssh file: <br/>
 > `$touch ssh`
-- Update wpa_supplicant.conf file: <br/>
+- Create / edit wpa_supplicant.conf file: <br/>
 > `$vim wpa_supplicant.conf`
+```js
+network = {
+	ssid = "your_wifi_network_name"
+	psk = "your_wifi_network_password"
+	key_mgmt = WPA-PSK
+}
+```
