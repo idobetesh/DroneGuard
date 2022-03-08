@@ -1,2 +1,0 @@
-etcher - https://www.balena.io/etcher/
-OS img - https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy)
