@@ -1,0 +1,6 @@
+opencv_python==4.5.4.60
+geojson==2.5.0
+turfpy==0.0.7
+piexif==1.1.3
+geographiclib==1.52
+Pillow==9.0.1
