@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/Login';
-import StreaminScrean from './pages/StreaminScrean';
+import StreamingScreen from './pages/StreamingScreen';
 import Header from './components/Header';
 // import ReactDOM  from 'react-dom';
 
@@ -15,7 +15,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path='/login' element={<Login />} />
-            <Route path='/' element={<StreaminScrean />} />
+            <Route path='/' element={<StreamingScreen />} />
           </Routes>
         </div>
       </Router>
