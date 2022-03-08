@@ -4,34 +4,25 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify';
 
+import Video from '../components/Video';
 import Spinner from '../components/Spinner'
 
-const StreaminScrean = () => {
+const StreamingScreen = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const handleClickEvent = (event) => {
-    console.log(position);
-
-    const { clientX: x, clientY: y } = event;
+  const handleClickEvent = (e) => {
+    const { clientX: x, clientY: y } = e;
     setPosition({ x, y });
+    console.log(position);
   };
 
   return <>
-    <section className='content'>
-      <h1>
-        Camera Streaming!
-      </h1>
-      <canvas onClick={handleClickEvent} width={700} height={500} style={{backgroundColor: 'grey', justifyContent: 'center', alignItems: 'center'}}>
-        hello
-      </canvas>
-
-      {/* <useMousePosition>
-          <div className='square_size'>
-          {position.x} {position.y}
-          </div>
-        </useMousePosition> */}
-
-    </section>
+    <div className='content'>
+      <h1> Camera Streaming! </h1>
+      <div onMouseDown={handleClickEvent}>
+      <Video/>
+      </div>
+    </div>
   </>
 };
 
