@@ -3,6 +3,11 @@ const getBaseUrl = () => {
     return 'http://localhost:3001/api';
 };
 
+const getRtspUrl = () => {
+    // TBD Heroku URL on production
+    return 'http://localhost:3001/api';
+};
+
 const getConfig = (token) => {
     return {
         headers: {
