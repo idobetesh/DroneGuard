@@ -1,10 +1,15 @@
 const dgram = require('dgram');
 const app = require('express')();
+const cors = require('cors');
+
+app.use(cors());
+
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, { cors: { origin: '*' } });
 const _ = require('lodash');
 
 const DroneGuardUtils = require('./utils/droneguard-util.js');
+
 
 /* Consts */
 const STATE_PORT = 8890;

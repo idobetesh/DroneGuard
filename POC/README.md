@@ -7,3 +7,5 @@
   \_\ |____/|_|  \___/|_| |_|\___|\____|\__,_|\__,_|_|  \__,_| /_/    /_/ 
 
 ```
+
+![alt-text](https://raw.githubusercontent.com/idobetesh/DroneGuard/master/POC/assets/ezgif.com-gif-maker.gif?token=GHSAT0AAAAAABNHV4XNEBBAR5QMZTZDO7T6YRTOA5Q)
