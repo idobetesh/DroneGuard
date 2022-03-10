@@ -1,5 +1,5 @@
 const http = require('http');
-var fs = require('fs');
+const fs = require('fs');
 
 const PORT = 4000;
 
@@ -10,7 +10,6 @@ http.createServer(function (request, response) {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
         'Access-Control-Max-Age': 2592000, // 30 days
-        /** add other headers as per requirement */
     };
     if (request.method === 'OPTIONS') {
         respose.writeHead(204, headers);
@@ -18,7 +17,7 @@ http.createServer(function (request, response) {
         return;
     }
 
-    var filePath = './videos/ipcam' + request.url;
+    let filePath = './videos/ipcam' + request.url;
     console.log(filePath);;
     fs.readFile(filePath, function (error, content) {
         response.writeHead(200, { 'Access-Control-Allow-Origin': '*' });
