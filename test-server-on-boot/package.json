@@ -1,5 +1,5 @@
 {
-  "name": "controll-server",
+  "name": "test-server-on-boot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,10 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.3",
-    "figlet": "^1.5.2",
-    "lodash": "^4.17.21",
-    "socket.io": "^4.4.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
