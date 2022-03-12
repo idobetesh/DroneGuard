@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import socket from '../utils/socket';
 
+import calculateMovementAndDirection from '../algorithm/algo.js';
+
 const sendCommand = (command) => {
-  return function () {
+  return () => {
     console.log(`Sending the command ${command}`);
     socket.emit('command', command);
   };
@@ -33,7 +35,10 @@ const Navigation = () => {
   const droneState = useDroneState([]);
 
   return <>
-    <h3>Manual Navigation - Status is {status} | Battery is - {droneState.bat}</h3>
+    <h3>Manual Navigation - Status is {status}</h3>
+    <h3>Battery: {droneState.bat}%</h3>
+    <h3>YAW: {droneState.yaw}</h3>
+    <h3>height: {droneState.h} cm</h3>
     <Button variant='contained'
       color='primary'
       style={{ 'marginRight': '5px' }}
@@ -87,6 +92,19 @@ const Navigation = () => {
       style={{ 'marginUp': '15px' }}
       onClick={sendCommand('emergency')}>
       <span className='symbol'>Emergency!</span>
+    </Button>
+
+    {/* TEST */}
+    <Button variant='contained'
+      color='primary'
+      style={{ 'marginUp': '15px' }}
+      // curr_height, yaw, curr_coordinate, press_xy
+      onClick={sendCommand(calculateMovementAndDirection(
+        droneState.h,
+        droneState.yaw,
+        { lat: 32.093128, lon: 34.787805 },
+        { lat: 32.093194898476746, lon: 34.78780385430309 }))}>
+      <span className='symbol'>Test!</span>
     </Button>
   </>;
 };
