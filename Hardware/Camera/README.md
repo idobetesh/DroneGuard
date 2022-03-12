@@ -14,7 +14,7 @@
 1. In /DroneGuard/camera run </br>
    `$ v4l2rtspserver -W 640 -H 480 -F 15 -P 8554 /dev/video0`
 2. In /DroneGuard/Hardware/Camera run:</br>
-   `$ ffmpeg -i rtsp:/192.168.0.102:8554/unicast -fflags flush_packets -flags -global_header -hls_time 0 -hls_list_size 1 -vcodec copy -y ./video/ipcam/index.m3u8`
+   `$ ffmpeg -i rtsp://<RASPBERRYPI_IP>:8554/unicast -fflags flush_packets -flags -global_header -hls_time 0 -hls_list_size 1 -vcodec copy -y ./video/ipcam/index.m3u8`
 3. In /DroneGuard/Hardware/Camera/server run:
 
 - `$ node cleaner.js`
@@ -22,3 +22,5 @@
 
 4. Check that in the relevant route `http://<RASPBERRY-PI-IP>:4000/index.m3u8` we need to see json content.
 5. Run client check if we see stream.
+
+`ffmpeg -i rtsp://10.100.102.52:8554/unicast -fflags flush_packets -flags -global_header -vcodec copy -y -s 854x480 -hls_time 0 -hls_list_size 1 ./video/ipcam/index.m3u8`
