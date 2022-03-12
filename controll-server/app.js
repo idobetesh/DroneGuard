@@ -28,12 +28,14 @@ drone.on('message', message => {
     io.sockets.emit('status', message.toString());
 });
 
+// `Wake up` command
 drone.send('command', 0, 'command'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
+// Set sream off
+drone.send('streamoff', 0, 'streamoff'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
 
 io.on('connection', socket => {
     socket.on('command', command => {
-        console.log('command Sent from browser');
-        console.log(command);
+        console.log(`${command} command sent from browser`);
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
     });
 
@@ -43,8 +45,7 @@ io.on('connection', socket => {
 droneState.on('message', _.throttle(state => {
     const formattedState = DroneGuardUtils.parseState(state.toString());
     io.sockets.emit('dronestate', formattedState);
-}, 100)
-);
+}, 100));
 
 http.listen(SERVER_PORT, () => {
     console.log('Socket io server up and running');

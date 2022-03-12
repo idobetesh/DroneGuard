@@ -59,7 +59,7 @@ const handleError = (error) => {
 };
 
 /**
-* @param {String} str to display
+* @param {String} string to display
 */
 const visualPromt = (str = '< DroneGuard / >') => {
     figlet(str, function (err, data) {
