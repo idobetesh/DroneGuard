@@ -65,20 +65,36 @@ const droneMovement = (dest_x, dest_y, curr_lat, curr_lon) => {
   const center_x = ScreenWidth / 2;
   const center_y = ScreenLength / 2;
 
-  const move_x = (dest_x - center_x) * ConW;
-  const move_y = (dest_y - center_y) * ConL;
+  let move_x = Math.round((dest_x - center_x) * ConW);
+  let move_y = Math.round((dest_y - center_y) * ConL);
 
-  let angle = calculateBearing(move_y, move_x);
-  angle = (angle + 270) % 360
-  console.log(`bearing output`, angle);
+  let move = [];
+  if(move_x > 0){
+    move.push(`right ${move_x}`);
+  }else{
+    move_x = -move_x;
+    move.push(`left ${move_x}`);
+  }
 
-  const totalMove = (move_x ** 2 + move_y ** 2) ** 0.5;
-  console.log(`total_move`, totalMove);
+  if(move_y > 0){
+    move.push(`back ${move_y}`);
+  }else{
+    move_y = -move_y;
+    move.push(`forward ${move_y}`);
+  }
 
-  const newLocation = getEndPoint(curr_lat, curr_lon, angle, totalMove);
-  const { lon2, lat2 } = newLocation;
+  // let angle = calculateBearing(move_y, move_x);
+  // angle = (angle + 270) % 360
+  // console.log(`bearing output`, angle);
 
-  return [lat2, lon2];
+  // const totalMove = (move_x ** 2 + move_y ** 2) ** 0.5;
+  // console.log(`total_move`, totalMove);
+
+  // const newLocation = getEndPoint(curr_lat, curr_lon, angle, totalMove);
+  // const { lon2, lat2 } = newLocation;
+
+  return move;
+  // return [lat2, lon2];
 };
 
 function getDistanceFromLatLonInKm(curr, dest) {
@@ -99,5 +115,5 @@ function getDistanceFromLatLonInKm(curr, dest) {
 
 
 const currCoordinate = { lat: 1.28168, lon: 103.86389 };
-// const destCoordinate = droneMovement(1775, 825, currCoordinate.lat, currCoordinate.lon);
-// console.log(destCoordinate);
+const destCoordinate = droneMovement(2775, 425, currCoordinate.lat, currCoordinate.lon);
+console.log(destCoordinate);

@@ -2,7 +2,6 @@ const fs = require('fs');
 const piexif = require('piexifjs');
 const GeographicLib = require('geographiclib');
 
-
 const getBase64DataFromJpegFile = filename => fs.readFileSync(filename).toString('binary');
 const getExifFromJpegFile = filename => piexif.load(getBase64DataFromJpegFile(filename));
 
@@ -20,18 +19,17 @@ const SensorLength = 4.62; // camera
 // Calculates alpha/beta angle.
 // Return value: alpha/beta angle.
 const calculateAlphaBeta = (sensor) => {
-  // console.log(`sensor`, sensor);
   const angle = 2 * (Math.atan(sensor / (2 * FocalLength)));
   const degrees = angle * (180 / PI);
-  // console.log(`degrees`, degrees);
+
   return angle;
 };
 
 const getRealDimension = (sensorMeasure) => {
   const angle = calculateAlphaBeta(sensorMeasure);
   const tan = (Math.tan(angle / 2));
-  // console.log(`tan`, tan);
   const sizeInMeters = (2 * Height) * tan;
+
   return sizeInMeters;
 };
 
@@ -73,7 +71,8 @@ const droneMovement = (dest_x, dest_y, curr_lat, curr_lon) => {
   console.log(`bearing output`, angle);
 
   const totalMove = (move_x ** 2 + move_y ** 2) ** 0.5;
-  console.log(`total_move`, totalMove);
+  console.log(`total_move in meters: ${totalMove} m`);
+  console.log(`total_move in cm: ${Math.round(totalMove) * 100} cm`);
 
   const newLocation = getEndPoint(curr_lat, curr_lon, angle, totalMove);
   const { lon2, lat2 } = newLocation;
@@ -81,23 +80,13 @@ const droneMovement = (dest_x, dest_y, curr_lat, curr_lon) => {
   return [lat2, lon2];
 };
 
-function getDistanceFromLatLonInKm(curr, dest) {
-  var R = 6371; // Radius of the earth in km
-  var dLat = deg2rad(dest.lat - curr.lat);  // deg2rad below
-  var dLon = deg2rad(dest.lon - curr.lon); 
-  var a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-    Math.sin(dLon/2) * Math.sin(dLon/2)
-    ; 
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-  var d = (R * c)*1000; // Distance in m
+const calculateMovementAndDirection = (curr_coordinate, height, dest_point_pixel) => {
 
-  return d;
-}
-
-
+};
 
 const currCoordinate = { lat: 1.28168, lon: 103.86389 };
-// const destCoordinate = droneMovement(1775, 825, currCoordinate.lat, currCoordinate.lon);
-// console.log(destCoordinate);
+const destCoordinate = droneMovement(1775, 825, currCoordinate.lat, currCoordinate.lon);
+console.log(destCoordinate);
+
+
+export default calculateMovementAndDirection;

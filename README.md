@@ -10,6 +10,9 @@
 High level project tree [depth 3]
 ```
 .
+├── controll-server
+│   ├── algorithm
+│   └── utils
 ├── debriefing-service
 │   ├── client
 │   │   └── droneguard-debriefing
@@ -19,19 +22,14 @@ High level project tree [depth 3]
 ├── droneguard-app
 │   ├── public
 │   └── src
+│       ├── algorithm
+│       ├── api
 │       ├── app
 │       ├── components
 │       ├── config
 │       ├── features
-│       └── pages
-├── droneguard-app-mobile
-│   ├── Routes
-│   ├── api
-│   ├── assets
-│   ├── components
-│   ├── config
-│   ├── screens
-│   └── utils
+│       ├── pages
+│       └── utils
 ├── hardware
 │   ├── camera
 │   │   └── server
@@ -39,6 +37,7 @@ High level project tree [depth 3]
 │   ├── gps
 │   └── scripts
 ├── poc
+│   ├── assets
 │   ├── transformations
 │   │   ├── node-version
 │   │   └── python-version
@@ -47,10 +46,10 @@ High level project tree [depth 3]
 │   └── add-to-boot-drive
 └── tello-basics
     ├── basics-node
-    │   ├── navigation
     │   └── utils
     ├── basics-python
     │   ├── logs
     │   └── tello-captures
     └── tello-sdk-documentation
+    
 ```

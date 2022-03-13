@@ -9,6 +9,8 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.26.0",
+    "geographiclib": "^1.52.0",
+    "piexifjs": "^1.0.6",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-dom": "^17.0.2",
