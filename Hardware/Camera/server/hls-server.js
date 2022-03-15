@@ -11,14 +11,17 @@ http.createServer(function (request, response) {
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
         'Access-Control-Max-Age': 2592000, // 30 days
     };
+
     if (request.method === 'OPTIONS') {
         respose.writeHead(204, headers);
         response.end();
+
         return;
     }
 
-    let filePath = './videos/ipcam' + request.url;
-    console.log(filePath);;
+    let filePath = '/home/pi/DroneGuard/Hardware/Camera/video/ipcam' + request.url;
+    console.log(filePath);
+
     fs.readFile(filePath, function (error, content) {
         response.writeHead(200, { 'Access-Control-Allow-Origin': '*' });
         if (error) {
@@ -38,4 +41,5 @@ http.createServer(function (request, response) {
         }
     });
 }).listen(PORT);
-console.log(`Server listening PORT ${PORT}`);
+
+console.log(`Server listening on port ${PORT}`);
