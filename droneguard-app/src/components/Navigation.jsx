@@ -52,16 +52,16 @@ const Navigation = () => {
   return (
     <>
       <h3>Manual Navigation - Status is {status}</h3>
-      <h3>Battery: {droneState.bat}%</h3>
+      {/* <h3>Battery: {droneState.bat}%</h3>
       <h3>YAW: {droneState.yaw}</h3>
-      <h3>height: {droneState.h} cm</h3>
+      <h3>height: {droneState.h} cm</h3> */}
       <Button
         variant="contained"
         color="primary"
         style={{ marginRight: "5px" }}
-        onClick={sendCommand("up 200")}
+        onClick={sendCommand("up 100")}
       >
-        <span className="symbol">↑</span>
+        <span className="symbol">👍🏼</span>
       </Button>
       <Button
         variant="contained"
@@ -69,7 +69,23 @@ const Navigation = () => {
         style={{ marginRight: "5px" }}
         onClick={sendCommand("down 30")}
       >
+        <span className="symbol">👎🏼</span>
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginRight: "5px" }}
+        onClick={sendCommand("back 30")}
+      >
         <span className="symbol">↓</span>
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginRight: "5px" }}
+        onClick={sendCommand("forward 30")}
+      >
+        <span className="symbol">↑</span>
       </Button>
       <Button
         variant="contained"
@@ -107,7 +123,7 @@ const Navigation = () => {
         variant="contained"
         color="primary"
         style={{ marginRight: "5px" }}
-        onClick={sendCommand("cw 15")}
+        onClick={sendCommand("cw 90")}
       >
         <span className="symbol">⟳</span>
       </Button>
@@ -147,4 +163,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export { Navigation, useDroneState };
