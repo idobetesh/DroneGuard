@@ -1,24 +1,22 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import ReactPlayer from "react-player";
 
 const Video = () => {
-<<<<<<< HEAD
   return (
     <>
-      {/* <h1>IP Camera Streaming</h1> */}
-      <ReactPlayer url="http://192.168.0.102:4000/index.m3u8" playing={true} />
+      <ReactPlayer
+        // this resolution is 1:3 from the real resolution (2592x1944). when the user will click on the screen
+        // we will multiple the (x,y) values by 3.
+        width="864px"
+        height="648px"
+        // width="120%"
+        // height="100%"
+        controls={false}
+        url="http://10.100.102.52:4000/index.m3u8"
+        playing={true}
+      />
     </>
   );
 };
 
 export default Video;
-=======
-  return <>
-    <h1>IP Camera Streaming</h1>
-    URL : http://RASPBERRY-PI-IP:4000/index.m3u8
-    <ReactPlayer url='http://192.168.68.105:4000/index.m3u8' playing={true} />
-  </>;
-};
-
-export default Video; 
->>>>>>> 814bdbb3fda475471fad6140789e54f11b62ba8d

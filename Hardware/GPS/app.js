@@ -12,6 +12,7 @@ gps.on('data', async data => {
 	if(data.type == 'GGA') {
         if(data.quality != null) {
             console.log( ' [' + data.lat + ', ' + data.lon + ']');
+            // return ' [' + data.lat + ', ' + data.lon + ']';
         } else {
             console.log('no gps fix available');
         }
