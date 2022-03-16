@@ -45,8 +45,10 @@ const Navigation = () => {
     const moves = droneMovement(xy, droneState.h);
     console.log(`moves`, moves);
     sendCommand(moves[0]);
-    await sleep(5000);
-    sendCommand(moves[1]);
+    // await sleep(5000);
+    // setTimeout(() => {
+    // sendCommand(moves[1]);
+    // }, 3000);
   };
 
   return (

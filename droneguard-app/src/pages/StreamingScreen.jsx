@@ -29,17 +29,19 @@ const StreamingScreen = () => {
         <h1> Camera Streaming! </h1>
         URL : http://192.168.0.102:4000/index.m3u8
         <div
-          className="square_size"
+          className="containerr"
           onClick={(e) => {
             handleClickEvent(e);
           }}
         >
-          <div className="drone_info">
-            <h3>Battery: {useDroneState.bat}%</h3>
-            <h3>YAW: {useDroneState.yaw}</h3>
-            <h3>height: {useDroneState.h} cm</h3>
+          <div>
+            <div className="drone_info">
+              <h3>Battery: {useDroneState.bat}%</h3>
+              <h3>YAW: {useDroneState.yaw}</h3>
+              <h3>height: {useDroneState.h} cm</h3>
+            </div>
+            <Video />
           </div>
-          <Video />
         </div>
         {/* {position.x},{position.y} */}
         <Navigation />
