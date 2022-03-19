@@ -3,11 +3,34 @@ import Button from "@material-ui/core/Button";
 import socket from "../utils/socket";
 
 import droneMovement from "../algorithm/algo.js";
+import xMovement from "../algorithm/algo.js";
+import yMovement from "../algorithm/algo.js";
 const curr = { lat: 32.093128, lon: 34.787805 };
-const xy = { x: 2700, y: 2340 };
+const xy = { x: 2700, y: 340 };
 const dest = { lat: 32.093194898476746, lon: 34.78780385430309 };
 
+const commandDelays = {
+  command: 500,
+  takeoff: 5000,
+  land: 5000,
+  up: 7000,
+  down: 7000,
+  left: 5000,
+  go: 7000,
+  right: 5000,
+  forward: 5000,
+  back: 5000,
+  cw: 5000,
+  ccw: 5000,
+  flip: 3000,
+  speed: 3000,
+  "battery?": 500,
+  "speed?": 500,
+  "time?": 500,
+};
+
 const sleep = async (ms) => {
+  console.log(`sleep for ${ms / 1000} seconds`);
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
@@ -15,6 +38,13 @@ const sendCommand = (command) => {
   return () => {
     console.log(`Sending the command ${command}`);
     socket.emit("command", command);
+  };
+};
+
+const sendSpecial = (commands) => {
+  return () => {
+    console.log(`Sending the commands ${commands}`);
+    socket.emit("special", commands);
   };
 };
 
@@ -40,16 +70,6 @@ const useDroneState = () => {
 const Navigation = () => {
   const status = useSocket();
   const droneState = useDroneState([]);
-
-  const handleMoves = async () => {
-    const moves = droneMovement(xy, droneState.h);
-    console.log(`moves`, moves);
-    sendCommand(moves[0]);
-    // await sleep(5000);
-    // setTimeout(() => {
-    // sendCommand(moves[1]);
-    // }, 3000);
-  };
 
   return (
     <>
@@ -145,24 +165,38 @@ const Navigation = () => {
       >
         <span className="symbol">Emergency!</span>
       </Button>
-
-      {/* TEST */}
       <Button
         variant="contained"
         color="primary"
         style={{ marginUp: "15px" }}
-        // curr_height, yaw, curr_coordinate, press_xy
         onClick={
-          handleMoves
-          // (sendCommand(droneMovement(xy, droneState.h)[0]),
-          // sendCommand(droneMovement(xy, droneState.h)[1]))
+          // handleMoves
+          // console.log("hello")
+          sendSpecial(droneMovement(xy, droneState.h))
+          // sendCommand("forward 30px")
+          // handleMoves(droneMovement(xy, droneState.h))
         }
-        // getDistanc{eFromLatLonInKm(curr, dest, droneState.h)
       >
         <span className="symbol">Test!</span>
       </Button>
+
+      {/* TEST */}
+      {/* <Button
+        variant="contained"
+        color="primary"
+        style={{ marginUp: "15px" }}
+        // curr_height, yaw, curr_coordinate, press_xy
+        onClick={sendCommand("cw 90")}
+        // handleMoves()
+        // (sendCommand(droneMovement(xy, droneState.h)[0]),
+        // sendCommand(xMovement(xy, droneState.h))
+        // }
+        // getDistanc{eFromLatLonInKm(curr, dest, droneState.h)
+      >
+        <span className="symbol">Test!</span>
+      </Button> */}
     </>
   );
 };
 
-export { Navigation, useDroneState };
+export { Navigation, useDroneState, sendSpecial };

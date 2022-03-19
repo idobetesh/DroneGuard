@@ -37,6 +37,15 @@ io.on('connection', socket => {
     socket.on('command', command => {
         console.log(`${command} command sent from browser`);
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
+    }), 
+      socket.on('special',async(commands) => {
+        console.log(`commands`, commands);
+        for (let i = 0; i < commands.length; i++) {
+            const command = commands[i];
+            drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
+
+            await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays()[command.split(' ')[0]]);
+        }
     });
 
     socket.emit('status', 'CONNECTED');
@@ -51,3 +60,4 @@ http.listen(SERVER_PORT, () => {
     console.log('Socket io server up and running');
     DroneGuardUtils.visualPromt();
 });
+

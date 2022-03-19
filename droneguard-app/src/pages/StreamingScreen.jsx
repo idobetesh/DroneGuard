@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Navigation, useDroneState } from "../components/Navigation";
+import { Navigation } from "../components/Navigation";
 import Video from "../components/Video";
-import MousePosition from "./../components/MousePosition";
+import droneMovement from "../algorithm/algo.js";
+import socket from "../utils/socket";
+
+const useDroneState = () => {
+  const [droneState, updateDroneState] = useState({});
+  useEffect(() => {
+    socket.on("dronestate", updateDroneState);
+    return () => socket.removeListener("dronestate");
+  }, []);
+
+  return droneState;
+};
 
 const StreamingScreen = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
+
   const handleClickEvent = (e) => {
     setPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+    console.log(`e`, e.nativeEvent.offsetX);
     if (FormHasError) {
       return;
     }
@@ -23,6 +36,8 @@ const StreamingScreen = () => {
     console.log(`position`, position);
   }, [position]);
 
+  const droneState = useDroneState([]);
+
   return (
     <>
       <div className="content">
@@ -36,9 +51,9 @@ const StreamingScreen = () => {
         >
           <div>
             <div className="drone_info">
-              <h3>Battery: {useDroneState.bat}%</h3>
-              <h3>YAW: {useDroneState.yaw}</h3>
-              <h3>height: {useDroneState.h} cm</h3>
+              <h3>Battery: {droneState.bat}%</h3>
+              <h3>YAW: {droneState.yaw}</h3>
+              <h3>height: {droneState.h} cm</h3>
             </div>
             <Video />
           </div>
