@@ -85,43 +85,45 @@ const yMovement = (screenCoord, height) => {
   return move_y;
 }
 
-// const droneMovement = (screenCoord, height) => {
-//   //calculates the widht/length in meters caought by the camera.
-//   // const Wr = getRealDimension(SensorWidth, height);
-//   // const Lr = getRealDimension(SensorLength, height);
+const droneMovement = (screenCoord, height) => {
+  console.log(`drone movement position`, screenCoord)
+  //calculates the widht/length in meters caought by the camera.
+  const Wr = getRealDimension(SensorWidth, height);
+  const Lr = getRealDimension(SensorLength, height);
 
-//   // calculates the conversion for pixels per meter.
-//   // const ConW = realSizeScreenSize(Wr, ScreenWidth);
-//   // const ConL = realSizeScreenSize(Lr, ScreenLength);
+  // calculates the conversion for pixels per meter.
+  const ConW = realSizeScreenSize(Wr, ScreenWidth);
+  const ConL = realSizeScreenSize(Lr, ScreenLength);
 
-//   // find the (x,y) center of the screen.
-//   // const center_x = ScreenWidth / 2;
-//   // const center_y = ScreenLength / 2;
+  // find the (x,y) center of the screen.
+  const center_x = ScreenWidth / 2;
+  const center_y = ScreenLength / 2;
 
-//   // let move_x = Math.round((screenCoord.x - center_x) * ConW);
-//   // let move_y = Math.round((screenCoord.y - center_y) * ConL);
+  let move_x = Math.round((screenCoord.x - center_x) * ConW);
+  let move_y = Math.round((screenCoord.y - center_y) * ConL);
+  // console.log(`move_xxxxxxx`, move_x);
+  // console.log(`move_yyyyyyy`, move_y);
 
-//   // if(move_x > 500) move_x = 500;
-//   // if(move_y > 500) move_y = 500;
+  // if(move_x > 500) move_x = 500;
+  // if(move_y > 500) move_y = 500;
 
-//   let move = [];
-//   // if(move_x > 0){
-//   //   move.push(`right ${move_x}`);
-//   // }else{
-//   //   move_x = -move_x;
-//   //   move.push(`left ${move_x}`);
-//   // }
+  let move = [];
+  if(move_x > 0){
+    move.push(`right ${move_x}`);
+  }else{
+    move_x = -move_x;
+    move.push(`left ${move_x}`);
+  }
 
-//   if(move_y > 0){
-//     move.push(`back ${move_y}`);
-//   }else{
-//     move_y = -move_y;
-//     move.push(`forward ${move_y}`);
-//   }
+  if(move_y > 0){
+    move.push(`back ${move_y}`);
+  }else{
+    move_y = -move_y;
+    move.push(`forward ${move_y}`);
+  }
 
-//   return move;
-
-// };
+  return move;
+};
 
 
 // const droneMovement = (dest_x, dest_y, curr_lat, curr_lon) => {
@@ -182,7 +184,9 @@ const currCoordinate = { lat: 1.28168, lon: 103.86389 };
 // const destCoordinate = droneMovement(1775, 825, currCoordinate.lat, currCoordinate.lon);
 // const xdest = xMovement()
 // console.log(destCoordinate);
+export default droneMovement;
 
+// exports.droneMovement = droneMovement;
+// exports.xMovement = xMovement;
+// exports.yMovement = yMovement;
 
-exports.xMovement = xMovement;
-exports.yMovement = yMovement;
