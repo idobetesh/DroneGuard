@@ -37,16 +37,15 @@ io.on('connection', socket => {
     socket.on('command', command => {
         console.log(`${command} command sent from browser`);
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
-    }), 
-      socket.on('special',async(commands) => {
-        console.log(`commands`, commands);
-        for (let i = 0; i < commands.length; i++) {
-            const command = commands[i];
-            drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
+    }),
+        socket.on('special', async (commands) => {
+            for (const command of commands) {
+                const cmd = `${command.direction} ${command.distance}`;
+                drone.send(cmd, 0, cmd.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
 
-            await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays()[command.split(' ')[0]]);
-        }
-    });
+                await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays()[command.direction]);
+            }
+        });
 
     socket.emit('status', 'CONNECTED');
 });
