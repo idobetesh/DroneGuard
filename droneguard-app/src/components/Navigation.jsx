@@ -5,34 +5,11 @@ import socket from "../utils/socket";
 import droneMovement from "../algorithm/algo.js";
 import xMovement from "../algorithm/algo.js";
 import yMovement from "../algorithm/algo.js";
+
+/* Test button */
 const curr = { lat: 32.093128, lon: 34.787805 };
 const xy = { x: 2700, y: 340 };
 const dest = { lat: 32.093194898476746, lon: 34.78780385430309 };
-
-const commandDelays = {
-  command: 500,
-  takeoff: 5000,
-  land: 5000,
-  up: 7000,
-  down: 7000,
-  left: 5000,
-  go: 7000,
-  right: 5000,
-  forward: 5000,
-  back: 5000,
-  cw: 5000,
-  ccw: 5000,
-  flip: 3000,
-  speed: 3000,
-  "battery?": 500,
-  "speed?": 500,
-  "time?": 500,
-};
-
-const sleep = async (ms) => {
-  console.log(`sleep for ${ms / 1000} seconds`);
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
 
 const sendCommand = (command) => {
   return () => {
@@ -160,7 +137,7 @@ const Navigation = () => {
       <Button
         variant="contained"
         color="primary"
-        style={{ marginUp: "15px" }}
+        style={{ marginTop: "15px" }}
         onClick={sendCommand("emergency")}
       >
         <span className="symbol">Emergency!</span>
@@ -168,7 +145,7 @@ const Navigation = () => {
       <Button
         variant="contained"
         color="primary"
-        style={{ marginUp: "15px" }}
+        style={{ marginTop: "15px" }}
         onClick={
           // handleMoves
           // console.log("hello")
@@ -181,20 +158,15 @@ const Navigation = () => {
       </Button>
 
       {/* TEST */}
-      {/* <Button
+      <Button
         variant="contained"
         color="primary"
-        style={{ marginUp: "15px" }}
+        style={{ marginTop: "15px" }}
         // curr_height, yaw, curr_coordinate, press_xy
-        onClick={sendCommand("cw 90")}
-        // handleMoves()
-        // (sendCommand(droneMovement(xy, droneState.h)[0]),
-        // sendCommand(xMovement(xy, droneState.h))
-        // }
-        // getDistanc{eFromLatLonInKm(curr, dest, droneState.h)
+        onClick={sendSpecial(droneMovement(xy, droneState.h)[0])}
       >
         <span className="symbol">Test!</span>
-      </Button> */}
+      </Button>
     </>
   );
 };

@@ -98,25 +98,26 @@ const droneMovement = (screenCoord, height) => {
   let move_y = Math.round((screenCoord.y - center_y) * ConL);
 
   // TODO implement move > 500 option
+  // moves = [{ direction: 'some-command', distance: Number (cm) }]
 
   const moves = [];
 
   if (move_x > 0) {
     if (move_x < 20) move_x = 20;
-    moves.push(`right ${move_x}`);
+    moves.push({ direction: 'right', distance: move_x });
   } else {
     if (move_x > -20) move_x = -20;
     move_x = -move_x;
-    moves.push(`left ${move_x}`);
+    moves.push({ direction: 'left', distance: move_x });
   }
 
   if (move_y > 0) {
     if (move_y < 20) move_y = 20;
-    moves.push(`back ${move_y}`);
+    moves.push({ direction: 'back', distance: move_y });
   } else {
     if (move_y > -20) move_y = -20;
     move_y = -move_y;
-    moves.push(`forward ${move_y}`);
+    moves.push({ direction: 'forward', distance: move_y });
   }
 
   return moves;

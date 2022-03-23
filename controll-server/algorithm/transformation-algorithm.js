@@ -1,9 +1,4 @@
-const fs = require('fs');
-const piexif = require('piexifjs');
 const GeographicLib = require('geographiclib');
-
-const getBase64DataFromJpegFile = filename => fs.readFileSync(filename).toString('binary');
-const getExifFromJpegFile = filename => piexif.load(getBase64DataFromJpegFile(filename));
 
 /* Consts */
 const PI = Math.PI;
@@ -50,43 +45,68 @@ const getEndPoint = (lat1, lon1, bearing, dist) => {
   return direction;
 };
 
-const droneMovement = (dest_x, dest_y, curr_lat, curr_lon) => {
+const droneMovement = (pressedPoint, height) => {
   //calculates the widht/length in meters caought by the camera.
-  const Wr = getRealDimension(SensorWidth);
-  const Lr = getRealDimension(SensorLength);
+  const Wr = getRealDimension(SensorWidth, height);
+  const Lr = getRealDimension(SensorLength, height);
 
   // calculates the conversion for pixels per meter.
   const ConW = realSizeScreenSize(Wr, ScreenWidth);
   const ConL = realSizeScreenSize(Lr, ScreenLength);
 
   // find the (x,y) center of the screen.
-  const center_x = ScreenWidth / 2;
-  const center_y = ScreenLength / 2;
+  const centerX = ScreenWidth / 2;
+  const centerY = ScreenLength / 2;
 
-  const move_x = (dest_x - center_x) * ConW;
-  const move_y = (dest_y - center_y) * ConL;
+  let moveX = Math.round((pressedPoint.x - centerX) * ConW);
+  let moveY = Math.round((pressedPoint.y - centerY) * ConL);
 
-  let angle = calculateBearing(move_y, move_x);
-  angle = (angle + 270) % 360
-  console.log(`bearing output`, angle);
+  // TODO implement move > 500 option
+  // moves = [{ direction: 'some-command', distance: Number (cm) }]
 
-  const totalMove = (move_x ** 2 + move_y ** 2) ** 0.5;
-  console.log(`total_move in meters: ${totalMove} m`);
-  console.log(`total_move in cm: ${Math.round(totalMove) * 100} cm`);
+  const moves = [];
 
-  const newLocation = getEndPoint(curr_lat, curr_lon, angle, totalMove);
-  const { lon2, lat2 } = newLocation;
+  if (moveX > 0) {
+    if (moveX < 20) moveX = 20;
+    moves.push({ direction: 'right', distance: moveX });
+  } else {
+    if (moveX > -20) moveX = -20;
+    moveX = -moveX;
+    moves.push({ direction: 'left', distance: moveX });
+  }
 
-  return [lat2, lon2];
+  if (moveY > 0) {
+    if (moveY < 20) moveY = 20;
+    moves.push({ direction: 'back', distance: moveY });
+  } else {
+    if (moveY > -20) moveY = -20;
+    moveY = -moveY;
+    moves.push({ direction: 'forward', distance: moveY });
+  }
+
+  return moves;
 };
 
-const calculateMovementAndDirection = (curr_coordinate, height, dest_point_pixel) => {
-
+const deg2rad = (deg) => {
+  return deg * (PI / 180)
 };
 
-const currCoordinate = { lat: 1.28168, lon: 103.86389 };
-const destCoordinate = droneMovement(1775, 825, currCoordinate.lat, currCoordinate.lon);
-console.log(destCoordinate);
+const getDistanceFromLatLonInCm = (curr, dest) => {
+  const R = 6371; // Radius of the earth in km
+
+  const dLat = deg2rad(dest.lat - curr.lat);
+  const dLon = deg2rad(dest.lon - curr.lon);
+
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(curr.lat)) * Math.cos(deg2rad(dest.lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  let distance = Math.round((R * c) * 100000); // distance in cm
+  if (distance > 500) distance = 500;
+
+  return `forward ${distance}`;
+};
 
 
-export default calculateMovementAndDirection;
+
+exports.droneMovement = droneMovement;
+exports.getDistanceFromLatLonInCm = getDistanceFromLatLonInCm;
