@@ -8,4 +8,4 @@
 
 ```
 
-![alt-text](https://raw.githubusercontent.com/idobetesh/DroneGuard/master/POC/assets/ezgif.com-gif-maker.gif)
+![alt-text](https://github.com/idobetesh/DroneGuard/blob/master/POC/assets/ezgif.com-gif-maker.gif)
