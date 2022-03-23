@@ -8,4 +8,4 @@
 
 ```
 
-![alt-text](https://raw.githubusercontent.com/idobetesh/DroneGuard/master/POC/assets/ezgif.com-gif-maker.gif?token=GHSAT0AAAAAABNHV4XNEBBAR5QMZTZDO7T6YRTOA5Q)
+![alt-text](https://raw.githubusercontent.com/idobetesh/DroneGuard/master/POC/assets/ezgif.com-gif-maker.gif)

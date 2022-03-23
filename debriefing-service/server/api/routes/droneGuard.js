@@ -4,6 +4,7 @@ const { StatusCodes: HttpStatus } = require('http-status-codes');
 const UserController = require('../controllers/user-controller.js')
 const BeachController = require('../controllers/beach-controller.js')
 const RecordController = require('../controllers/record-controller.js')
+const HealthController = require('../controllers/health-controller.js')
 
 const { loggerMiddleware } = require('../middlewares/logger-middleware.js');
 const { authMiddleware } = require('../middlewares/auth-middleware.js');
@@ -32,12 +33,6 @@ router.post('/api/record/:id/note', Middlewares, RecordController.addRecordNote)
 router.delete('/api/record/:id', Middlewares, RecordController.deleteRecord);
 
 /* Health Endpoint */
-router.get('/api/health', loggerMiddleware, (req, res) => {
-    res.status(HttpStatus.OK).json({
-        Time: new Date().toLocaleString('en-GB'),
-        Health: 'OK'
-    });
-});
-
+router.get('/api/health', loggerMiddleware, HealthController.getHealth);
 
 exports.router = router;

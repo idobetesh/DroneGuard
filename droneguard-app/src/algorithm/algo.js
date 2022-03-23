@@ -1,10 +1,5 @@
-// const fs = require('fs');
 const piexif = require('piexifjs');
 const GeographicLib = require('geographiclib');
-
-
-// const getBase64DataFromJpegFile = filename => fs.readFileSync(filename).toString('binary');
-// const getExifFromJpegFile = filename => piexif.load(getBase64DataFromJpegFile(filename));
 
 /* Consts */
 const PI = Math.PI;
@@ -57,10 +52,10 @@ const xMovement = (screenCoord, height) => {
   const ConW = realSizeScreenSize(Wr, ScreenWidth);
   const center_x = ScreenWidth / 2;
   let move_x = Math.round((screenCoord.x - center_x) * ConW);
-  if(move_x > 500) move_x = 500;
-  if(move_x > 0){
+  if (move_x > 500) move_x = 500;
+  if (move_x > 0) {
     move_x = (`right ${move_x}`);
-  }else{
+  } else {
     move_x = -move_x;
     move_x = (`left ${move_x}`);
   }
@@ -73,11 +68,11 @@ const yMovement = (screenCoord, height) => {
   const ConL = realSizeScreenSize(Lr, ScreenLength);
   const center_y = ScreenLength / 2;
   let move_y = Math.round((screenCoord.y - center_y) * ConL);
-  if(move_y > 500) move_y = 500;
+  if (move_y > 500) move_y = 500;
 
-  if(move_y > 0){
-   move_y = (`back ${move_y}`);
-  }else{
+  if (move_y > 0) {
+    move_y = (`back ${move_y}`);
+  } else {
     move_y = -move_y;
     move_y = (`forward ${move_y}`);
   }
@@ -101,28 +96,30 @@ const droneMovement = (screenCoord, height) => {
 
   let move_x = Math.round((screenCoord.x - center_x) * ConW);
   let move_y = Math.round((screenCoord.y - center_y) * ConL);
-  // console.log(`move_xxxxxxx`, move_x);
-  // console.log(`move_yyyyyyy`, move_y);
 
-  // if(move_x > 500) move_x = 500;
-  // if(move_y > 500) move_y = 500;
+  // TODO implement move > 500 option
 
-  let move = [];
-  if(move_x > 0){
-    move.push(`right ${move_x}`);
-  }else{
+  const moves = [];
+
+  if (move_x > 0) {
+    if (move_x < 20) move_x = 20;
+    moves.push(`right ${move_x}`);
+  } else {
+    if (move_x > -20) move_x = -20;
     move_x = -move_x;
-    move.push(`left ${move_x}`);
+    moves.push(`left ${move_x}`);
   }
 
-  if(move_y > 0){
-    move.push(`back ${move_y}`);
-  }else{
+  if (move_y > 0) {
+    if (move_y < 20) move_y = 20;
+    moves.push(`back ${move_y}`);
+  } else {
+    if (move_y > -20) move_y = -20;
     move_y = -move_y;
-    move.push(`forward ${move_y}`);
+    moves.push(`forward ${move_y}`);
   }
 
-  return move;
+  return moves;
 };
 
 
@@ -155,29 +152,24 @@ const droneMovement = (screenCoord, height) => {
 //   return [lat2, lon2];
 // };
 
-function getDistanceFromLatLonInKm(curr, dest) {
-  console.log(`Helooooooooo`);
+const getDistanceFromLatLonInKm = (curr, dest) => {
   const R = 6371; // Radius of the earth in km
   const dLat = deg2rad(dest.lat - curr.lat);  // deg2rad below
-  const dLon = deg2rad(dest.lon - curr.lon); 
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(curr.lat)) * Math.cos(deg2rad(dest.lat)) * 
-    Math.sin(dLon/2) * Math.sin(dLon/2)
-    ; 
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    let d = Math.round((R * c)*100000); // Distance in cm
-    
-    if (d > 500) d = 500;
+  const dLon = deg2rad(dest.lon - curr.lon);
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(curr.lat)) * Math.cos(deg2rad(dest.lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  let d = Math.round((R * c) * 100000); // Distance in cm
 
-    console.log('distance is:', d)
+  if (d > 500) d = 500;
+
+  console.log('distance is:', d)
 
   return `forward ${d}`;
-}
-function deg2rad(deg) {
-  return deg * (Math.PI/180)
-}
+};
 
+const deg2rad = (deg) => {
+  return deg * (Math.PI / 180)
+};
 
 
 const currCoordinate = { lat: 1.28168, lon: 103.86389 };
