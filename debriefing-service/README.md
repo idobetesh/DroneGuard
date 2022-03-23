@@ -20,8 +20,13 @@ Check its status on http://localhost:3001/api/health<br>
 Response Example:
 ```json
 {
-    "Time": "04/03/2022, 16:02:31",
-    "Health": "OK"
+  "service": "DroneGuard",
+  "timestamp": "23/03/2022, 12:41:02",
+  "status": "Ok",
+  "database": {
+    "name": "DroneGuard-DB",
+    "status": "Ok"
+  }
 }
 ```
 

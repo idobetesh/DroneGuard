@@ -16,5 +16,10 @@ const connect = async () => {
     }
 };
 
+const getDbHealth = () => {
+    return mongoose.connection.readyState === 1 ? 'Ok' : 'Bad';
+};
+
 
 exports.connect = connect;
+exports.getDbHealth = getDbHealth;

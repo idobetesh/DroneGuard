@@ -44,7 +44,7 @@ const StreamingScreen = () => {
         <h1> Camera Streaming! </h1>
         URL : http://192.168.0.102:4000/index.m3u8
         <div
-          className="containerr"
+          className="container"
           onClick={(e) => {
             handleClickEvent(e);
           }}
