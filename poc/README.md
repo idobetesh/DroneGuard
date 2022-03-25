@@ -8,4 +8,4 @@
 
 ```
 
-![tranformation-gif](https://github.com/idobetesh/DroneGuard/blob/master/POC/assets/ezgif.com-gif-maker.gif)
+![tranformation-gif](https://github.com/idobetesh/DroneGuard/blob/ido/fix_bulk_commands_operation/poc/assets/tranformation.gif)
