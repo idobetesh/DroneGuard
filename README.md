@@ -10,19 +10,7 @@
 High level project tree [depth 3]
 ```
 .
-├── hardware
-│   ├── camera
-│   │   └── server
-│   ├── compass
-│   ├── gps
-│   └── scripts
-├── poc
-│   ├── assets
-│   ├── transformations
-│   │   ├── node-version
-│   │   └── python-version
-│   └── views
-├── controll-server
+├── control-server
 │   ├── algorithm
 │   ├── test
 │   └── utils
@@ -43,6 +31,18 @@ High level project tree [depth 3]
 │       ├── features
 │       ├── pages
 │       └── utils
+├── hardware
+│   ├── camera
+│   │   └── server
+│   ├── compass
+│   ├── gps
+│   └── scripts
+├── poc
+│   ├── assets
+│   ├── transformations
+│   │   ├── node-version
+│   │   └── python-version
+│   └── views
 ├── raspberry-pi-config
 │   └── add-to-boot-drive
 └── tello-basics

@@ -1,4 +1,4 @@
-# Hardware Configuration 
+# Rasperry Pi Configuration 
 
 ```
    __  ____                        ____                     _      __ __  
@@ -21,9 +21,13 @@
 - Create / edit wpa_supplicant.conf file: <br/>
 > `$vim wpa_supplicant.conf`
 ```js
-network = {
-	ssid = "your_wifi_network_name"
-	psk = "your_wifi_network_password"
-	key_mgmt = WPA-PSK
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=US
+
+network={
+	ssid="your_wifi_network_name"
+	psk="your_wifi_network_password"
+	key_mgmt=WPA-PSK
 }
 ```

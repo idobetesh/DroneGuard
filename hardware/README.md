@@ -1,4 +1,5 @@
-# POC - Tranformations
+# Hardware Configuration 
+
 ```
    __  ____                        ____                     _      __ __  
   / / |  _ \ _ __ ___  _ __   ___ / ___|_   _  __ _ _ __ __| |    / / \ \ 
@@ -8,4 +9,5 @@
 
 ```
 
-![tranformation-gif](https://github.com/idobetesh/DroneGuard/blob/ido/fix_bulk_commands_operation/poc/assets/tranformation.gif)
+## High-Level Architecture Design
+![image](https://github.com/idobetesh/DroneGuard/blob/ido/fix_bulk_commands_operation/hardware/assets/high-level-architecture-design.png)

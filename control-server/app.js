@@ -10,7 +10,6 @@ const _ = require('lodash');
 
 const DroneGuardUtils = require('./utils/droneguard-util.js');
 
-
 /* Consts */
 const STATE_PORT = 8890;
 const UDP_PORT = 8889;
@@ -24,14 +23,16 @@ const droneState = dgram.createSocket('udp4');
 droneState.bind(STATE_PORT);
 
 drone.on('message', message => {
-    console.log(`🤖 : ${message}`);
+    console.log(`🚁 : ${message}`);
     io.sockets.emit('status', message.toString());
 });
 
 // `Wake up` command
 drone.send('command', 0, 'command'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
-// Set sream off
+// Set stream off
 drone.send('streamoff', 0, 'streamoff'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
+// Get current battery level
+drone.send('battery?', 0, 'battery?'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
 
 io.on('connection', socket => {
     socket.on('command', command => {
@@ -39,11 +40,12 @@ io.on('connection', socket => {
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
     }),
         socket.on('special', async (commands) => {
+            console.log(`Bulk commands sent from browser:\n${JSON.stringify(commands)}`);
             for (const command of commands) {
                 const cmd = `${command.direction} ${command.distance}`;
                 drone.send(cmd, 0, cmd.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
 
-                await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays()[command.direction]);
+                await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays[command.direction]);
             }
         });
 
@@ -56,7 +58,7 @@ droneState.on('message', _.throttle(state => {
 }, 100));
 
 http.listen(SERVER_PORT, () => {
-    console.log('Socket io server up and running');
+    console.log(`Socket io server up and running on http://localhost:${SERVER_PORT}`);
     DroneGuardUtils.visualPromt();
 });
 
