@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:3002');
+/* url to control server (runs on RP) */
+const socket = io('http://192.168.10.2:3002');
 
 export default socket;

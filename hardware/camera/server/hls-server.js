@@ -19,7 +19,7 @@ http.createServer(function (request, response) {
         return;
     }
 
-    let filePath = '/home/pi/DroneGuard/Hardware/Camera/video/ipcam' + request.url;
+    let filePath = '/Users/ido/Desktop/test/video/ipcam' + request.url;
     console.log(filePath);
 
     fs.readFile(filePath, function (error, content) {

@@ -8,23 +8,21 @@ describe('DroneGuard Navigation and Control 🚁', () => {
     describe('droneMovement', () => {
         it('Should succeed (return a moves array)', () => {
             expect(droneMovement({ x: 2700, y: 340 }, fakeHeigth)).toEqual([
-                { "direction": "right", "distance": 69 },
-                { "direction": "forward", "distance": 113 }
+                { direction: 'right', distance: 69 },
+                { direction: 'forward', distance: 113 }
             ]);
         });
         it('Should succeed (return a moves array)', () => {
             expect(droneMovement({ x: 100, y: 100 }, fakeHeigth)).toEqual([
-                { "direction": "left", "distance": 185 },
-                { "direction": "forward", "distance": 137 }
+                { direction: 'left', distance: 185 },
+                { direction: 'forward', distance: 137 }
             ]);
         });
     });
 
     describe('getDistanceFromLatLonInCm', () => {
         it('Should succeed (return a forward command with distance greater than 500cm)', () => {
-            expect(getDistanceFromLatLonInCm(fakeCurr, fakeDest)).toEqual(
-                'forward 500'
-            );
+            expect(getDistanceFromLatLonInCm(fakeCurr, fakeDest)).toEqual('forward 500');
         });
     });
 });

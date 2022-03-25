@@ -1,4 +1,3 @@
-const piexif = require('piexifjs');
 const GeographicLib = require('geographiclib');
 
 /* Consts */
@@ -81,7 +80,6 @@ const yMovement = (screenCoord, height) => {
 }
 
 const droneMovement = (screenCoord, height) => {
-  console.log(`drone movement position`, screenCoord)
   //calculates the widht/length in meters caought by the camera.
   const Wr = getRealDimension(SensorWidth, height);
   const Lr = getRealDimension(SensorLength, height);
@@ -97,9 +95,9 @@ const droneMovement = (screenCoord, height) => {
   let move_x = Math.round((screenCoord.x - center_x) * ConW);
   let move_y = Math.round((screenCoord.y - center_y) * ConL);
 
-  // TODO implement move > 500 option
-  // moves = [{ direction: 'some-command', distance: Number (cm) }]
+  // TODO cover cases when move > 500
 
+  // moves: <Array<Object>> = [{ direction: 'some-command', distance: Number (cm) }]
   const moves = [];
 
   if (move_x > 0) {
@@ -182,4 +180,3 @@ export default droneMovement;
 // exports.droneMovement = droneMovement;
 // exports.xMovement = xMovement;
 // exports.yMovement = yMovement;
-
