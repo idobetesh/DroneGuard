@@ -9,6 +9,7 @@ const io = require('socket.io')(http, { cors: { origin: '*' } });
 const _ = require('lodash');
 
 const DroneGuardUtils = require('./utils/droneguard-util.js');
+const { droneMovement } = require('./algorithm/transformation-algorithm.js');
 
 /* Consts */
 const STATE_PORT = 8890;
@@ -29,7 +30,7 @@ drone.on('message', message => {
 
 // `Wake up` command
 drone.send('command', 0, 'command'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
-// Set stream off
+// Set Tello stream off
 drone.send('streamoff', 0, 'streamoff'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
 // Get current battery level
 drone.send('battery?', 0, 'battery?'.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
@@ -39,15 +40,26 @@ io.on('connection', socket => {
         console.log(`${command} command sent from browser`);
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
     }),
-        socket.on('special', async (commands) => {
-            console.log(`Bulk commands sent from browser:\n${JSON.stringify(commands)}`);
-            for (const command of commands) {
-                const cmd = `${command.direction} ${command.distance}`;
-                drone.send(cmd, 0, cmd.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
+    socket.on('bulkCommands', async (commands) => {
+        console.log(`Bulk commands sent from browser:\n${JSON.stringify(commands)}`);
+        for (const command of commands) {
+            const cmd = `${command.direction} ${command.distance}`;
+            drone.send(cmd, 0, cmd.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
 
-                await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays[command.direction]);
-            }
-        });
+            await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays[command.direction]);
+        }
+    });
+    socket.on('pressData', async (data) => {
+        console.log(`Data sent from browser:\n${JSON.stringify(data)}`);
+        const commands = droneMovement(data.coordinate, data.height);
+        console.log(`Calculated bulk commands:\n${JSON.stringify(commands)}`);
+        for (const command of commands) {
+            const cmd = `${command.direction} ${command.distance}`;
+            drone.send(cmd, 0, cmd.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
+
+            await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays[command.direction]);
+        }
+    });
 
     socket.emit('status', 'CONNECTED');
 });

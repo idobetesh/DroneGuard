@@ -6,16 +6,34 @@ describe('DroneGuard Navigation and Control 🚁', () => {
     const fakeHeigth = 300;
 
     describe('droneMovement', () => {
-        it('Should succeed (return a moves array)', () => {
-            expect(droneMovement({ x: 2700, y: 340 }, fakeHeigth)).toEqual([
-                { direction: 'right', distance: 69 },
-                { direction: 'forward', distance: 113 }
+        it('Should succeed (return a 2 moves array)', () => {
+            expect(droneMovement({ x: 400, y: 500 }, fakeHeigth)).toEqual([
+                { direction: 'right', distance: 171 },
+                { direction: 'back', distance: 108 }
             ]);
         });
-        it('Should succeed (return a moves array)', () => {
+        it('Should succeed (return a 2 moves array)', () => {
             expect(droneMovement({ x: 100, y: 100 }, fakeHeigth)).toEqual([
-                { direction: 'left', distance: 185 },
-                { direction: 'forward', distance: 137 }
+                { direction: 'left', distance: 149 },
+                { direction: 'forward', distance: 132 }
+            ]);
+        });
+        it('Should succeed (return a 2 moves array)', () => {
+            expect(droneMovement({ x: 480, y: 480 }, fakeHeigth)).toEqual([
+                { direction: 'right', distance: 256 },
+                { direction: 'back', distance: 96 }
+            ]);
+        });
+        it('Should succeed (return a 2 moves array)', () => {
+            expect(droneMovement({ x: 0, y: 0 }, fakeHeigth)).toEqual([
+                { direction: 'left', distance: 256 },
+                { direction: 'forward', distance: 192 }
+            ]);
+        });
+        it('Should succeed (return a 2 moves array)', () => {
+            expect(droneMovement({ x: 680, y: 480 }, fakeHeigth)).toEqual([
+                { direction: 'right', distance: 469 },
+                { direction: 'back', distance: 96 }
             ]);
         });
     });

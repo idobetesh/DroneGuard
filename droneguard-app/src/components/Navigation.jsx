@@ -16,10 +16,20 @@ const sendCommand = (command) => {
   };
 };
 
-const sendSpecial = (commands) => {
+const sendBulkCommands = (commands) => {
   return () => {
     console.log(`Sending the commands ${JSON.stringify(commands)}`);
-    socket.emit('special', commands);
+    socket.emit('bulkCommands', commands);
+  };
+};
+
+// We want the calculations & transformation algorithms will take place
+// at the control-server, for that we'll send it coordinate & drone height
+// as an object: {coordinate, height: h}
+const sendPressData = (pressData) => {
+  return () => {
+    console.log(`Sending pressData ${JSON.stringify(pressData)}`);
+    socket.emit('pressData', pressData);
   };
 };
 
@@ -46,6 +56,7 @@ const useDroneState = () => {
 const Navigation = ({ coordinate }) => {
   const status = useSocket();
   const droneState = useDroneState([]);
+  const DEFAULT_DISTANCE = 100; //cm
 
   return (
     <>
@@ -62,7 +73,7 @@ const Navigation = ({ coordinate }) => {
         variant='contained'
         color='primary'
         style={{ marginRight: '5px' }}
-        onClick={sendCommand('down 30')}
+        onClick={sendCommand(`down ${DEFAULT_DISTANCE}`)}
       >
         <span className='symbol'>👎🏼</span>
       </Button>
@@ -70,7 +81,7 @@ const Navigation = ({ coordinate }) => {
         variant='contained'
         color='primary'
         style={{ marginRight: '5px' }}
-        onClick={sendCommand('back 30')}
+        onClick={sendCommand(`back ${DEFAULT_DISTANCE}`)}
       >
         <span className='symbol'>↓</span>
       </Button>
@@ -78,7 +89,7 @@ const Navigation = ({ coordinate }) => {
         variant='contained'
         color='primary'
         style={{ marginRight: '5px' }}
-        onClick={sendCommand('forward 30')}
+        onClick={sendCommand(`forward ${DEFAULT_DISTANCE}`)}
       >
         <span className='symbol'>↑</span>
       </Button>
@@ -86,7 +97,7 @@ const Navigation = ({ coordinate }) => {
         variant='contained'
         color='primary'
         style={{ marginRight: '5px' }}
-        onClick={sendCommand('left 30')}
+        onClick={sendCommand(`left ${DEFAULT_DISTANCE}`)}
       >
         <span className='symbol'>←</span>
       </Button>
@@ -94,7 +105,7 @@ const Navigation = ({ coordinate }) => {
         variant='contained'
         color='primary'
         style={{ marginRight: '5px' }}
-        onClick={sendCommand('right 30')}
+        onClick={sendCommand(`right ${DEFAULT_DISTANCE}`)}
       >
         <span className='symbol'>→</span>
       </Button>
@@ -142,12 +153,21 @@ const Navigation = ({ coordinate }) => {
       <Button
         variant='contained'
         color='primary'
-        onClick={sendSpecial(droneMovement(coordinate, droneState.h))}
+        onClick={sendBulkCommands(droneMovement(coordinate, droneState.h))}
       >
         <span className='symbol'>LG Press</span>
+      </Button>
+
+      {/* TEST calculations on SERVER side*/}
+      <Button
+        variant='contained'
+        color='primary'
+        onClick={sendPressData({ coordinate, height: droneState.h })}
+      >
+        <span className='symbol'>LG Press 2</span>
       </Button>
     </>
   );
 };
 
-export { Navigation, useDroneState, sendSpecial };
+export { Navigation, useDroneState, sendBulkCommands };

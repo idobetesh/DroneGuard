@@ -2,10 +2,8 @@ const GeographicLib = require('geographiclib');
 
 /* Consts */
 const PI = Math.PI;
-const ScreenLength = 2992;
-const ScreenWidth = 3992;
-
-const Height = 228.851; // drone
+const ScreenLength = 640;
+const ScreenWidth = 480;
 const FocalLength = 3.61; // camera
 const SensorWidth = 6.16; // camera
 const SensorLength = 4.62; // camera
@@ -20,10 +18,10 @@ const calculateAlphaBeta = (sensor) => {
   return angle;
 };
 
-const getRealDimension = (sensorMeasure) => {
+const getRealDimension = (sensorMeasure, height) => {
   const angle = calculateAlphaBeta(sensorMeasure);
   const tan = (Math.tan(angle / 2));
-  const sizeInMeters = (2 * Height) * tan;
+  const sizeInMeters = (2 * height) * tan;
 
   return sizeInMeters;
 };
@@ -67,21 +65,65 @@ const droneMovement = (pressedPoint, height) => {
   const moves = [];
 
   if (moveX > 0) {
-    if (moveX < 20) moveX = 20;
-    moves.push({ direction: 'right', distance: moveX });
-  } else {
-    if (moveX > -20) moveX = -20;
-    moveX = -moveX;
-    moves.push({ direction: 'left', distance: moveX });
+    if (moveX < 20) {
+      moveX = 20;
+      moves.push({ direction: 'right', distance: moveX });
+    }
+    else if (moveX > 500) {
+      moves.push({ direction: 'right', distance: moveX });
+      moveX -= 500;
+      moves.push({ direction: 'right', distance: moveX });
+    } else {
+      moves.push({ direction: 'right', distance: moveX });
+    }
+  }
+  else if (moveX < 0) {
+    if (moveX > -20) {
+      console.log('im too smalllll', moveX)
+      moveX = 20;
+      // moveX = -moveX;
+      moves.push({ direction: 'left', distance: moveX });
+    }
+    else if (moveX < -500) {
+      moveX = -moveX;
+      moves.push({ direction: 'left', distance: 500 });
+      moveX -= 500;
+      moves.push({ direction: 'left', distance: moveX });
+    } else {
+      moveX = -moveX;
+      moves.push({ direction: 'left', distance: moveX });
+    }
   }
 
+
   if (moveY > 0) {
-    if (moveY < 20) moveY = 20;
-    moves.push({ direction: 'back', distance: moveY });
-  } else {
-    if (moveY > -20) moveY = -20;
-    moveY = -moveY;
-    moves.push({ direction: 'forward', distance: moveY });
+    if (moveY < 20) {
+      moveY = 20;
+      moves.push({ direction: 'back', distance: moveY });
+    }
+    else if (moveY > 500) {
+      moves.push({ direction: 'back', distance: 500 });
+      moveY -= 500;
+      moves.push({ direction: 'back', distance: moveY });
+    } else {
+      moves.push({ direction: 'back', distance: moveY });
+    }
+  }
+  if (moveY < 0) {
+    if (moveY > -20) {
+      moveY = -20;
+      moveY = -moveY;
+      moves.push({ direction: 'forward', distance: moveY });
+    }
+    else if (moveY < -500) {
+      moveY = -moveY;
+      moves.push({ direction: 'forward', distance: 500 });
+      moveY -= 500;
+      moves.push({ direction: 'forward', distance: moveY });
+    } else {
+      moveY = -moveY;
+      moves.push({ direction: 'forward', distance: moveY });
+    }
   }
 
   return moves;
@@ -105,7 +147,6 @@ const getDistanceFromLatLonInCm = (curr, dest) => {
 
   return `forward ${distance}`;
 };
-
 
 
 exports.droneMovement = droneMovement;
