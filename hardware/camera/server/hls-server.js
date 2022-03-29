@@ -42,4 +42,4 @@ http.createServer(function (request, response) {
     });
 }).listen(PORT);
 
-console.log(`Server listening on port ${PORT}`);
+console.log(`HLS-Server listening on port ${PORT}`);
