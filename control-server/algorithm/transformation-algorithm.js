@@ -2,8 +2,8 @@ const GeographicLib = require('geographiclib');
 
 /* Consts */
 const PI = Math.PI;
-const ScreenLength = 640;
-const ScreenWidth = 480;
+const ScreenLength = 480;
+const ScreenWidth = 640;
 const FocalLength = 3.61; // camera
 const SensorWidth = 6.16; // camera
 const SensorLength = 4.62; // camera
@@ -32,7 +32,7 @@ const realSizeScreenSize = (real, screen) => {
 
 const calculateBearing = (a, b) => {
   const angle = (Math.atan2(a, b) * (180 / PI));
-  console.log(`bearing`, angle);
+
   return angle;
 };
 
@@ -59,70 +59,53 @@ const droneMovement = (pressedPoint, height) => {
   let moveX = Math.round((pressedPoint.x - centerX) * ConW);
   let moveY = Math.round((pressedPoint.y - centerY) * ConL);
 
-  // TODO implement move > 500 option
   // moves = [{ direction: 'some-command', distance: Number (cm) }]
 
   const moves = [];
 
   if (moveX > 0) {
     if (moveX < 20) {
-      moveX = 20;
-      moves.push({ direction: 'right', distance: moveX });
-    }
-    else if (moveX > 500) {
-      moves.push({ direction: 'right', distance: moveX });
+      moves.push({ direction: 'right', distance: 20 });
+    } else if (moveX > 500) {
+      moves.push({ direction: 'right', distance: 500 });
       moveX -= 500;
       moves.push({ direction: 'right', distance: moveX });
     } else {
       moves.push({ direction: 'right', distance: moveX });
     }
-  }
-  else if (moveX < 0) {
+  } else if (moveX < 0) {
     if (moveX > -20) {
-      console.log('im too smalllll', moveX)
-      moveX = 20;
-      // moveX = -moveX;
-      moves.push({ direction: 'left', distance: moveX });
-    }
-    else if (moveX < -500) {
-      moveX = -moveX;
+      moves.push({ direction: 'left', distance: 20 });
+    } else if (moveX < -500) {
       moves.push({ direction: 'left', distance: 500 });
-      moveX -= 500;
-      moves.push({ direction: 'left', distance: moveX });
-    } else {
       moveX = -moveX;
-      moves.push({ direction: 'left', distance: moveX });
+      moveX -= 500;
+      moves.push({ direction: 'left', distance: moveX < 20 ? 20 : moveX });
+    } else {
+      moves.push({ direction: 'left', distance: -moveX });
     }
   }
-
 
   if (moveY > 0) {
     if (moveY < 20) {
-      moveY = 20;
-      moves.push({ direction: 'back', distance: moveY });
-    }
-    else if (moveY > 500) {
+      moves.push({ direction: 'back', distance: 20 });
+    } else if (moveY > 500) {
       moves.push({ direction: 'back', distance: 500 });
       moveY -= 500;
-      moves.push({ direction: 'back', distance: moveY });
+      moves.push({ direction: 'back', distance: moveY < 20 ? 20 : moveY });
     } else {
       moves.push({ direction: 'back', distance: moveY });
     }
-  }
-  if (moveY < 0) {
+  } else if (moveY < 0) {
     if (moveY > -20) {
-      moveY = -20;
-      moveY = -moveY;
-      moves.push({ direction: 'forward', distance: moveY });
-    }
-    else if (moveY < -500) {
-      moveY = -moveY;
+      moves.push({ direction: 'forward', distance: 20 });
+    } else if (moveY < -500) {
       moves.push({ direction: 'forward', distance: 500 });
+      moveY = -moveY;
       moveY -= 500;
       moves.push({ direction: 'forward', distance: moveY });
     } else {
-      moveY = -moveY;
-      moves.push({ direction: 'forward', distance: moveY });
+      moves.push({ direction: 'forward', distance: -moveY });
     }
   }
 
