@@ -86,6 +86,7 @@ const droneMovement = (pressedPoint, height) => {
     }
   }
 
+
   if (moveY > 0) {
     if (moveY < 20) {
       moves.push({ direction: 'back', distance: 20 });
