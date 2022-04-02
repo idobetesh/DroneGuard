@@ -1,33 +1,33 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
-import ReactHlsPlayer from 'react-hls-player';
+import React from "react";
+import ReactHlsPlayer from "react-hls-player";
+import { sendPressData, useDroneState } from "./Navigation";
+import socket from "../utils/socket";
 
-const Video = () => {
+const Video = ({ coordinate }) => {
+  const droneState = useDroneState();
+
+  const pressCords = (coordinate) => {
+    console.log(`Sending pressData ${JSON.stringify(coordinate)}`);
+    socket.emit("pressData", coordinate);
+  };
+
   return (
     <>
-      <div style={{ background: 'red' }}>
-      </div>
+      <ReactHlsPlayer
+        src="http://localhost:4000/index.m3u8"
+        autoPlay={true}
+        // controls={true}
+        width="640px"
+        height="480px"
+        hlsConfig={{
+          lowLatencyMode: true,
+        }}
+        className="vid"
+        onClick={pressCords({ coordinate, height: droneState.h })}
+      />
     </>
   );
 };
-
-// ReactHlsPlayer try
-// const Video = () => {
-//   return (
-//     <>
-//       <ReactHlsPlayer
-//         src="http://localhost:4000/index.m3u8"
-//         autoPlay={true}
-//         controls={true} 
-//         width='640px'
-//         height='480px'
-//         hlsConfig={{
-//           lowLatencyMode: true,
-//         }}  
-//       />
-//     </>
-//   );
-// };
 
 // iframe try
 // const Video = () => {
@@ -41,6 +41,5 @@ const Video = () => {
 //     </iframe>
 //   );
 // };
-
 
 export default Video;
