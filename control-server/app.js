@@ -40,17 +40,7 @@ io.on('connection', socket => {
         console.log(`${command} command sent from browser`);
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
     }),
-    socket.on('bulkCommands', async (commands) => {
-        console.log(`Bulk commands sent from browser:\n${JSON.stringify(commands)}`);
-        for (const command of commands) {
-            const cmd = `${command.direction} ${command.distance}`;
-            drone.send(cmd, 0, cmd.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
-
-            await DroneGuardUtils.sleep(DroneGuardUtils.commandDelays[command.direction]);
-        }
-    });
     socket.on('pressData', async (data) => {
-        console.log(`Data sent from browser:\n${JSON.stringify(data)}`);
         const commands = droneMovement(data.coordinate, data.height);
         console.log(`Calculated bulk commands:\n${JSON.stringify(commands)}`);
         for (const command of commands) {

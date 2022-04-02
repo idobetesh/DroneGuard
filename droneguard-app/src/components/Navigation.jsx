@@ -149,15 +149,6 @@ const Navigation = ({ coordinate }) => {
         <span className='symbol'>Emergency!</span>
       </Button>
 
-      {/* TEST */}
-      <Button
-        variant='contained'
-        color='primary'
-        onClick={sendBulkCommands(droneMovement(coordinate, droneState.h))}
-      >
-        <span className='symbol'>LG Press</span>
-      </Button>
-
       {/* TEST calculations on SERVER side*/}
       <Button
         variant='contained'
