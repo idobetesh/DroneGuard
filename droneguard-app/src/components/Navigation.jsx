@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import socket from "../utils/socket";
-
-import droneMovement from "../algorithm/algo.js";
-import { Grow } from "@material-ui/core";
-
 /* Mock values for test button */
 const curr = { lat: 32.093128, lon: 34.787805 };
 const dest = { lat: 32.093194898476746, lon: 34.78780385430309 };
-// const xy = { x: 2700, y: 340 };
 
 const sendCommand = (command) => {
   return () => {
@@ -112,13 +107,13 @@ const Navigation = ({ coordinate }) => {
           </Button>
 
           {/* TEST calculations on SERVER side*/}
-          {/* <Button
+          <Button
             variant="contained"
             color="primary"
-            // onClick={sendPressData({ coordinate, height: droneState.h })}
+            onClick={sendPressData({ coordinate, height: droneState.h })}
           >
             <span className="symbol">LG Press</span>
-          </Button> */}
+          </Button>
         </div>
         <div className="takeoff-land">
           <Button
@@ -139,61 +134,7 @@ const Navigation = ({ coordinate }) => {
           </Button>
         </div>
       </div>
-      {/* <button onClick={sendCommand(`back ${DEFAULT_DISTANCE}`)}>
-          <span>↓</span>
-        </button> */}
-
-      {/* <Button
-          variant="contained"
-          color="primary"
-          style={{ marginRight: "5px" }}
-          onClick={sendCommand(`forward ${DEFAULT_DISTANCE}`)}
-        >
-          <span>↑</span>
-        </Button> */}
-      {/* <Button
-        variant="contained"
-        color="primary"
-        style={{ marginRight: "5px" }}
-        onClick={sendCommand(`back ${DEFAULT_DISTANCE}`)}
-      >
-        <span className="symbol">↓</span>
-      </Button> */}
-
-      {/* <Button
-        variant="contained"
-        color="primary"
-        style={{ marginRight: "5px" }}
-        onClick={sendCommand(`left ${DEFAULT_DISTANCE}`)}
-      >
-        <span className="symbol">←</span>
-      </Button> */}
-      {/* <Button
-        variant="contained"
-        color="primary"
-        style={{ marginRight: "5px" }}
-        onClick={sendCommand(`right ${DEFAULT_DISTANCE}`)}
-      >
-        <span className="symbol">→</span>
-      </Button> */}
-
-      {/*       
-      <Button
-            variant="contained"
-            color="primary"
-            style={{ marginRight: "5px" }}
-            onClick={sendCommand("cw 90")}
-          >
-            <span className="symbol">⟳</span>
-          </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ marginRight: "5px" }}
-        onClick={sendCommand("ccw 90")}
-      >
-        <span className="symbol">⟲</span>
-      </Button> */}
+      
     </>
   );
 };
