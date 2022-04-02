@@ -56,8 +56,8 @@ const droneMovement = (pressedPoint, height) => {
   const centerX = ScreenWidth / 2;
   const centerY = ScreenLength / 2;
 
-  let moveX = Math.round((pressedPoint.x * 4 - centerX) * ConW);
-  let moveY = Math.round((pressedPoint.y * 4 - centerY) * ConL);
+  let moveX = Math.round(((pressedPoint.x * 4) - centerX) * ConW);
+  let moveY = Math.round(((pressedPoint.y * 4) - centerY) * ConL);
 
   // moves = [{ direction: 'some-command', distance: Number (cm) }]
 
