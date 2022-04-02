@@ -1,25 +1,26 @@
-import React from "react";
-import ReactHlsPlayer from "react-hls-player";
+import React from 'react';
+import ReactHlsPlayer from 'react-hls-player';
 
+/* ReactHlsPlayer option */
 // const Video = () => {
 //   return (
 //     <>
 //       <ReactHlsPlayer
-//         src="http://localhost:4000/index.m3u8"
+//         src='http://localhost:4000/index.m3u8'
 //         autoPlay={true}
-//         // controls={true}
-//         width="648px"
-//         height="486px"
+//         controls={true}
+//         width='648px'
+//         height='486px'
 //         hlsConfig={{
 //           lowLatencyMode: true,
 //         }}
-//         className="vid"
+//         className='vid'
 //       />
 //     </>
 //   );
 // };
 
-// iframe try
+/* iframe option */
 const Video = () => {
   return (
     <iframe
