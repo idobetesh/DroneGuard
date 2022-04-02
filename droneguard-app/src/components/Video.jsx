@@ -1,15 +1,7 @@
 import React from "react";
 import ReactHlsPlayer from "react-hls-player";
-import { sendPressData, useDroneState } from "./Navigation";
-import socket from "../utils/socket";
 
-const Video = ({ coordinate }) => {
-  const droneState = useDroneState();
-
-  const pressCords = (coordinate) => {
-    console.log(`Sending pressData ${JSON.stringify(coordinate)}`);
-    socket.emit("pressData", coordinate);
-  };
+const Video = () => {
 
   return (
     <>
@@ -17,13 +9,12 @@ const Video = ({ coordinate }) => {
         src="http://localhost:4000/index.m3u8"
         autoPlay={true}
         // controls={true}
-        width="640px"
-        height="480px"
+        width="648px"
+        height="486px"
         hlsConfig={{
           lowLatencyMode: true,
         }}
         className="vid"
-        onClick={pressCords({ coordinate, height: droneState.h })}
       />
     </>
   );

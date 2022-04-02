@@ -2,9 +2,9 @@ const GeographicLib = require('geographiclib');
 
 /* Consts */
 const PI = Math.PI;
-const ScreenLength = 480;
-const ScreenWidth = 640;
-const FocalLength = 3.61; // camera
+const ScreenLength = 1944;
+const ScreenWidth = 2592;
+const FocalLength = 3.60; // camera
 const SensorWidth = 6.16; // camera
 const SensorLength = 4.62; // camera
 
@@ -56,8 +56,8 @@ const droneMovement = (pressedPoint, height) => {
   const centerX = ScreenWidth / 2;
   const centerY = ScreenLength / 2;
 
-  let moveX = Math.round((pressedPoint.x - centerX) * ConW);
-  let moveY = Math.round((pressedPoint.y - centerY) * ConL);
+  let moveX = Math.round((pressedPoint.x*4 - centerX) * ConW);
+  let moveY = Math.round((pressedPoint.y*4 - centerY) * ConL);
 
   // moves = [{ direction: 'some-command', distance: Number (cm) }]
 

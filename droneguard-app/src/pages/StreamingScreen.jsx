@@ -53,10 +53,10 @@ const StreamingScreen = () => {
               <h3>height: {droneState.h} cm</h3>
             </div>
           </div>
-          <Video coordinate={position} />
+          <Video />
         </div>
       </div>
-      <Navigation />
+      <Navigation coordinate={position} />
     </>
   );
 };
