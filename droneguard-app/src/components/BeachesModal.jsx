@@ -1,14 +1,14 @@
-import React from "react";
-import Modal from "react-bootstrap/Modal";
+import React from 'react';
+import Modal from 'react-bootstrap/Modal';
 
-import { useState, useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import { useState, useEffect } from 'react';
+import { FaSignInAlt } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { getBeaches, reset } from "../features/beaches/beachSlice";
-import Api from "../api/api-requests";
-import Spinner from "../components/Spinner";
+import { getBeaches, reset } from '../features/beaches/beachSlice';
+import Api from '../api/api-requests';
+import Spinner from '../components/Spinner';
 
 const BeachesModal = (props) => {
   const dispatch = useDispatch();
@@ -34,17 +34,17 @@ const BeachesModal = (props) => {
   return (
     <Modal
       {...props}
-      size=""
-      aria-labelledby="contained-modal-title-vcenter"
+      size=''
+      aria-labelledby='contained-modal-title-vcenter'
       centered
     >
       <Modal.Body>
         <h4>Choose your beach</h4>
-        <ul style={{ justifyContent: "center" }}>
+        <ul style={{ justifyContent: 'center' }}>
           {beaches.map((beach) => (
             // key={beach._id}
             <li>
-              {beach.name} | {beach.city}{" "}
+              {beach.name} | {beach.city}{' '}
             </li>
           ))}
         </ul>

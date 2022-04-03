@@ -56,8 +56,8 @@ const droneMovement = (pressedPoint, height) => {
   const centerX = ScreenWidth / 2;
   const centerY = ScreenLength / 2;
 
-  let moveX = Math.round((pressedPoint.x*4 - centerX) * ConW);
-  let moveY = Math.round((pressedPoint.y*4 - centerY) * ConL);
+  let moveX = Math.round(((pressedPoint.x * 4) - centerX) * ConW);
+  let moveY = Math.round(((pressedPoint.y * 4) - centerY) * ConL);
 
   // moves = [{ direction: 'some-command', distance: Number (cm) }]
 
@@ -69,7 +69,7 @@ const droneMovement = (pressedPoint, height) => {
     } else if (moveX > 500) {
       moves.push({ direction: 'right', distance: 500 });
       moveX -= 500;
-      moves.push({ direction: 'right', distance: moveX });
+      moves.push({ direction: 'right', distance: moveX < 20 ? 20 : moveX });
     } else {
       moves.push({ direction: 'right', distance: moveX });
     }
@@ -85,7 +85,6 @@ const droneMovement = (pressedPoint, height) => {
       moves.push({ direction: 'left', distance: -moveX });
     }
   }
-
 
   if (moveY > 0) {
     if (moveY < 20) {
@@ -104,7 +103,7 @@ const droneMovement = (pressedPoint, height) => {
       moves.push({ direction: 'forward', distance: 500 });
       moveY = -moveY;
       moveY -= 500;
-      moves.push({ direction: 'forward', distance: moveY });
+      moves.push({ direction: 'forward', distance: moveY < 20 ? 20 : moveY });
     } else {
       moves.push({ direction: 'forward', distance: -moveY });
     }

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit",
-    "start": "nodemon app.js"
+    "test": "jest",
+    "start": "nodemon app.js --ignore test/"
   },
   "keywords": [],
   "author": "DroneGuard",

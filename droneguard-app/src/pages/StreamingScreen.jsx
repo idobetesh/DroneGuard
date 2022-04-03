@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import socket from "../utils/socket";
-import Video from "../components/Video";
-import { Navigation, sendPressData } from "../components/Navigation";
-import zIndex from "@material-ui/core/styles/zIndex";
+import socket from '../utils/socket';
+import Video from '../components/Video';
+import { Navigation } from '../components/Navigation';
 
 const useDroneState = () => {
   const [droneState, updateDroneState] = useState({});
   useEffect(() => {
-    socket.on("dronestate", updateDroneState);
-    return () => socket.removeListener("dronestate");
+    socket.on('dronestate', updateDroneState);
+    return () => socket.removeListener('dronestate');
   }, []);
 
   return droneState;
@@ -37,17 +36,17 @@ const StreamingScreen = () => {
   const droneState = useDroneState([]);
   return (
     <>
-      <div className="content">
+      <div className='content'>
         <h1> Camera Streaming! </h1>
         URL : http://localhost:4000/index.m3u8
         <div
-          className="container"
+          className='container'
           onClick={(e) => {
             handleClickEvent(e);
           }}
         >
           <div>
-            <div className="drone_info">
+            <div className='drone_info'>
               <h3>Battery: {droneState.bat}%</h3>
               <h3>YAW: {droneState.yaw}</h3>
               <h3>height: {droneState.h} cm</h3>
