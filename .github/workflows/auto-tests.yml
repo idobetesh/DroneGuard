@@ -19,7 +19,6 @@ jobs:
         node-version: [10.x, 14.x, 16.x]
 
     steps:
-    - working-directory: ./control-server
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       
@@ -29,4 +28,6 @@ jobs:
         cache: 'npm'
       
     - run: npm ci
+      working-directory: ./control-server
     - run: npm test
+      working-directory: ./control-server
