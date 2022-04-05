@@ -32,6 +32,7 @@ High level project tree [depth 3]
 │       ├── pages
 │       └── utils
 ├── hardware
+│   ├── assets
 │   ├── camera
 │   │   └── server
 │   ├── compass
