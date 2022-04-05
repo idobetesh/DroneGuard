@@ -8,4 +8,4 @@
 
 ```
 
-![tranformation-gif](/assets/tranformation.gif)
+![tranformation-gif](https://github.com/idobetesh/DroneGuard/blob/master/poc/assets/tranformation.gif)
