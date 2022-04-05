@@ -13,6 +13,16 @@ Install all dependencies & Run control server:
 
 Server runs on http://localhost:3002
 
+### Bulk command format
+```js
+[
+  { direction: 'right', distance: 235 },
+  { direction: 'forward', distance: 123 },
+  { direction: 'down', distance: 200 },
+  { direction: 'up' , distance: 200 }
+]
+```
+---
 ## Tests
 Run tests:
 > `$npm test`

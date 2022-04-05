@@ -24,9 +24,9 @@ import ReactHlsPlayer from 'react-hls-player';
 const Video = () => {
   return (
     <iframe
-      src='http://169.254.232.194:8002/index.html'
-      height={460}
-      width={680}
+      src='http://192.168.10.3:8002/index.html'
+      height={486}
+      width={648}
       frameBorder={'none'}
       scrolling={false}
       >

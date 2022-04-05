@@ -98,19 +98,20 @@ const Navigation = ({ coordinate }) => {
           <Button
             variant='contained'
             color='primary'
+            onClick={sendPressData({ coordinate, height: droneState.h })}
+          >
+            <span className='symbol'>Move</span>
+          </Button>
+          <Button
+          style={{backgroundColor: 'red', color: 'white'}}
+            variant='contained'
+
             onClick={sendCommand('emergency')}
           >
             <span className='symbol'>Emergency!</span>
           </Button>
 
           {/* TEST calculations on SERVER side*/}
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={sendPressData({ coordinate, height: droneState.h })}
-          >
-            <span className='symbol'>LG Press</span>
-          </Button>
         </div>
         <div className='takeoff-land'>
           <Button
