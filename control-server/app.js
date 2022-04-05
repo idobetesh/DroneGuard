@@ -41,11 +41,10 @@ io.on('connection', socket => {
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
     }),
     socket.on('pressData', async (data) => {
-        const currentHeight = parseInt(data.height); // save in order to return to the same height after descending
         const commands = droneMovement(data.coordinate, data.height);
 
         commands.push({ command: 'down', direction: 200 }); // descend for better view 
-        commands.push({ command: 'up', direction: currentHeight }); // return to the same height as before
+        commands.push({ command: 'up', direction: 200 }); // return to the same height as before
 
         console.log(`Calculated bulk commands:\n${JSON.stringify(commands)}`);
 
@@ -69,4 +68,3 @@ http.listen(SERVER_PORT, () => {
     console.log(`Socket io server up and running on http://localhost:${SERVER_PORT}`);
     DroneGuardUtils.visualPromt();
 });
-
