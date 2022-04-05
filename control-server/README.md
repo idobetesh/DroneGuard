@@ -13,13 +13,26 @@ Install all dependencies & Run control server:
 
 Server runs on http://localhost:3002
 
-### Bulk command format
+## Navigation Features
+### Lifeguard can choose between two navigation options:
+### 1. Regular single navigation command
+Click on one of the four arrows in the UI.</br>
+In this case, the command will be sent in the following format:
+
+```js
+{ direction: 'right', distance: 235 }
+```
+
+### 2. Bulk commands
+Press on a specific area on the streaming screen, our algorithms will calculate the required commands in order the get the drone to that specific point.</br>
+In this case, the commands will be sent in bulk in the following format:
+
 ```js
 [
   { direction: 'right', distance: 235 },
   { direction: 'forward', distance: 123 },
   { direction: 'down', distance: 200 },
-  { direction: 'up' , distance: 200 }
+  { direction: 'up', distance: 200 }
 ]
 ```
 ---

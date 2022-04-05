@@ -13,7 +13,7 @@ const Record = require('../models/record.js');
  * @throws Will throw an error on failure
  */
 const createRecord = asyncHandler(async (url, thumbnailUrl, user) => {
-    const record = Record.create({ url, thumbnailUrl, user: user.id });
+    const record = await Record.create({ url, thumbnailUrl, user: user.id });
 
     return record;
 });
