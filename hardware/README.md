@@ -10,4 +10,4 @@
 ```
 
 ## High-Level Architecture Design
-![image](https://github.com/idobetesh/DroneGuard/blob/ido/add_starter_scripts/hardware/assets/high-level-architecture-design.png)
+![high-level-architecture-design](/assets/high-level-architecture-design.png)

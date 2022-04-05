@@ -37,8 +37,7 @@ const StreamingScreen = () => {
   return (
     <>
       <div className='content'>
-        <h1> Camera Streaming! </h1>
-        URL : http://localhost:4000/index.m3u8
+        <h1> Drone Navigation </h1>
         <div
           className='container'
           onClick={(e) => {
