@@ -1,7 +1,7 @@
 # All PRs and pushes trigger an automated process in which our unit tests will run.
 # If those succeed it's safe to merge the code into the master branch, otherwise, we should FIX the UTs 🍻
 
-name: DroneGuard Workflow
+name: DroneGuard Workflows
 
 on:
   push:
@@ -10,8 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  unit-test:
-
+  control-server:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -20,6 +19,25 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x, 14.x, 16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - run: npm i && npm test
+
+  droneguard-server:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: debriefing-service/server
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
 
     steps:
     - uses: actions/checkout@v3

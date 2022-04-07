@@ -1,8 +1,8 @@
 const request = require('supertest');
-const app = require('../app.js');
+const app = require('../../app.js');
 const { StatusCodes: HttpStatus } = require('http-status-codes');
 
-const User = require('../api/models/user.js');
+const User = require('../../../api/models/user.js');
 
 require('dotenv').config();
 
