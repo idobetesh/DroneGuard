@@ -3,8 +3,8 @@ const Sinon = require('sinon');
 const Assert = require('chai').use(require('chai-as-promised')).assert;
 const Uuid = require('uuid').v4;
 
-const record = require('../../api/models/record.js');
-const RecordMapper = require('../../api/mappers/record-mapper.js');
+const record = require('../../../../api/models/record.js');
+const RecordMapper = require('../../../../api/mappers/record-mapper.js');
 
 const sandbox = Sinon.createSandbox();
 
@@ -113,6 +113,22 @@ describe('record-mapper 🎥', () => {
         it('Should fail (DB error)', async () => {
             sandbox.stub(record, 'create').throws(new Error('DB error'));
             await Assert.isRejected(RecordMapper.createRecord(mockUrl, mockThumbnailUrl, mockUser), /DB error/);
+        });
+    });
+
+    describe('addRecordNote', () => {
+        const mockRecords = generateMockRecords();
+        const recordId = mockRecords[0].id;
+        const note = 'some note !@#';
+
+        it('Should fail (missing a note)', async () => {
+            sandbox.stub(record, 'findById').returns(Promise.reject());
+
+            await Assert.isRejected(RecordMapper.addRecordNote(recordId, null));
+        });
+        it('Should fail (DB error)', async () => {
+            sandbox.stub(record, 'findById').throws(new Error('DB error'));
+            await Assert.isRejected(RecordMapper.addRecordNote(recordId, note), /DB error/);
         });
     });
 });
