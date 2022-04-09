@@ -9,7 +9,7 @@ const io = require('socket.io')(http, { cors: { origin: '*' } });
 const _ = require('lodash');
 
 const DroneGuardUtils = require('./utils/droneguard-util.js');
-const { droneMovement , droneMovementByBearing} = require('./algorithm/transformation-algorithm.js');
+const TA = require('./algorithm/transformation-algorithm.js');
 
 /* Consts */
 const STATE_PORT = 8890;
@@ -41,7 +41,7 @@ io.on('connection', socket => {
         drone.send(command, 0, command.length, UDP_PORT, TELLO_IP, DroneGuardUtils.handleError);
     }),
     socket.on('pressData', async (data) => {
-        const commands = droneMovementByBearing(data.coordinate, data.height);
+        const commands = TA.droneMovementByBearing(data.coordinate, data.height);
         console.log(`Calculated bulk commands:\n${JSON.stringify(commands)}`);
 
         for (const command of commands) {
