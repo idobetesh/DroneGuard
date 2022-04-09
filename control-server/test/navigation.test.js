@@ -174,6 +174,7 @@ describe('DroneGuard Navigation and Control 🚁', () => {
 
     describe('parseState', () => {
         let fakeState = 'pitch:%d;roll:%d;yaw:%d;vgx:%d;vgz:%d;templ:%d;temph:%d;tof:%d;h:%d;bat:%d;baro:%.2f;time:%d;agx:%.2f;agy:%.2f;agz:%.2f';
+
         it('Should succeed (return an object with drone state information)', () => {
             expect(DroneGuardUtils.parseState(fakeState)).toEqual({
                 pitch: '%d',
