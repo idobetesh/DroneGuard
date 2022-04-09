@@ -9,8 +9,8 @@ const SensorWidth = 6.16; // camera
 const SensorLength = 4.62; // camera
 
 
-// Calculates alpha/beta angle.
-// Return value: alpha/beta angle.
+/* Calculates alpha/beta angle. */
+/* Return value: alpha/beta angle. */
 const calculateAlphaBeta = (sensor) => {
   const angle = 2 * (Math.atan(sensor / (2 * FocalLength)));
   const degrees = angle * (180 / PI);
@@ -43,6 +43,44 @@ const getEndPoint = (lat1, lon1, bearing, dist) => {
   return direction;
 };
 
+const droneMovementByBearing = (pressedPoint, height) => {
+  //calculates the widht/length in meters caought by the camera.
+  const Wr = getRealDimension(SensorWidth, height);
+  const Lr = getRealDimension(SensorLength, height);
+;
+  // calculates the conversion for pixels per meter.
+  const ConW = realSizeScreenSize(Wr, ScreenWidth);
+  const ConL = realSizeScreenSize(Lr, ScreenLength);
+
+  // find the (x,y) center of the screen.
+  const centerX = ScreenWidth / 2;
+  const centerY = ScreenLength / 2;
+
+  let moveX = Math.round(((pressedPoint.x * 4) - centerX) * ConW);
+  let moveY = Math.round(((pressedPoint.y * 4) - centerY) * ConL);
+
+  // moves = [{ direction: 'some-command', distance: Number (cm) }]
+  const moves = [];
+  
+  let angle = Math.round(calculateBearing(moveY, moveX));
+  let totalMove = Math.round((moveX ** 2 + moveY ** 2) ** 0.5);
+
+  if (centerX > 0 && centerY < 0)  { moves.push({ direction: 'cw', distance: angle }); }
+  else if (moveX > 0 && moveY > 0) { angle += 90; moves.push({ direction: 'cw', distance: angle }); }
+  else if (moveX < 0 && moveY > 0) { angle += 180; moves.push({ direction: 'cw', distance: angle }); }
+  else if (moveX < 0 && moveY < 0) { angle += 270; moves.push({ direction: 'cw', distance: angle }); }
+
+  if (totalMove > 500) {
+    moves.push({ direction: 'forward', distance: 500 });  
+    totalMove -= 500;
+  }
+
+  moves.push({ direction: 'forward', distance: totalMove < 20 ? 20 : totalMove });
+  moves.push({ direction: 'ccw', distance: angle });
+
+  return pushDescendAndAscend(moves);
+};
+
 const droneMovement = (pressedPoint, height) => {
   //calculates the widht/length in meters caought by the camera.
   const Wr = getRealDimension(SensorWidth, height);
@@ -60,7 +98,6 @@ const droneMovement = (pressedPoint, height) => {
   let moveY = Math.round(((pressedPoint.y * 4) - centerY) * ConL);
 
   // moves = [{ direction: 'some-command', distance: Number (cm) }]
-
   const moves = [];
 
   if (moveX > 0) {
@@ -109,7 +146,7 @@ const droneMovement = (pressedPoint, height) => {
     }
   }
 
-  return moves;
+  return pushDescendAndAscend(moves);
 };
 
 const deg2rad = (deg) => {
@@ -131,6 +168,17 @@ const getDistanceFromLatLonInCm = (curr, dest) => {
   return `forward ${distance}`;
 };
 
+/* for each generated commands bulk add descend and ascend */
+const pushDescendAndAscend = (commands) => {
+    const cm = 200;
+    commands.push({ direction: 'down', distance: cm }); // descend for better view 
+    commands.push({ direction: 'up', distance: cm }); // return to the same height as before
+
+    return commands;
+};
+
 
 exports.droneMovement = droneMovement;
+exports.droneMovementByBearing = droneMovementByBearing;
+exports.pushDescendAndAscend = pushDescendAndAscend;
 exports.getDistanceFromLatLonInCm = getDistanceFromLatLonInCm;
