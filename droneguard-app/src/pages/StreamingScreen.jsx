@@ -30,7 +30,8 @@ const StreamingScreen = () => {
     if (!hasErrors.length) {
       setFormHasError(() => true);
     }
-    console.log(`position`, position);
+    console.log(`Sending pressData ${JSON.stringify({position: {position}, height: droneState.h })}`);
+    socket.emit('pressData',{position: position, height: droneState.h });
   }, [position]);
 
   const droneState = useDroneState([]);
