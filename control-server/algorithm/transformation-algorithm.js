@@ -96,7 +96,7 @@ const droneMovementByBearing = (pressedPoint, height) => {
 
     moves.push({
         direction: 'forward',
-        distance: totalMove < 20 ? 20 : totalMove,
+        distance: totalMove < 20 ? 20 : totalMove
     });
 
     moves.push({ direction: 'ccw', distance: angle });

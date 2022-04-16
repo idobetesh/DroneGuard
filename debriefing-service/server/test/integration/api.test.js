@@ -17,7 +17,7 @@ describe('API DroneGuard Debriefing System 🚁', () => {
         id: process.env.USER_ID,
         name: process.env.USER_NAME,
         email: process.env.USER_EMAIL,
-        userType: 'Admin',
+        userType: 'Admin'
     };
     const testNote = {
         text: `foo bar at ${Date.now()} !@#$%^&*()`
@@ -92,7 +92,7 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .then((res) => {
                     expect(res.body).toEqual(
                         expect.objectContaining({
-                            message: 'Missing bearer token',
+                            message: 'Missing bearer token'
                         }));
                 });
         });

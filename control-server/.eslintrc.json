@@ -16,6 +16,10 @@
             "error",
             "always"
         ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
         "prefer-const": "error"
     },
     "env": {
