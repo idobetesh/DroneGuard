@@ -27,9 +27,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: npm i
-    - run: npm test
-    - run: npm run lint
+    - run: npm install
+    - run: npm run test:unit
+    - run: npm run lint:validate
 
   droneguard-server:
     runs-on: ubuntu-latest
@@ -48,6 +48,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: npm i
-    - run: npm test
-    - run: npm run lint
+    - run: npm install
+    - run: npm run test:unit
+    - run: npm run lint:validate

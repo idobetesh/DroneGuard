@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test:unit": "jest",
     "start": "nodemon app.js --ignore test/",
-    "lint": "eslint . --ext .js --fix --ignore-pattern node_modules/"
+    "lint": "eslint . --ext .js --fix --ignore-pattern node_modules/",
+    "lint:validate": "eslint . --ext .js --ignore-pattern node_modules/ && echo 'Lint is Valid :)'"
   },
   "keywords": [],
   "author": "DroneGuard",
