@@ -42,7 +42,7 @@ const useDroneState = () => {
 const Navigation = ({ coordinate }) => {
   const status = useSocket();
   const droneState = useDroneState([]);
-  const DEFAULT_DISTANCE = 100; //cm
+  const DEFAULT_DISTANCE = 200; //cm
 
   return (
     <>
@@ -81,7 +81,7 @@ const Navigation = ({ coordinate }) => {
             variant='contained'
             color='primary'
             style={{ marginRight: '5px' }}
-            onClick={sendCommand('up 200')}
+            onClick={sendCommand('up 150')}
           >
             <span className='symbol'>👍🏼</span>
           </Button>
