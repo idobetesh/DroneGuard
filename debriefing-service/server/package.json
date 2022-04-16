@@ -6,8 +6,7 @@
   "scripts": {
     "test": "mocha ./test/unit/api --recursive",
     "start": "nodemon app.js --ignore test/",
-    "lint": "eslint . --ext .js --fix --ignore-pattern node_modules/",
-    "prepare": "husky install"
+    "lint": "eslint . --ext .js --fix --ignore-pattern node_modules/"
   },
   "keywords": [],
   "author": "DroneGuard",
