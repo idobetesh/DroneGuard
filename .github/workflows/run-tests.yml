@@ -1,4 +1,4 @@
-# All PRs and pushes trigger an automated process in which our unit tests will run.
+# All PRs and pushes trigger an automated process in which our unit tests and linter will run.
 # If those succeed it's safe to merge the code into the master branch, otherwise, we should FIX the UTs 🍻
 
 name: DroneGuard Workflows

@@ -1,13 +1,4 @@
 {
-    "env": {
-        "commonjs": true,
-        "es2021": true,
-        "node": true,
-        "jest": true
-    },
-    "parserOptions": {
-        "ecmaVersion": "latest"
-    },
     "rules": {
         "indent": [
             "error",
@@ -26,5 +17,15 @@
             "always"
         ],
         "prefer-const": "error"
-    }
+    },
+    "env": {
+        "commonjs": true,
+        "es2021": true,
+        "node": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "extends": "eslint:recommended"
 }
