@@ -12,10 +12,7 @@ const SensorLength = 4.62; // camera
 /* Calculates alpha/beta angle. */
 /* Return value: alpha/beta angle. */
 const calculateAlphaBeta = (sensor) => {
-    const angle = 2 * (Math.atan(sensor / (2 * FocalLength)));
-    const degrees = angle * (180 / PI);
-
-    return angle;
+    return (2 * (Math.atan(sensor / (2 * FocalLength))));
 };
 
 const getRealDimension = (sensorMeasure, height) => {
@@ -36,6 +33,7 @@ const calculateBearing = (a, b) => {
     return angle;
 };
 
+// eslint-disable-next-line
 const getEndPoint = (lat1, lon1, bearing, dist) => {
     const geod = new GeographicLib.Geodesic.Geodesic(6378137, 1 / 298.257223563);
     const direction = geod.Direct(lat1, lon1, bearing, dist);
@@ -47,7 +45,7 @@ const droneMovementByBearing = (pressedPoint, height) => {
     //calculates the widht/length in meters caought by the camera.
     const Wr = getRealDimension(SensorWidth, height);
     const Lr = getRealDimension(SensorLength, height);
-    ;
+    
     // calculates the conversion for pixels per meter.
     const ConW = realSizeScreenSize(Wr, ScreenWidth);
     const ConL = realSizeScreenSize(Lr, ScreenLength);

@@ -49,6 +49,8 @@ describe('API DroneGuard Debriefing System 🚁', () => {
             email: 'email@email.com',
             userType: 'Lifeguard'
         };
+        
+        // eslint-disable-next-line
         let userIdToDelete = null;
 
         it('Should succeed (return a JSON containing the new user details)', async () => {
