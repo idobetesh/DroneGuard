@@ -43,7 +43,7 @@
   },
   "lint-staged": {
     "*/.js": [
-      "npm lint"
+      "npm run lint"
     ]
   },
   "husky": {
