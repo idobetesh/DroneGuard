@@ -244,6 +244,8 @@ const pushDescendAndAscend = (commands) => {
 };
 
 
+
+
 exports.droneMovement = droneMovement;
 exports.droneMovementByBearing = droneMovementByBearing;
 exports.pushDescendAndAscend = pushDescendAndAscend;
