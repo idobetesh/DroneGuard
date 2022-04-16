@@ -1,10 +1,9 @@
 const express = require('express');
-const { StatusCodes: HttpStatus } = require('http-status-codes');
 
-const UserController = require('../controllers/user-controller.js')
-const BeachController = require('../controllers/beach-controller.js')
-const RecordController = require('../controllers/record-controller.js')
-const HealthController = require('../controllers/health-controller.js')
+const UserController = require('../controllers/user-controller.js');
+const BeachController = require('../controllers/beach-controller.js');
+const RecordController = require('../controllers/record-controller.js');
+const HealthController = require('../controllers/health-controller.js');
 
 const { loggerMiddleware } = require('../middlewares/logger-middleware.js');
 const { authMiddleware } = require('../middlewares/auth-middleware.js');

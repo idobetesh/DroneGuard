@@ -12,6 +12,7 @@ High level project tree [depth 3]
 .
 ├── control-server
 │   ├── algorithm
+│   ├── assets
 │   ├── test
 │   └── utils
 ├── debriefing-service
@@ -34,6 +35,7 @@ High level project tree [depth 3]
 ├── hardware
 │   ├── assets
 │   ├── camera
+│   │   ├── pycam
 │   │   └── server
 │   ├── compass
 │   ├── gps

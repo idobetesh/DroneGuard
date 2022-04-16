@@ -37,8 +37,8 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                             name: expect.any(String),
                             email: expect.any(String),
                             token: expect.any(String)
-                        }))
-                })
+                        }));
+                });
         });
     });
 
@@ -64,11 +64,11 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                             name: expect.any(String),
                             userType: expect.any(String),
                             token: expect.any(String)
-                        }))
+                        }));
 
                     /* save for later delete */
                     userIdToDelete = res.body.id;
-                })
+                });
         });
         it('Should fail (user already exists)', async () => {
             return await request(app).post('/api/user/register')
@@ -91,8 +91,8 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                     expect(res.body).toEqual(
                         expect.objectContaining({
                             message: 'Missing bearer token',
-                        }))
-                })
+                        }));
+                });
         });
     });
 
@@ -112,7 +112,7 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .expect('Content-Type', /json/)
                 .expect(HttpStatus.OK)
-                .then((res) => expect(typeof (res.body) === Array))
+                .then((res) => expect(typeof (res.body) === Array));
         });
     });
 
@@ -122,15 +122,16 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .expect('Content-Type', /json/)
                 .expect(HttpStatus.OK)
-                .then((res) => expect(typeof (res.body) === Array))
+                .then((res) => expect(typeof (res.body) === Array));
         });
     });
 
-    describe(`POST /api/record`, () => {
+    describe('POST /api/record', () => {
         const testRecord = {
             url: 'https://foo.bar.com',
             thumbnailUrl: 'https://some-thumbnail.com'
-        }
+        };
+        
         it('Should succeed (create new record)', async () => {
             return await request(app).post('/api/record/')
                 .auth(fakeBearerToken, { type: 'bearer' })
@@ -138,7 +139,7 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .expect(HttpStatus.CREATED)
                 .then((res) => {
                     testRecordId = res.body._id;
-                })
+                });
         });
     });
 
@@ -147,7 +148,7 @@ describe('API DroneGuard Debriefing System 🚁', () => {
             return await request(app).post('/api/record/<some-record-id>/note')
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .send({ testNote })
-                .expect(HttpStatus.BAD_REQUEST)
+                .expect(HttpStatus.BAD_REQUEST);
         });
         it('Should succeed (add note to a specific record)', async () => {
             /* change record id to real one [created with `POST /api/record` test] */
@@ -155,7 +156,7 @@ describe('API DroneGuard Debriefing System 🚁', () => {
                 .auth(fakeBearerToken, { type: 'bearer' })
                 .send({ testNote })
                 .expect(HttpStatus.CREATED)
-                .then((res) => expect(typeof (res.body) === {}))
+                .then((res) => expect(typeof (res.body) === {}));
         });
     });
 
@@ -163,12 +164,12 @@ describe('API DroneGuard Debriefing System 🚁', () => {
         it('Should succeed (delete specific record)', async () => {
             return await request(app).delete(`/api/record/${testRecordId}`)
                 .auth(fakeBearerToken, { type: 'bearer' })
-                .expect(HttpStatus.OK)
+                .expect(HttpStatus.OK);
         });
         it('Should fail (specific record was not found)', async () => {
             return await request(app).delete('/api/record')
                 .auth(fakeBearerToken, { type: 'bearer' })
-                .expect(HttpStatus.NOT_FOUND)
+                .expect(HttpStatus.NOT_FOUND);
         });
     });
 });

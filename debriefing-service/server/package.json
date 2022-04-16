@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/api/unit/ --recursive",
-    "start": "nodemon app.js --ignore test/"
+    "test": "mocha ./test/unit/api --recursive",
+    "start": "nodemon app.js --ignore test/",
+    "lint": "eslint . --ext .js --fix --ignore-pattern node_modules/",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "DroneGuard",
@@ -27,11 +29,26 @@
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "dotenv": "^14.3.2",
+    "eslint": "^8.13.0",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "lint-staged": "^12.3.7",
     "mocha": "^9.2.2",
+    "mrm": "^4.0.0",
+    "mrm-task-lint-staged": "^7.0.0",
     "node-mocks-http": "^1.11.0",
     "nodemon": "^2.0.15",
     "sinon": "^13.0.1",
     "supertest": "^6.2.2"
+  },
+  "lint-staged": {
+    "*/.js": [
+      "npm lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
