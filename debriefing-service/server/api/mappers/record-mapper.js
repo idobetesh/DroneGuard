@@ -63,7 +63,7 @@ const deleteRecord = asyncHandler(async (id) => {
  * @throws Will throw an error on failure
  */
 const addRecordNote = asyncHandler(async (id, note) => {
-    let record = await Record.findById(id);
+    const record = await Record.findById(id);
     record.note = note;
 
     await record.save();

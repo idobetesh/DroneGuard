@@ -1,6 +1,6 @@
 const { StatusCodes: HttpStatus } = require('http-status-codes');
 
-const errorHandlerMiddleware = (err, req, res, next) => {
+const errorHandlerMiddleware = (err, req, res) => {
     const statusCode =  res.statusCode ? res.statusCode : HttpStatus.INTERNAL_SERVER_ERROR;
 
     res.status(statusCode);
@@ -10,5 +10,6 @@ const errorHandlerMiddleware = (err, req, res, next) => {
         stack: err.stack
     });
 };
+
 
 module.exports = { errorHandlerMiddleware };

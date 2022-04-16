@@ -1,4 +1,3 @@
-
 const Sinon = require('sinon');
 const Assert = require('chai').use(require('chai-as-promised')).assert;
 const Uuid = require('uuid').v4;
