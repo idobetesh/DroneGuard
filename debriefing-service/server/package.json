@@ -34,15 +34,13 @@
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "mocha": "^9.2.2",
-    "mrm": "^4.0.0",
-    "mrm-task-lint-staged": "^7.0.0",
     "node-mocks-http": "^1.11.0",
     "nodemon": "^2.0.15",
     "sinon": "^13.0.1",
     "supertest": "^6.2.2"
   },
   "lint-staged": {
-    "*/.js": [
+    "**/*.js": [
       "npm run lint"
     ]
   },

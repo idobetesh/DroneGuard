@@ -6,7 +6,7 @@ const { StatusCodes: HttpStatus } = require('http-status-codes');
 const DroneGuardRoutes = require('./api/routes/droneGuard').router;
 const { errorHandlerMiddleware } = require('./api/middlewares/error-handler-middleware.js');
 const DroneGuardUtils = require('./api/utils/droneguard-utils.js');
-cons Database = require("./api/db/database.js");
+const Database = require('./api/db/database.js');
 
 require('dotenv').config();
 
