@@ -20,7 +20,7 @@ describe('record-mapper 🎥', () => {
     });
 
     const generateMockRecords = (size = 5) => {
-        let results = [];
+        const results = [];
         for (let i = 0; i < size; i++) {
             results.push({
                 url: `https://some-video-${i}.com`,
