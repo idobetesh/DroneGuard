@@ -22,18 +22,13 @@ const StreamingScreen = () => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { records, isLoading, isError, message } = useSelector((state) => state.records);
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
     if (!user) {
       navigate('/login');
     }
 
-  }, [user, navigate, isError, message, dispatch]);
+  }, [user, navigate, dispatch]);
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
