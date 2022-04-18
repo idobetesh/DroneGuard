@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { toast } from 'react-toastify';
 
 import socket from '../utils/socket';
 import Video from '../components/Video';
 import { Navigation } from '../components/Navigation';
-import BeachesModal from '../components/BeachesModal';
+
 const useDroneState = () => {
   const [droneState, updateDroneState] = useState({});
   useEffect(() => {
