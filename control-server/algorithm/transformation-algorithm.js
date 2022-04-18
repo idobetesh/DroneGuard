@@ -94,11 +94,7 @@ const droneMovementByBearing = (pressedPoint, height) => {
         }
     }
 
-    moves.push({
-        direction: 'forward',
-        distance: totalMove < 20 ? 20 : totalMove
-    });
-
+    moves.push({ direction: 'forward', distance: totalMove < 20 ? 20 : totalMove });
     moves.push({ direction: 'ccw', distance: angle });
 
     return pushDescendAndAscend(moves);
@@ -215,6 +211,7 @@ const getDistanceBetweenTwoCoordinates = (curr, dest) => {
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    
     // Pushing rotation to the move commands.
     const rotate = calculateBearingBetweenCoordinates(curr, dest);
     moves.push({ direction: 'cw', distance: rotate });
