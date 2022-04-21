@@ -21,7 +21,7 @@ stop:
 
 # Clear all DroneGuard volumes and images
 clear:
-	docker volume rm $(VOLUMES) && docker rmi -f $(IMAGES)
+	docker volume rm $(VOLUMES); docker rmi -f $(IMAGES)
 
 # Run all `make` commands one by one [use carefully]
 all:
