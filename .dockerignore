@@ -1,5 +1,10 @@
 # folders
 node_modules
+docs
+hardware
+poc
+raspberry-pi-config
+tello-basics
 
 # files
 .dockerignore
