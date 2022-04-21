@@ -5,7 +5,6 @@ import recordReducer from '../features/records/recordSlice';
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
-    records: recordReducer,
+    auth: authReducer
   }
 });

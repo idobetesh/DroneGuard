@@ -30,9 +30,12 @@ Response Example:
 }
 ```
 
-## Tests
-Run backend tests:
-> `$npm test`
+## Tests and Lint
+### Run tests:
+> `$npm run test:unit`
+
+### Validate code style with eslint:
+> `$npm run lint:validate`
 
 # Frontend:
 

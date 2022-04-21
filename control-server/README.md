@@ -54,6 +54,9 @@ In this case, the commands will be sent in bulk in the following format:
 ## Bearing Calculation
 ![drone-rotation-instructions](https://github.com/idobetesh/DroneGuard/blob/master/control-server/assets/drone-rotation-instructions.jpg)
 ---
-## Tests
-Run tests:
-> `$npm test`
+## Tests and Lint
+### Run tests:
+> `$npm run test:unit`
+
+### Validate code style with eslint:
+> `$npm run lint:validate`

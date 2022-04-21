@@ -80,7 +80,7 @@ const Navigation = ({ coordinate }) => {
           <Button
             variant='contained'
             color='primary'
-            style={{ marginRight: '5px' }}
+            style={{ marginRight: '5px', backgroundColor:'#488E7B', border: '#488E7B' }}
             onClick={sendCommand('up 150')}
           >
             <span className='symbol'>👍🏼</span>
@@ -88,7 +88,7 @@ const Navigation = ({ coordinate }) => {
           <Button
             variant='contained'
             color='primary'
-            style={{ marginRight: '5px' }}
+            style={{ marginRight: '5px', backgroundColor:'#488E7B', border: '#488E7B'}}
             onClick={sendCommand(`down ${DEFAULT_DISTANCE}`)}
           >
             <span className='symbol'>👎🏼</span>
@@ -98,6 +98,7 @@ const Navigation = ({ coordinate }) => {
           <Button
             variant='contained'
             color='primary'
+            style={{ backgroundColor:'#488E7B', border: '#488E7B'}}
             onClick={sendPressData({ coordinate, height: droneState.h })}
           >
             <span className='symbol'>Move</span>
@@ -111,13 +112,12 @@ const Navigation = ({ coordinate }) => {
             <span className='symbol'>Emergency!</span>
           </Button>
 
-          {/* TEST calculations on SERVER side*/}
         </div>
         <div className='takeoff-land'>
           <Button
             variant='contained'
             color='primary'
-            style={{ marginRight: '5px' }}
+            style={{ marginRight: '5px', backgroundColor:'#488E7B', border: '#488E7B' }}
             onClick={sendCommand('takeoff')}
           >
             <span className='symbol'>TAKEOFF</span>
@@ -125,7 +125,7 @@ const Navigation = ({ coordinate }) => {
           <Button
             variant='contained'
             color='primary'
-            style={{ marginRight: '5px' }}
+            style={{ marginRight: '5px', backgroundColor:'#488E7B', border: '#488E7B' }}
             onClick={sendCommand('land')}
           >
             <span className='symbol'>LAND</span>
