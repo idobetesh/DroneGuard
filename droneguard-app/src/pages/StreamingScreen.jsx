@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
 import socket from '../utils/socket';
 import Video from '../components/Video';
@@ -15,6 +17,18 @@ const useDroneState = () => {
 };
 
 const StreamingScreen = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+
+  }, [user, navigate, dispatch]);
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
 

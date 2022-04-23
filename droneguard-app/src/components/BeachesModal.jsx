@@ -2,7 +2,6 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 
 import { useState, useEffect } from 'react';
-import { FaSignInAlt } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 

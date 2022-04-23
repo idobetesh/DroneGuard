@@ -125,9 +125,9 @@ h3 {
 
 .btn {
   padding: 10px 20px;
-  border: 1px solid #000;
+  border: 1px solid #488E7B;
   border-radius: 5px;
-  background: #000;
+  background: #488E7B;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -138,10 +138,6 @@ h3 {
   align-items: center;
   justify-content: center;
 }
-
-/* .btn svg {
-  margin-right: 8px;
-} */
 
 .btn-reverse {
   background: #fff;
@@ -248,12 +244,11 @@ img {
   justify-content: space-evenly;
 }
 .forward-btn {
-  height: 30px;
   justify-content: center;
   align-items: center;
   background: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 25px;
   gap: 20px;
 }
 .center-btns {
@@ -269,19 +264,19 @@ img {
 }
 
 .left-btn {
-  font-size: 20px;
+  font-size: 25px;
   background: transparent;
   border: none;
 }
 
 .right-btn {
-  font-size: 20px;
+  font-size: 25px;
   background: transparent;
   border: none;
 }
 
 .back-btn {
-  font-size: 20px;
+  font-size: 25px;
   background: transparent;
   border: none;
 }

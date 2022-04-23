@@ -1,7 +1,7 @@
-# All PRs and pushes trigger an automated process in which our unit tests will run.
+# All PRs and pushes trigger an automated process in which our unit tests and linter will run.
 # If those succeed it's safe to merge the code into the master branch, otherwise, we should FIX the UTs 🍻
 
-name: DroneGuard Workflows
+name: DroneGuard CI Workflows
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 14.x, 16.x]
+        node-version: [12.x, 14.x, 16.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +27,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: npm i && npm test
+    - run: npm install
+    - run: npm run test:unit
+    - run: npm run lint:validate
 
   droneguard-server:
     runs-on: ubuntu-latest
@@ -46,4 +48,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: npm i && npm test
+    - run: npm install
+    - run: npm run test:unit
+    - run: npm run lint:validate

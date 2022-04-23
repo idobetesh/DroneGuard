@@ -11,7 +11,7 @@ const recordSchema = new mongoose.Schema({
         required: true
     },
     beach: {
-        type: String,
+        type: String
         // required: true
     },
     thumbnailUrl: {

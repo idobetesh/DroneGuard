@@ -12,7 +12,7 @@ const createRecord = asyncHandler(async (req, res) => {
         try {
             results = await RecordMapper.createRecord(url, thumbnailUrl, req.user);
             await UserMapper.addBeach(req.user, results.id);
-        } catch {
+        } catch (error) {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR);
             throw error;
         }

@@ -1,4 +1,3 @@
-
 const Sinon = require('sinon');
 const Assert = require('chai').use(require('chai-as-promised')).assert;
 
@@ -18,7 +17,7 @@ describe('beach-mapper 🏖', () => {
     });
 
     describe('getBeaches', () => {
-        it('Should succeed (returns all Beaches)', async () => {
+        it('Should succeed (returns all beaches)', async () => {
             const findStub = sandbox.stub(beach, 'find').returns(Promise.resolve(mockBeaches));
 
             const beaches = await BeachMapper.getBeaches();

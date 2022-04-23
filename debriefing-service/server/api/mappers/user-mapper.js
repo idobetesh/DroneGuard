@@ -54,7 +54,7 @@ const createUser = asyncHandler(async (email, password, name, userType) => {
  */
 const addBeach = asyncHandler(async (user, beach) => {
     const { id } = user;
-    let currentUser = await User.findById(id);
+    const currentUser = await User.findById(id);
     currentUser.beaches.push(beach);
 
     await currentUser.save();

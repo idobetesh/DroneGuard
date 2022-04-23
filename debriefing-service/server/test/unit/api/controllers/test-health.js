@@ -1,4 +1,3 @@
-
 const Sinon = require('sinon');
 const Assert = require('chai').use(require('chai-as-promised')).assert;
 const HttpMocks = require('node-mocks-http');
@@ -27,12 +26,12 @@ describe('health-controller ⛑', () => {
     describe('getHealth', () => {
         it('should succeed (getHealth returns Ok)', async () => {
             const mockResponse = {
-                "service": "DroneGuard",
-                "timestamp": "23/03/2022, 12:41:02",
-                "status": "Ok",
-                "database": {
-                    "name": "DroneGuard-DB",
-                    "status": "Ok"
+                'service': 'DroneGuard',
+                'timestamp': '23/03/2022, 12:41:02',
+                'status': 'Ok',
+                'database': {
+                    'name': 'DroneGuard-DB',
+                    'status': 'Ok'
                 }
             };
 
@@ -48,12 +47,12 @@ describe('health-controller ⛑', () => {
         });
         it('should succeed (getHealth returns bad)', async () => {
             const mockResponse = {
-                "service": "DroneGuard",
-                "timestamp": "23/03/2022, 12:41:02",
-                "status": "Bad",
-                "database": {
-                    "name": "DroneGuard-DB",
-                    "status": "Bad"
+                'service': 'DroneGuard',
+                'timestamp': '23/03/2022, 12:41:02',
+                'status': 'Bad',
+                'database': {
+                    'name': 'DroneGuard-DB',
+                    'status': 'Bad'
                 }
             };
 

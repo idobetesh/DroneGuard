@@ -12,6 +12,7 @@ High level project tree [depth 3]
 .
 ├── control-server
 │   ├── algorithm
+│   ├── assets
 │   ├── test
 │   └── utils
 ├── debriefing-service
@@ -23,7 +24,6 @@ High level project tree [depth 3]
 ├── droneguard-app
 │   ├── public
 │   └── src
-│       ├── algorithm
 │       ├── api
 │       ├── app
 │       ├── components
@@ -34,6 +34,7 @@ High level project tree [depth 3]
 ├── hardware
 │   ├── assets
 │   ├── camera
+│   │   ├── pycam
 │   │   └── server
 │   ├── compass
 │   ├── gps

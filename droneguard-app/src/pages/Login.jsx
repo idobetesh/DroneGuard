@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM  from 'react-dom';
 import { useState, useEffect } from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
@@ -61,7 +60,7 @@ const Login = () => {
             <h1>
                 <FaSignInAlt /> Login
             </h1>
-            <p>Login to the System</p>
+            <p>Login to DroneGuard</p>
         </section>
 
         <section className='form'>
