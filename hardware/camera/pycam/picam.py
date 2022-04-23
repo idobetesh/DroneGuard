@@ -4,6 +4,7 @@ import logging
 import socketserver
 from threading import Condition
 from http import server
+from datetime import datetime
 
 PAGE="""\
 <html>
@@ -81,9 +82,12 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
     #camera.rotation = 180
     camera.start_recording(output, format='mjpeg')
+    dt = datetime.now()
+    camera.start_recording(f"/home/pi/recordings/{dt.microsecond}.h264", splitter_port=2)
     try:
         address = ('', 8002)
         server = StreamingServer(address, StreamingHandler)
         server.serve_forever()
     finally:
         camera.stop_recording()
+        camera.stop_recording(splitter_port=2)
