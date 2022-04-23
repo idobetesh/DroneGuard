@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import socket from '../utils/socket';
 import Video from '../components/Video';
 import { Navigation } from '../components/Navigation';
+import { sleep } from '../utils/utils';
 
 const useDroneState = () => {
   const [droneState, updateDroneState] = useState({});
@@ -31,9 +32,22 @@ const StreamingScreen = () => {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
+  const [cursorStyle, setCursorStyle] = useState({position:'relative',width:'0px', height:'0px'});
 
-  const handleClickEvent = (e) => {
+  const handleClickEvent = async (e) => {
     setPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+    const cursorStyle = {position:'relative', 
+                        left:e.nativeEvent.offsetX, 
+                        top:e.nativeEvent.offsetY, 
+                        backgroundColor: 'Red',
+                        width:'20px', 
+                        height:'20px',
+                        marginTop: '1%',
+                        marginLeft: '1%',
+                        borderRadius: '10px'};
+    setCursorStyle(cursorStyle);
+    await sleep(2000);
+    setCursorStyle({position:'relative',width:'0px', height:'0px'});
     if (FormHasError) return;
   };
 
@@ -59,6 +73,7 @@ const StreamingScreen = () => {
             handleClickEvent(e);
           }}
         >
+        <div className='cursor' style={cursorStyle}></div>
           <div>
             <div className='drone_info'>
               <h3>Battery: {droneState.bat}%</h3>
