@@ -1,0 +1,17 @@
+# folders
+node_modules
+docs
+hardware
+poc
+raspberry-pi-config
+tello-basics
+
+# files
+.dockerignore
+.gitignore
+.eslintrc*
+.env
+docker-compose.yml
+Dockerfile
+package-lock.json
+README.md
