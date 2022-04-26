@@ -13,7 +13,7 @@ echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
 
 if [ $? -eq 0 ]; then
     # Convert .h264 videos to .mp4 using ffmpg
-	if [$CNT_H264 -eq 0] then;
+	if [ $CNT_H264 -eq 0 ]; then
 		echo "Start .h264 => .MP4 conversion..."
 		for FILE in $DIR_NAME*.h264;
 		do
@@ -23,7 +23,7 @@ if [ $? -eq 0 ]; then
 	fi
 
 	# Move mp4 videos to S3 bucket
-	if [$CNT_MP4 -eq 0] then;
+	if [ $CNT_MP4 -eq 0 ]; then
 		echo "Uploading..."
 		for FILE in $DIR_NAME*.mp4;
 		do

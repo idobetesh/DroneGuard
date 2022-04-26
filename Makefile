@@ -36,3 +36,14 @@ all:
 	if [[ $$response == y || $$response == Y ]]; then \
         make stop; make clear; make build; make start; \
 	fi
+
+# === Copy & Upload videos === #
+
+# Copy videos from RP to local machine
+copy:
+	cd ./hardware/scripts && ./scp-videos.sh;
+
+# Convert videos to MP4 and upload to S3 bucket
+upload:
+	cd ./hardware/scripts && ./record-conversion.sh;
+	
