@@ -33,6 +33,6 @@ clear:
 # Run all `make` commands one by one [use carefully]
 all:
 	@read -p "Are you sure? [Y/n] " response; \
-	if [[ $$response == y || $$response == y ]]; then \
+	if [[ $$response == y || $$response == Y ]]; then \
         make stop; make clear; make build; make start; \
 	fi

@@ -12,6 +12,8 @@
 Navigate to the server folder: 
 > `$cd ./server`
 
+Create a local `.env` file [based on `.env.template` file]
+
 Install all dependencies & Run Node.js server:
 > `$npm install && npm start`
 

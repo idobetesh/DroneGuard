@@ -1,4 +1,6 @@
-# DroneGuard 🏖
+<h1 align='center'>DroneGuard 🏖</h1>
+<p align='center'>DroneGuard is a tool for lifeguards that lets them supervise the beaches with a drone intuitively and without pre-knowledge of flying drones, as well as debrief past events easily when needed.</p>
+
 ```
    __  ____                        ____                     _      __ __  
   / / |  _ \ _ __ ___  _ __   ___ / ___|_   _  __ _ _ __ __| |    / / \ \ 
@@ -7,7 +9,8 @@
   \_\ |____/|_|  \___/|_| |_|\___|\____|\__,_|\__,_|_|  \__,_| /_/    /_/ 
 
 ```
-High level project tree [depth 3]
+
+## High Level Project Tree
 ```
 .
 ├── control-server
@@ -55,3 +58,37 @@ High level project tree [depth 3]
     └── tello-sdk-documentation
     
 ```
+# Build and Run
+
+## Prerequisites
+- Node v16.13.2
+- NPM 8.4.0
+- Python 3.8
+- Docker CLI _(optional)_
+## There are two ways to build and run DroneGuard project locally
+### 1. Service by Service
+- Navigate to the DroneGuard directory and run `$make install`.
+- Get all of the required project dependencies installed.</br>
+- See internal README files to run the different services.
+### 2. Using Docker
+- Make sure to have Docker CLI installed on your machine.
+- Navigate to the DroneGuard directory and run `$make build`.
+- Five core DroneGuard services:
+  - DroneGuard Main Server _(`/DroneGuard/debriefing-service/server`)_
+  - DroneGuard DB _[mongoDB]_
+  - DroneGuard Control Server _(`/DroneGuard/control-server`)_
+  - DroneGuard Main App _(`/DroneGuard/droneguard-app`)_
+  - DroneGuard Debriefing App _(`/DroneGuard/debriefing-service/client/droneguard-debriefing`)_
+- Get all of the required project images built [from the internal Docker files].</br>
+- Run `$make start` in order to start the containers and run the project.
+- When finish run `$make stop` to stop the project and remove its containers.
+- If needed, run `$make clear` to remove both volumes and images.
+
+# Test and Lint
+_See compatible internal services_
+### Run tests:
+> `$npm run test:unit`</br>
+> `$npm run test:integration`
+
+### Validate code style with eslint:
+> `$npm run lint:validate`
