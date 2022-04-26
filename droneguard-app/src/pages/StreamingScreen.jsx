@@ -6,6 +6,7 @@ import socket from '../utils/socket';
 import Video from '../components/Video';
 import { Navigation } from '../components/Navigation';
 import { sleep } from '../utils/utils';
+const log = (args) => console.log(args);
 
 const useDroneState = () => {
   const [droneState, updateDroneState] = useState({});
@@ -33,6 +34,7 @@ const StreamingScreen = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
   const [cursorStyle, setCursorStyle] = useState({position:'relative',width:'0px', height:'0px'});
+  const [navigating, setNavigating] = useState(false);
 
   const handleClickEvent = async (e) => {
     setPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
@@ -58,9 +60,23 @@ const StreamingScreen = () => {
     if (!hasErrors.length) {
       setFormHasError(() => true);
     }
-    console.log(`Sending pressData ${JSON.stringify({position: {position}, height: droneState.h })}`);
-    socket.emit('pressData',{position: position, height: droneState.h });
+
+    if ( !navigating ) {
+      console.log(`Sending pressData ${JSON.stringify({position: {position}, height: droneState.h })}`);
+      setNavigating(true);
+      socket.emit('pressData',{position: position, height: droneState.h });
+    }
   }, [position]);
+
+  useEffect(() => {
+    if(navigating){
+      const sleeping = async () => {
+        await sleep(10000);
+        setNavigating(false);
+      };
+      sleeping();
+    }
+  }, [navigating]);
 
   const droneState = useDroneState([]);
   return (
