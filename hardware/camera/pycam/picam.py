@@ -83,8 +83,8 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     #Uncomment the next line to change your Pi's Camera rotation (in degrees)
     #camera.rotation = 180
     camera.start_recording(output, format='mjpeg')
-    dt = datetime.now()
-    camera.start_recording(f"/home/pi/recordings/{dt.microsecond}.h264", splitter_port=2)
+    timestamp = datetime.now().strftime("%d%m%Y%H%M%S")
+    camera.start_recording(f"/home/pi/recordings/{timestamp}.h264", splitter_port=2)
     try:
         address = ('', 8002)
         server = StreamingServer(address, StreamingHandler)
