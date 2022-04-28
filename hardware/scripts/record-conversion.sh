@@ -4,7 +4,7 @@
 # Navigate to /DroneGuard/hardware/scripts/ and run => $./record-conversion.sh <BUCKET_URL> <BEARER_TOKEN>
 
 # args[1] => url to S3 bucket [should ends with `/`]
-# args[2] => bearer token [should not starts with `Bearer`]
+# args[2] => bearer token [should not starts with `Bearer`] !!needs to be fixed!!
 AWS_URL=$1 
 TOKEN=$2
 
@@ -37,6 +37,7 @@ if [ $? -eq 0 ]; then
 
 	### TODO ###
 	# Get user token in order to POST new recordings to DB
+	#
 	# curl --location --request POST 'http://localhost:3001/api/user/login' \
 	# -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGI5ZTJkYWE0N2NiMzhmMDA0MDM1NyIsImlhdCI6MTY1MTE0NzgzMywiZXhwIjoxNjUzNzM5ODMzfQ.vQeAfMMGQFe0ICJLbAIn_MmXaWjgDfLz4XOOK8LqMtU' \
 	# -H 'Content-Type: application/json' \
