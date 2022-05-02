@@ -1,12 +1,16 @@
 #!/bin/bash
 
+# Prerequisites: jq (https://stedolan.github.io/jq/)
+
 # This script converts, uploads videos to S3 Bucket and creates record objects in DG DB
-# Navigate to /DroneGuard/hardware/scripts/ and run => $./record-conversion.sh <BUCKET_URL> <BEARER_TOKEN>
+# Navigate to /DroneGuard/hardware/scripts/ and run => $./record-conversion.sh <BUCKET_URL> <USER_EMAIL> <USER_PASSWORD>
 
 # args[1] => url to S3 bucket [should ends with `/`]
-# args[2] => bearer token [should not starts with `Bearer`] !!needs to be fixed!!
+# args[2] => user email
+# args[2] => user password
 AWS_URL=$1 
-TOKEN=$2
+EMAIL=$2
+PASSWORD=$3
 
 BUCKET_NAME=drone-guard-debriefing
 DIR_NAME=/Users/ido/Desktop/local-videos/recordings/
@@ -35,16 +39,15 @@ if [ $? -eq 0 ]; then
 		fi
 	done
 
-	### TODO ###
 	# Get user token in order to POST new recordings to DB
-	#
-	# curl --location --request POST 'http://localhost:3001/api/user/login' \
-	# -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGI5ZTJkYWE0N2NiMzhmMDA0MDM1NyIsImlhdCI6MTY1MTE0NzgzMywiZXhwIjoxNjUzNzM5ODMzfQ.vQeAfMMGQFe0ICJLbAIn_MmXaWjgDfLz4XOOK8LqMtU' \
-	# -H 'Content-Type: application/json' \
-	# --data-raw '{
-    # 	"email": "admin@gmail.com",
-    # 	"password": "12345"
-	# }'
+	TOKEN=$(curl --location --request POST 'http://localhost:3001/api/user/login' \
+        -H 'Content-Type: application/json' \
+        --data-raw '{
+        "email": "'$EMAIL'",
+        "password": "'$PASSWORD'"
+        }' | jq -r '.token')
+
+	sleep 1
 
 	# POST request to DroneGuard BE to create new record
 	for FILE in $DIR_NAME*;
@@ -55,7 +58,7 @@ if [ $? -eq 0 ]; then
 			TN="$AWS_URL${TMP%.*}.png"
 
 			curl --location --request POST 'http://localhost:3001/api/record' \
-			-H 'Authorization: Bearer "'$TOKEN'"' \
+			-H 'Authorization: Bearer '$TOKEN'' \
 			-H 'Content-Type: application/json' \
 			-d '{"url": "'$VIDEO'", "thumbnailUrl": "'$TN'"}'
 

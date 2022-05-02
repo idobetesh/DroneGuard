@@ -1,5 +1,5 @@
 <h1 align='center'>DroneGuard 🏖</h1>
-<p align='center'>DroneGuard is a tool that lets lifeguards supervise the beaches with a drone in an intuitive way and without any prior knowledge of flying drones. The tool also records emergency sequences thereby enabling a review and analysis of such events.</p>
+<p align='center'>DroneGuard is a tool that lets lifeguards supervise the beaches with a drone in an intuitive way and without any prior knowledge of flying drones. The tool also records usage sequences thereby enabling a review and analysis of emergency events.</p>
 
 ```
    __  ____                        ____                     _      __ __  
