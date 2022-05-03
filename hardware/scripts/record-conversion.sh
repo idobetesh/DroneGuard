@@ -13,7 +13,7 @@ AWS_URL=$1
 EMAIL=$2
 PASSWORD=$3
 
-BUCKET_NAME=drone-guard-debriefing
+BUCKET_NAME=mid-debriefing-bucket
 DIR_NAME=/Users/ido/Desktop/local-videos/recordings/
 
 if [ $# -lt 3 ]; then
