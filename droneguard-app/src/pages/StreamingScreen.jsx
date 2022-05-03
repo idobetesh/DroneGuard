@@ -33,23 +33,22 @@ const StreamingScreen = () => {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
-  const [cursorStyle, setCursorStyle] = useState({position:'relative',width:'0px', height:'0px'});
+  const [cursorStyle, setCursorStyle] = useState({position:'absolute',width:'0px', height:'0px'});
   const [navigating, setNavigating] = useState(false);
 
   const handleClickEvent = async (e) => {
     setPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
-    const cursorStyle = {position:'relative', 
-                        left:e.nativeEvent.offsetX, 
-                        top:e.nativeEvent.offsetY, 
+    const cursorStyle = {position:'absolute', 
+                        left:(e.nativeEvent.offsetX - 10), 
+                        top:(e.nativeEvent.offsetY - 10), 
                         backgroundColor: 'Red',
                         width:'20px', 
                         height:'20px',
-                        marginTop: '1%',
-                        marginLeft: '1%',
-                        borderRadius: '10px'};
+                        borderRadius: '10px',
+                        opacity: '60%'};
     setCursorStyle(cursorStyle);
-    await sleep(2000);
-    setCursorStyle({position:'relative',width:'0px', height:'0px'});
+    await sleep(1000);
+    setCursorStyle({position:'absolute',width:'0px', height:'0px'});
     if (FormHasError) return;
   };
 
@@ -89,9 +88,9 @@ const StreamingScreen = () => {
             handleClickEvent(e);
           }}
         >
-        <div className='cursor' style={cursorStyle}></div>
           <div>
             <div className='drone_info'>
+            <div className='cursor' style={cursorStyle}></div>
               <h3>Battery: {droneState.bat}%</h3>
               <h3>YAW: {droneState.yaw}</h3>
               <h3>height: {droneState.h} cm</h3>
