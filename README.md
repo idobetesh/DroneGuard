@@ -13,11 +13,7 @@
 ## High Level Project Tree
 ```
 .
-├── control-server
-│   ├── algorithm
-│   ├── assets
-│   ├── test
-│   └── utils
+├── assets
 ├── debriefing-service
 │   ├── client
 │   │   └── droneguard-debriefing
@@ -36,7 +32,6 @@
 │       ├── pages
 │       └── utils
 ├── hardware
-│   ├── assets
 │   ├── camera
 │   │   ├── pycam
 │   │   └── server
@@ -44,7 +39,6 @@
 │   ├── gps
 │   └── scripts
 ├── poc
-│   ├── assets
 │   ├── transformations
 │   │   ├── node-version
 │   │   └── python-version
@@ -57,7 +51,7 @@
     ├── basics-python
     │   └── tello-captures
     └── tello-sdk-documentation
-    
+
 ```
 # Build and Run
 
