@@ -99,7 +99,13 @@ const StreamingScreen = () => {
           <Video />
         </div>
       </div>
-      <Navigation coordinate={position} />
+      {navigating ? (
+        <div style={{opacity: '10%'}} >
+          <Navigation coordinate={position} pressed={navigating}/>
+        </div>
+      ) : (
+        <Navigation coordinate={position} />
+      )}
     </>
   );
 };
