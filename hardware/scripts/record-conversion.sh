@@ -31,7 +31,7 @@ if [ $? -eq 0 ]; then
 	do
 		if [[ "$FILE" == *.h264 ]]; then
 			ffmpeg -framerate 24 -i "$FILE" -c copy "${FILE%.*}.mp4"
-			ffmpeg -i "$FILE" -ss 00:00:01.000 -vframes 1 "${FILE%.*}.png"
+			ffmpeg -i "$FILE" -ss 00:00:10.000 -vframes 1 "${FILE%.*}.png"
 		fi
 	done
 	echo "Done conversion"

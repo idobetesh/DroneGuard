@@ -7,7 +7,7 @@
   \_\ |____/|_|  \___/|_| |_|\___|\____|\__,_|\__,_|_|  \__,_| /_/    /_/ 
 
 ```
-# Backend:
+# Backend
 
 Navigate to the server folder: 
 > `$cd ./server`
@@ -39,7 +39,7 @@ Response Example:
 ### Validate code style with eslint:
 > `$npm run lint:validate`
 
-# Frontend:
+# Frontend
 
 Navigate to the client folder:
 > `$cd ../client/droneguard-debriefing`

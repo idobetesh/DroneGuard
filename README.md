@@ -21,6 +21,7 @@
 ├── debriefing-service
 │   ├── client
 │   │   └── droneguard-debriefing
+│   ├── lambdas
 │   └── server
 │       ├── api
 │       └── test
