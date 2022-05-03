@@ -52,7 +52,7 @@ In this case, the commands will be sent in bulk in the following format:
 ]
 ```
 ## Bearing Calculation
-![drone-rotation-instructions](https://github.com/idobetesh/DroneGuard/blob/master/control-server/assets/drone-rotation-instructions.jpg)
+![drone-rotation-instructions](https://github.com/idobetesh/DroneGuard/blob/master/assets/drone-rotation-instructions.jpg)
 ---
 ## Tests and Lint
 ### Run tests:
