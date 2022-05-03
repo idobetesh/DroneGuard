@@ -7,13 +7,19 @@
 
 # args[1] => url to S3 bucket [should ends with `/`]
 # args[2] => user email
-# args[2] => user password
+# args[3] => user password
 AWS_URL=$1 
 EMAIL=$2
 PASSWORD=$3
 
 BUCKET_NAME=drone-guard-debriefing
 DIR_NAME=/Users/ido/Desktop/local-videos/recordings/
+
+if [ $# -lt 3 ]; then
+  echo 1>&2 "$0: One or more arguments are missing"
+  echo '[$./record-conversion.sh <BUCKET_URL> <USER_EMAIL> <USER_PASSWORD>]'
+  exit 0
+fi
 
 # Make sure to have wifi connection
 echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
