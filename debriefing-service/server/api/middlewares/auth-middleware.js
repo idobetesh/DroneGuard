@@ -6,7 +6,7 @@ const UserMapper = require('../mappers/user-mapper.js');
 
 const authMiddleware = asyncHandler(async (req, res, next) => {
     let token = null;
-    console.log('==> ', req.headers.authorization);
+
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             /* note - req.headers.authorization => `Bearer <some token>` */
