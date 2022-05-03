@@ -6,18 +6,17 @@ print('Loading function')
 s3 = boto3.resource('s3')
 
 
-
 def lambda_handler(event, context):
     
     # Get the object from the event and show its content type
     src_bucket = event['Records'][0]['s3']['bucket']['name']
     key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'], encoding='utf-8')
-    parsed_key = key.split(".")
-    second_key = ""
+    parsed_key = key.split('.')
+    second_key = ''
     
-    if parsed_key[1] == "mp4":
+    if parsed_key[1] == 'mp4':
         second_key = parsed_key[0] + '.png'
-    elif parsed_key[1] == "png":
+    elif parsed_key[1] == 'png':
         second_key = parsed_key[0] + '.mp4'
     
     copy_item1 = {
