@@ -1,4 +1,5 @@
 #!/bin/bash
+# NOTE - LOCAL USE ONLY!
 
 # Prerequisites: jq (https://stedolan.github.io/jq/)
 
