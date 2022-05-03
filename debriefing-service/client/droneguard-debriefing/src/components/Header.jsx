@@ -19,7 +19,7 @@ const Header = () => {
     return (
         <header className='header'>
             <div className='logo'>
-                <Link to='/'>DroneGuard 🚁</Link>
+                <Link to='/recordings'>DroneGuard 🚁</Link>
             </div>
             <ul>
                 {user ? (
