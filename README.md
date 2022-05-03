@@ -13,9 +13,9 @@
 ## High Level Project Tree
 ```
 .
+├── assets
 ├── control-server
 │   ├── algorithm
-│   ├── assets
 │   ├── test
 │   └── utils
 ├── debriefing-service
@@ -36,7 +36,6 @@
 │       ├── pages
 │       └── utils
 ├── hardware
-│   ├── assets
 │   ├── camera
 │   │   ├── pycam
 │   │   └── server
@@ -44,7 +43,6 @@
 │   ├── gps
 │   └── scripts
 ├── poc
-│   ├── assets
 │   ├── transformations
 │   │   ├── node-version
 │   │   └── python-version
