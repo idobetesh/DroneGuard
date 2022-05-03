@@ -5,7 +5,6 @@ print('Loading function')
 
 s3 = boto3.resource('s3')
 
-
 def lambda_handler(event, context):
     
     # Get the object from the event and show its content type
