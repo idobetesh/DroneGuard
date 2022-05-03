@@ -1,4 +1,4 @@
-# DroneGuard Lambda Funcrions
+# DroneGuard Lambda Functions
 ```
    __  ____                        ____                     _      __ __  
   / / |  _ \ _ __ ___  _ __   ___ / ___|_   _  __ _ _ __ __| |    / / \ \ 
