@@ -9,12 +9,20 @@ def lambda_handler():
     
     try:
         if password and email:
-            response = requests.post(f'{base_url}user/login/', data={'email': email, 'password': password})
+            data = {
+                'email': email,
+                'password': password
+            }
+
+            response = requests.post(f'{base_url}user/login/', data=data)
             token = response.json()['token']
 
         if token:
             heds = {'Authorization': f"Bearer {token}"}
-            data = {'url': 'get-it-from-bucket-(mp4)', 'thumbnailUrl': 'get-it-from-bucket-(png)'},
+            data = {
+                'url': 'get-it-from-bucket-(mp4)',
+                'thumbnailUrl': 'get-it-from-bucket-(png)'
+            }
 
             response = requests.post(f'{base_url}record/', data=data, headers=heds)
     except:
