@@ -62,7 +62,7 @@ describe('record-mapper 🎥', () => {
         it('Should succeed (delete a record)', async () => {
             const currentRecordsNumber = 3;
             const mockResults = generateMockRecords(currentRecordsNumber);
-            const deleteStub = sandbox.stub(record, 'findOneAndDelete').returns(Promise.resolve(mockResults));
+            const deleteStub = sandbox.stub(record, 'findByIdAndDelete').returns(Promise.resolve(mockResults));
 
             const recordIdToDelete = mockResults[0].id;
             const records = await RecordMapper.deleteRecord(recordIdToDelete);
@@ -73,12 +73,12 @@ describe('record-mapper 🎥', () => {
             Assert.equal(records.length, currentRecordsNumber - 1);
         });
         it('Should fail (no record id)', async () => {
-            sandbox.stub(record, 'findOneAndDelete').returns(Promise.reject());
+            sandbox.stub(record, 'findByIdAndDelete').returns(Promise.reject());
 
             await Assert.isRejected(RecordMapper.deleteRecord());
         });
         it('Should fail (DB error)', async () => {
-            sandbox.stub(record, 'findOneAndDelete').throws(new Error('DB error'));
+            sandbox.stub(record, 'findByIdAndDelete').throws(new Error('DB error'));
             await Assert.isRejected(RecordMapper.deleteRecord(mockUser), /DB error/);
         });
     });
