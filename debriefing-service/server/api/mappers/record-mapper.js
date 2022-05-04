@@ -50,7 +50,7 @@ const getRecords = asyncHandler(async (user) => {
  * @throws Will throw an error on failure
  */
 const deleteRecord = asyncHandler(async (id) => {
-    const deleted = await Record.findByIdAndRemove(id);
+    const deleted = await Record.findByIdAndDelete(id);
 
     return deleted;
 });
