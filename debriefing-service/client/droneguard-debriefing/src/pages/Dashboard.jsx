@@ -37,7 +37,7 @@ const Dashboard = () => {
   return <>
     <section className='heading'>
       <h1>Welcome {user && user.name}</h1>
-      <p>Here are your records</p>
+      <p>Here are your recordings</p>
     </section>
     <section className='content'>
       {records.length > 0 ? (
@@ -46,7 +46,7 @@ const Dashboard = () => {
               <RecordItem key={record._id} record={record} />
           ))}
         </div>
-      ) : (<h3>No records for {user && user.name}</h3>)}
+      ) : (<h3>No recordings for {user && user.name}</h3>)}
     </section>
   </>
 };
