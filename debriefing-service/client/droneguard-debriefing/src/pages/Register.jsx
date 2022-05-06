@@ -28,7 +28,7 @@ const Register = () => {
             toast.error(message);
         }
         if (isSuccess || user) {
-            navigate('/recordings');
+            navigate('/');
         }
 
         dispatch(reset())
