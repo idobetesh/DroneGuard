@@ -26,7 +26,7 @@ const Login = () => {
         }
 
         if (isSuccess || user) {
-            navigate('/recordings');
+            navigate('/');
         }
 
         dispatch(reset());
