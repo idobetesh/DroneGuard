@@ -61,9 +61,10 @@ const StreamingScreen = () => {
     }
 
     if ( !navigating ) {
-      console.log(`Sending pressData ${JSON.stringify({position: {position}, height: droneState.h })}`);
-      setNavigating(true);
-      socket.emit('pressData',{position: position, height: droneState.h });
+      const pressedData = {coordinate: position, height: droneState.h };
+      console.log(`Sending pressData ${JSON.stringify(pressedData)}`);
+      setNavigating(false);
+      socket.emit("pressData",pressedData);
     }
   }, [position]);
 
@@ -101,7 +102,7 @@ const StreamingScreen = () => {
       </div>
       {navigating ? (
         <div style={{opacity: '10%'}} >
-          <Navigation coordinate={position} pressed={navigating}/>
+          <Navigation coordinate={position} pressed={false}/>
         </div>
       ) : (
         <Navigation coordinate={position} />
