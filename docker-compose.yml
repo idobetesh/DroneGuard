@@ -25,7 +25,7 @@ services:
       - droneguard:/data/db
 
   debriefing_app:
-    build: ./debriefing-service/client/droneguard-debriefing
+    build: ./debriefing-service/client
     ports:
       - 3000:3000
     depends_on:
