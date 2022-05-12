@@ -9,8 +9,8 @@ VOLUMES=$(shell docker volume ls -q)
 .SILENT install:
 	cd ./control-server && npm install; \
 	cd ../debriefing-service/server && npm install; \
-	cd ../../debriefing-service/client/droneguard-debriefing && npm install; \
-	cd ../../../droneguard-app && npm install --force;
+	cd ../../debriefing-service/client && npm install; \
+	cd ../../droneguard-app && npm install --force;
 
 # Build DroneGuard project images from internal docker files
 build:
