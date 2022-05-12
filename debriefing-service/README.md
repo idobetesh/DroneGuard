@@ -42,7 +42,7 @@ Response Example:
 # Frontend
 
 Navigate to the client folder:
-> `$cd ../client/droneguard-debriefing`
+> `$cd ../client`
 
 Install all dependencies & Run the app in development mode:
 > `$npm install && npm start`
