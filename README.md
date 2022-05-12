@@ -20,7 +20,8 @@
 │   └── utils
 ├── debriefing-service
 │   ├── client
-│   │   └── droneguard-debriefing
+│   │   ├── public
+│   │   └── src
 │   ├── lambdas
 │   └── server
 │       ├── api
