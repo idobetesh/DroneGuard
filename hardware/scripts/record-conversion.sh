@@ -1,25 +1,17 @@
 #!/bin/bash
 
-# NOTE - LOCAL USE ONLY!
-
-# Prerequisites: jq (https://stedolan.github.io/jq/)
-
 # This script converts, uploads videos to S3 Bucket and creates record objects in DG DB
-# Navigate to /DroneGuard/hardware/scripts/ and run => $./record-conversion.sh <BUCKET_URL> <USER_EMAIL> <USER_PASSWORD>
+# Navigate to /DroneGuard/hardware/scripts/ and run => $./record-conversion.sh <BUCKET_URL>
 
 # args[1] => url to S3 bucket [should ends with `/`]
-# args[2] => user email
-# args[3] => user password
 AWS_URL=$1 
-EMAIL=$2
-PASSWORD=$3
 
 BUCKET_NAME=mid-debriefing-bucket
 DIR_NAME=/Users/ido/Desktop/local-videos/recordings/
 
-if [ $# -lt 3 ]; then
-  echo 1>&2 "$0: One or more arguments are missing"
-  echo '[$./record-conversion.sh <BUCKET_URL> <USER_EMAIL> <USER_PASSWORD>]'
+if [ $# -lt 1 ]; then
+  echo 1>&2 "$0: Bucket URL is missing"
+  echo '[$./record-conversion.sh <BUCKET_URL>]'
   exit 0
 fi
 
@@ -44,33 +36,6 @@ if [ $? -eq 0 ]; then
 	do
 		if [[ "$FILE" == *.mp4 || "$FILE" == *.png ]]; then
 			aws s3 mv $FILE s3://$BUCKET_NAME
-		fi
-	done
-
-	# Get user token in order to POST new recordings to DB
-	TOKEN=$(curl --location --request POST 'http://localhost:3001/api/user/login' \
-        -H 'Content-Type: application/json' \
-        --data-raw '{
-        "email": "'$EMAIL'",
-        "password": "'$PASSWORD'"
-        }' | jq -r '.token')
-
-	sleep 1
-
-	# POST request to DroneGuard BE to create new record
-	for FILE in $DIR_NAME*;
-	do
-		if [[ "$FILE" == *.h264 ]]; then
-			TMP="${FILE##*/}"
-			VIDEO="$AWS_URL${TMP%.*}.mp4"
-			TN="$AWS_URL${TMP%.*}.png"
-
-			curl --location --request POST 'http://localhost:3001/api/record' \
-			-H 'Authorization: Bearer '$TOKEN'' \
-			-H 'Content-Type: application/json' \
-			-d '{"url": "'$VIDEO'", "thumbnailUrl": "'$TN'"}'
-
-			sleep 2
 		fi
 	done
 
