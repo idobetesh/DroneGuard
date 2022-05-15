@@ -1,4 +1,8 @@
 <h1 align='center'>DroneGuard 🏖</h1>
+[![Tests Status](https://github.com/idobetesh/DroneGuard/actions/workflows/run-tests.yml/badge.svg?event=push)](https://github.com/idobetesh/DroneGuard/actions/)
+
+---
+
 <p align='center'>DroneGuard is a tool that lets lifeguards supervise the beaches with a drone in an intuitive way and without any prior knowledge of flying drones. The tool also records usage sequences thereby enabling a review and analysis of emergency events.</p>
 
 ```
