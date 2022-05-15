@@ -1,5 +1,5 @@
 <h1 align='center'>DroneGuard 🏖</h1>
-[![Tests Status](https://github.com/idobetesh/DroneGuard/actions/workflows/run-tests.yml/badge.svg?event=push)](https://github.com/idobetesh/DroneGuard/actions/)
+[![Tests Status](https://github.com/idobetesh/DroneGuard/actions/workflows/run-tests.yml/badge.svg?event=push)](https://github.com/idobetesh/DroneGuard/actions)
 
 ---
 
