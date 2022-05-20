@@ -45,5 +45,5 @@ copy:
 
 # Convert videos to MP4 and upload to S3 bucket
 upload:
-	cd ./hardware/scripts && ./record-conversion.sh;
+	cd ./hardware/scripts && ./record-conversion.sh '<ENTER-BUCKET-URL>';
 	

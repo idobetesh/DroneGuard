@@ -81,7 +81,7 @@
   - DroneGuard DB _[mongoDB]_
   - DroneGuard Control Server _(`/DroneGuard/control-server`)_
   - DroneGuard Main App _(`/DroneGuard/droneguard-app`)_
-  - DroneGuard Debriefing App _(`/DroneGuard/debriefing-service/client/droneguard-debriefing`)_
+  - DroneGuard Debriefing App _(`/DroneGuard/debriefing-service/client`)_
 - Get all of the required project images built [from the internal Docker files].</br>
 - Run `$make start` in order to start the containers and run the project.
 - When finish run `$make stop` to stop the project and remove its containers.

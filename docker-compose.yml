@@ -3,7 +3,7 @@
 # - DroneGuard DB [mongoDB]
 # - DroneGuard Control Server (/DroneGuard/control-server)
 # - DroneGuard Main App (/DroneGuard/droneguard-app)
-# - DroneGuard Debriefing App (/DroneGuard/debriefing-service/client/droneguard-debriefing)
+# - DroneGuard Debriefing App (/DroneGuard/debriefing-service/client)
 
 version: '3.8'
 
