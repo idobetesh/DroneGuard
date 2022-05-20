@@ -17,7 +17,7 @@
 
 ## Set up new RP
 ### 1. Use Etcher to flash the [OS](https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy)) image.
-### 2. Create ssh file <br/>
+### 2. Create ssh file
 > `$touch ssh`
 ### 3. Create / edit wpa_supplicant.conf file
 > `$vim wpa_supplicant.conf`
