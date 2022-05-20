@@ -43,7 +43,8 @@ all:
 copy:
 	cd ./hardware/scripts && ./scp-videos.sh;
 
-# Convert videos to MP4 and upload to S3 bucket
+# Convert videos to MP4 and upload to S3 bucket, 
+# add bucket URL before running the command
 upload:
 	cd ./hardware/scripts && ./record-conversion.sh '<ENTER-BUCKET-URL>';
 	
