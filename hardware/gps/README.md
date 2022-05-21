@@ -9,5 +9,5 @@
 
 ```
 
-<a href="https://www.youtube.com/watch?v=ijfBeMTuWhU" target="_blank">Working with GPS data using a Raspberry Pi & Node.js</a>
+[Working with GPS data using a Raspberry Pi & Node.js](https://www.youtube.com/watch?v=ijfBeMTuWhU)
 
