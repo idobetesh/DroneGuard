@@ -16,7 +16,7 @@
 - <a href="https://youtu.be/yn59qX-Td3E" target="_blank">Setup Raspberry Pi Zero (2022 version)</a>
 
 ## Set up new RP
-### 1. Use Etcher to flash the [OS](https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy)) image.
+### 1. Use Etcher to flash the [OS](https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy)) image to the SD card
 ### 2. Create ssh file
 > `$touch ssh`
 ### 3. Create / edit wpa_supplicant.conf file
@@ -32,3 +32,5 @@ network={
 	key_mgmt=WPA-PSK
 }
 ```
+### 4. Run `setup-new-rp.sh` to install relevant apps
+> `$chmod +x ./setup-new-rp.sh && ./setup-new-rp.sh`
