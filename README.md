@@ -28,6 +28,7 @@
 │   ├── lambdas
 │   └── server
 │       ├── api
+│       ├── postman
 │       └── test
 ├── droneguard-app
 │   ├── public
@@ -67,7 +68,7 @@
 - Node v16.13.2
 - NPM 8.4.0
 - Python 3.8
-- Docker CLI _(optional)_
+- Docker CLI *(optional)*
 ## There are two ways to build and run DroneGuard project locally
 ### 1. Service by Service
 - Navigate to the DroneGuard directory and run `$make install`.
@@ -77,20 +78,21 @@
 - Make sure to have Docker CLI installed on your machine.
 - Navigate to the DroneGuard directory and run `$make build`.
 - Five core DroneGuard services:
-  - DroneGuard Main Server _(`/DroneGuard/debriefing-service/server`)_
-  - DroneGuard DB _[mongoDB]_
-  - DroneGuard Control Server _(`/DroneGuard/control-server`)_
-  - DroneGuard Main App _(`/DroneGuard/droneguard-app`)_
-  - DroneGuard Debriefing App _(`/DroneGuard/debriefing-service/client/droneguard-debriefing`)_
+  - **DroneGuard Main Server** ([*`./debriefing-service/server`*](https://github.com/idobetesh/DroneGuard/tree/master/debriefing-service/server))
+  - **DroneGuard DB** [[*mongoDB*](https://hub.docker.com/layers/mongo/library/mongo/4.0.16-xenial/images/sha256-1405a8f6e31677ff4b3294194dcd06e146dc0bad2a630eb284788e94231127a5?context=explore)]
+  - **DroneGuard Control Server** ([*`./control-server`*](https://github.com/idobetesh/DroneGuard/tree/master/control-server))
+  - **DroneGuard Main App** ([*`./droneguard-app`*](https://github.com/idobetesh/DroneGuard/tree/master/droneguard-app))
+  - **DroneGuard Debriefing App** ([*`./debriefing-service/client`*](https://github.com/idobetesh/DroneGuard/tree/master/debriefing-service/client))
 - Get all of the required project images built [from the internal Docker files].</br>
 - Run `$make start` in order to start the containers and run the project.
 - When finish run `$make stop` to stop the project and remove its containers.
 - If needed, run `$make clear` to remove both volumes and images.
 
 # Test and Lint
-_See compatible internal services_
+*See compatible internal services*
 ### Run tests:
-> `$npm run test:unit`</br>
+> `$npm run test:unit`
+
 > `$npm run test:integration`
 
 ### Validate code style with eslint:
