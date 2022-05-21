@@ -78,11 +78,11 @@
 - Make sure to have Docker CLI installed on your machine.
 - Navigate to the DroneGuard directory and run `$make build`.
 - Five core DroneGuard services:
-  - **DroneGuard Main Server** ([*`/DroneGuard/debriefing-service/server`*](https://github.com/idobetesh/DroneGuard/tree/master/debriefing-service/server))
+  - **DroneGuard Main Server** ([*`./debriefing-service/server`*](https://github.com/idobetesh/DroneGuard/tree/master/debriefing-service/server))
   - **DroneGuard DB** [[*mongoDB*](https://hub.docker.com/layers/mongo/library/mongo/4.0.16-xenial/images/sha256-1405a8f6e31677ff4b3294194dcd06e146dc0bad2a630eb284788e94231127a5?context=explore)]
-  - **DroneGuard Control Server** ([*`/DroneGuard/control-server`*](https://github.com/idobetesh/DroneGuard/tree/master/control-server))
-  - **DroneGuard Main App** ([*`/DroneGuard/droneguard-app`*](https://github.com/idobetesh/DroneGuard/tree/master/droneguard-app))
-  - **DroneGuard Debriefing App** ([*`/DroneGuard/debriefing-service/client`*](https://github.com/idobetesh/DroneGuard/tree/master/debriefing-service/client))
+  - **DroneGuard Control Server** ([*`./control-server`*](https://github.com/idobetesh/DroneGuard/tree/master/control-server))
+  - **DroneGuard Main App** ([*`./droneguard-app`*](https://github.com/idobetesh/DroneGuard/tree/master/droneguard-app))
+  - **DroneGuard Debriefing App** ([*`./debriefing-service/client`*](https://github.com/idobetesh/DroneGuard/tree/master/debriefing-service/client))
 - Get all of the required project images built [from the internal Docker files].</br>
 - Run `$make start` in order to start the containers and run the project.
 - When finish run `$make stop` to stop the project and remove its containers.
