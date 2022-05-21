@@ -194,18 +194,17 @@ img {
   font-size: 10px;
   border-radius: 1px solid black;
   position: absolute;
-  margin-top: 1%;
-  margin-left: 1%;
   text-align: left;
-  height: 460px;
-  width: 680px;
+  height: 486px;
+  width: 648px;
   padding-left: 0.5vh;
+  border-style: ridge;
 }
 
-.containerr {
-  position: relative;
-  margin: 30px;
+.drone_info h3 {
+  max-width: 100px;
 }
+
 .box {
   width: 30%;
   height: 25%;

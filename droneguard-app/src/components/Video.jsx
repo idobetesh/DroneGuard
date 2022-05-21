@@ -28,7 +28,6 @@ const Video = () => {
       height={486}
       width={648}
       frameBorder={'none'}
-      scrolling={false}
       >
     </iframe>
   );

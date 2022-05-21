@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import socket from '../utils/socket';
 import Video from '../components/Video';
 import { Navigation } from '../components/Navigation';
+import { sleep } from '../utils/utils';
+const log = (args) => console.log(args);
 
 const useDroneState = () => {
   const [droneState, updateDroneState] = useState({});
@@ -31,9 +33,22 @@ const StreamingScreen = () => {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
+  const [cursorStyle, setCursorStyle] = useState({position:'absolute',width:'0px', height:'0px'});
+  const [navigating, setNavigating] = useState(false);
 
-  const handleClickEvent = (e) => {
+  const handleClickEvent = async (e) => {
     setPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+    const cursorStyle = {position:'absolute', 
+                        left:(e.nativeEvent.offsetX - 10), 
+                        top:(e.nativeEvent.offsetY - 10), 
+                        backgroundColor: 'Red',
+                        width:'20px', 
+                        height:'20px',
+                        borderRadius: '10px',
+                        opacity: '60%'};
+    setCursorStyle(cursorStyle);
+    await sleep(1000);
+    setCursorStyle({position:'absolute',width:'0px', height:'0px'});
     if (FormHasError) return;
   };
 
@@ -44,8 +59,24 @@ const StreamingScreen = () => {
     if (!hasErrors.length) {
       setFormHasError(() => true);
     }
-    console.log(`position`, position);
+
+    if ( !navigating ) {
+      const pressedData = {coordinate: position, height: droneState.h };
+      console.log(`Sending pressData ${JSON.stringify(pressedData)}`);
+      setNavigating(false);
+      socket.emit("pressData",pressedData);
+    }
   }, [position]);
+
+  useEffect(() => {
+    if(navigating){
+      const sleeping = async () => {
+        await sleep(10000);
+        setNavigating(false);
+      };
+      sleeping();
+    }
+  }, [navigating]);
 
   const droneState = useDroneState([]);
   return (
@@ -60,6 +91,7 @@ const StreamingScreen = () => {
         >
           <div>
             <div className='drone_info'>
+            <div className='cursor' style={cursorStyle}></div>
               <h3>Battery: {droneState.bat}%</h3>
               <h3>YAW: {droneState.yaw}</h3>
               <h3>height: {droneState.h} cm</h3>
@@ -68,7 +100,13 @@ const StreamingScreen = () => {
           <Video />
         </div>
       </div>
-      <Navigation coordinate={position} />
+      {navigating ? (
+        <div style={{opacity: '10%'}} >
+          <Navigation coordinate={position} pressed={false}/>
+        </div>
+      ) : (
+        <Navigation coordinate={position} />
+      )}
     </>
   );
 };
