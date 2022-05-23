@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { sleep } from '../utils/utils';
 
-import socket from '../utils/socket';
-import Video from '../components/Video';
-import { Navigation } from '../components/Navigation';
+import socket from "../utils/socket";
+import Video from "../components/Video";
+import { Navigation } from "../components/Navigation";
+import { colors } from "@material-ui/core";
+import SelectInput from "@material-ui/core/Select/SelectInput";
+
+
+
 
 const useDroneState = () => {
   const [droneState, updateDroneState] = useState({});
   useEffect(() => {
-    socket.on('dronestate', updateDroneState);
-    return () => socket.removeListener('dronestate');
+    socket.on("dronestate", updateDroneState);
+    return () => socket.removeListener("dronestate");
   }, []);
 
   return droneState;
 };
+
 
 const StreamingScreen = () => {
   const navigate = useNavigate();
@@ -24,16 +31,28 @@ const StreamingScreen = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      navigate("/login");
     }
-
   }, [user, navigate, dispatch]);
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [FormHasError, setFormHasError] = useState(false);
+  const [cursorStyle, setCursorStyle] = useState({position:'absolute',width:'0px', height:'0px'});
 
-  const handleClickEvent = (e) => {
+  const handleClickEvent = async (e) => {
     setPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+    const cursorStyle = {position:'absolute', 
+                        left:(e.nativeEvent.offsetX - 10), 
+                        top:(e.nativeEvent.offsetY - 10), 
+                        backgroundColor: 'Red',
+                        width:'20px', 
+                        height:'20px',
+                        borderRadius: '10px',
+                        opacity: '60%'};
+    setCursorStyle(cursorStyle);
+    await sleep(2000);
+    setCursorStyle({position:'absolute',width:'0px', height:'0px'});
+
     if (FormHasError) return;
   };
 
@@ -50,16 +69,17 @@ const StreamingScreen = () => {
   const droneState = useDroneState([]);
   return (
     <>
-      <div className='content'>
+      <div className="content">
         <h1> Drone Navigation </h1>
         <div
-          className='container'
+          className="container"
           onClick={(e) => {
             handleClickEvent(e);
           }}
         >
           <div>
-            <div className='drone_info'>
+            <div className="drone_info">
+            <div className='cursor' style={cursorStyle}></div>
               <h3>Battery: {droneState.bat}%</h3>
               <h3>YAW: {droneState.yaw}</h3>
               <h3>height: {droneState.h} cm</h3>

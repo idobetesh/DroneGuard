@@ -220,4 +220,16 @@ describe('DroneGuard Navigation and Control 🚁', () => {
             expect(DroneGuardUtils.parseState(fakeState)).toEqual({});
         });
     });
+    describe('takeOffCommand', () => {
+        it('Should succeed (return a takeoff command rotation movement and rotations again)', () => {
+            expect(TA.takeOffCommand(fakeCurr, fakeDest)).toEqual([
+                { direction: 'up', distance: 400 },
+                { direction: 'cw', distance: 359 },
+                { direction: 'forward', distance: 500 },
+                { direction: 'forward', distance: 244 },
+                { direction: 'ccw', distance: 359 }
+            ]);
+        });
+    });
+
 });
