@@ -1,6 +1,6 @@
 <h1 align='center'>DroneGuard</h1>
 <p align='center'>
-  <img width='500' src='https://github.com/idobetesh/DroneGuard/blob/master/assets/droneguard-logo.png' alt='DroneGuard Logo'>
+  <img width='400' src='https://github.com/idobetesh/DroneGuard/blob/master/assets/droneguard-logo.png' alt='DroneGuard Logo'>
 </p>
 
 [![Tests Status](https://github.com/idobetesh/DroneGuard/actions/workflows/run-tests.yml/badge.svg?event=push)](https://github.com/idobetesh/DroneGuard/actions)
