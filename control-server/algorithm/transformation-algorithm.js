@@ -10,12 +10,12 @@ const SensorLength = 2.738; // camera
 // const SensorWidth = 6.16; // camera
 // const SensorLength = 4.62; // camera
 
-/* 
+/*
  * Calculates alpha/beta angle.
  * Return value: alpha/beta angle.
- */ 
+ */
 const calculateAlphaBeta = (sensor) => {
-    return (2 * (Math.atan(sensor / (2 * FocalLength))));
+    return 2 * Math.atan(sensor / (2 * FocalLength));
 };
 
 /* This function calculates the real width and length dimentions caught by the camera. */
@@ -48,12 +48,35 @@ const getEndPoint = (lat1, lon1, bearing, dist) => {
     return direction;
 };
 
-/* 
+/*
+This function calculates the total distance that the drone should fly (Forward).
+ */
+const totalMovementInCM = (moveX, moveY) => {
+    const moves = [];
+
+    let totalMove = Math.round((moveX ** 2 + moveY ** 2) ** 0.5);
+    if (totalMove > 500) {
+        while (totalMove > 500) {
+            moves.push({ direction: 'forward', distance: 500 });
+            totalMove -= 500;
+        }
+    }
+
+    moves.push({
+        direction: 'forward',
+        distance: totalMove < 20 ? 20 : totalMove
+    });
+
+    return moves;
+};
+
+/*
  * This function receives the X,Y coordinates and drone height
  * and returns a list of movements that the drone needs to make.
- * This functions includes drone rotation.
+ * This functions decides whether the drone will start it's movement by turning CW or CCW.
  */
 const droneMovementByBearing = (pressedPoint, height) => {
+    const moves = [];
     //calculates the width/length in meters caought by the camera.
     const Wr = getRealDimension(SensorWidth, height);
     const Lr = getRealDimension(SensorLength, height);
@@ -68,62 +91,47 @@ const droneMovementByBearing = (pressedPoint, height) => {
     const moveX = Math.round((pressedPoint.x * 4 - centerX) * ConW);
     const moveY = Math.round((pressedPoint.y * 4 - centerY) * ConL);
 
-    // moves = [{ direction: 'some-command', distance: Number (cm) }]
-    const moves = [];
+    const forward = totalMovementInCM(moveX, moveY);
+    const angle = Math.round(calculateBearing(moveX, moveY));
 
-    let angle = Math.round(calculateBearing(moveY, moveX));
-    let totalMove = Math.round((moveX ** 2 + moveY ** 2) ** 0.5);
-
-    if (moveX > 0 && moveY < 0) {
-        moves.push({ direction: 'cw', distance: angle });
-    } else if (moveX > 0 && moveY > 0) {
-        angle += 90;
-        moves.push({ direction: 'cw', distance: angle });
-    } else if (moveX < 0 && moveY > 0) {
-        angle += 180;
-        moves.push({ direction: 'cw', distance: angle });
-    } else if (moveX < 0 && moveY < 0) {
-        angle += 270;
-        moves.push({ direction: 'cw', distance: angle });
+    if (angle > 0) {
+        moves.push({ direction: 'cw', distance: 180 - angle });
+        moves.push(...forward);
+        moves.push({ direction: 'ccw', distance: 180 - angle });
+    } else if (angle <= 0) {
+        moves.push({ direction: 'ccw', distance: 180 + angle });
+        moves.push(...forward);
+        moves.push({ direction: 'cw', distance: 180 + angle });
     }
 
-    if (totalMove > 500) {
-        while (totalMove > 500) {
-            moves.push({ direction: 'forward', distance: 500 });
-            totalMove -= 500;
-        }
-    }
-
-    moves.push({ direction: 'forward', distance: totalMove < 20 ? 20 : totalMove });
-    moves.push({ direction: 'ccw', distance: angle });
-
-    return pushDescendAndAscend(moves);
+    return pushDescendAndAscend(moves, height);
 };
 
+
 /*
-* This function receives the X,Y coordinates and drone height
-* and returns a list of movements made through X axis and then Y axis.
-* This functions doesn't include drone rotation.
-*/
+ * This function receives the X,Y coordinates and drone height
+ * and returns a list of movements made through X axis and then Y axis.
+ * This functions doesn't include drone rotation.
+ */
 const droneMovement = (pressedPoint, height) => {
     // calculates the width/length in meters caought by the camera.
     const Wr = getRealDimension(SensorWidth, height);
     const Lr = getRealDimension(SensorLength, height);
-  
+
     // calculates the conversion for pixels per meter.
     const ConW = realSizeScreenSize(Wr, ScreenWidth);
     const ConL = realSizeScreenSize(Lr, ScreenLength);
-  
+
     // find the (x,y) center of the screen.
     const centerX = ScreenWidth / 2;
     const centerY = ScreenLength / 2;
-  
+
     let moveX = Math.round((pressedPoint.x * 4 - centerX) * ConW);
     let moveY = Math.round((pressedPoint.y * 4 - centerY) * ConL);
-  
+
     // moves = [{ direction: 'some-command', distance: Number (cm) }]
     const moves = [];
-  
+
     if (moveX > 0) {
         if (moveX < 20) {
             moves.push({ direction: 'right', distance: 20 });
@@ -146,7 +154,7 @@ const droneMovement = (pressedPoint, height) => {
             moves.push({ direction: 'left', distance: -moveX });
         }
     }
-  
+
     if (moveY > 0) {
         if (moveY < 20) {
             moves.push({ direction: 'back', distance: 20 });
@@ -169,16 +177,15 @@ const droneMovement = (pressedPoint, height) => {
             moves.push({ direction: 'forward', distance: -moveY });
         }
     }
-  
+
     return pushDescendAndAscend(moves);
 };
-  
 
 /* converts degrees to radians. */
 const deg2rad = (deg) => {
     return deg * (PI / 180);
 };
-  
+
 /* converts radians to degrees. */
 const rad2deg = (rad) => {
     return rad * (180 / PI);
@@ -189,7 +196,9 @@ const calculateBearingBetweenCoordinates = (src, dest) => {
     const dL = dest.lon - src.lon;
 
     const X = Math.cos(dest.lat) * Math.sin(dL);
-    const Y = Math.cos(src.lat) * Math.sin(dest.lat) - Math.sin(src.lat) * Math.cos(dest.lat) * Math.cos(dL);
+    const Y =
+    Math.cos(src.lat) * Math.sin(dest.lat) -
+    Math.sin(src.lat) * Math.cos(dest.lat) * Math.cos(dL);
 
     const bearing = rad2deg(Math.atan2(X, Y));
 
@@ -205,13 +214,13 @@ const getDistanceBetweenTwoCoordinates = (curr, dest) => {
     const dLon = deg2rad(dest.lon - curr.lon);
 
     const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(curr.lat)) *
-        Math.cos(deg2rad(dest.lat)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(curr.lat)) *
+      Math.cos(deg2rad(dest.lat)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    
+
     // Pushing rotation to the move commands.
     const rotate = calculateBearingBetweenCoordinates(curr, dest);
     moves.push({ direction: 'cw', distance: rotate });
@@ -233,17 +242,34 @@ const getDistanceBetweenTwoCoordinates = (curr, dest) => {
 };
 
 /* for each generated commands bulk add descend and ascend */
-const pushDescendAndAscend = (commands) => {
+const pushDescendAndAscend = (commands, height) => {
     const cm = 200;
-    commands.push({ direction: 'down', distance: cm }); // descend for better view
-    commands.push({ direction: 'up', distance: cm }); // return to the same height as before
+
+    const new_height = height - cm;
+    if(new_height < 200){
+        commands.push({ direction: 'down', distance: new_height }); // descend for better view
+        commands.push({ direction: 'up', distance: new_height }); // return to the same height as before  
+    }else{
+        commands.push({ direction: 'down', distance: cm }); // descend for better view
+        commands.push({ direction: 'up', distance: cm }); // return to the same height as before
+    }
 
     return commands;
 };
 
+const takeOffCommand = (src, dest) => {
+    const moves = [];
+    moves.push({ direction: 'up', distance: 400 });
+    const commands = getDistanceBetweenTwoCoordinates(src, dest);
+    moves.push(...commands);
+    console.log(`takeoff moves are: ${moves}`);
+
+    return moves;
+};
 
 exports.droneMovement = droneMovement;
 exports.droneMovementByBearing = droneMovementByBearing;
 exports.pushDescendAndAscend = pushDescendAndAscend;
 exports.getDistanceBetweenTwoCoordinates = getDistanceBetweenTwoCoordinates;
 exports.calculateBearingBetweenCoordinates = calculateBearingBetweenCoordinates;
+exports.takeOffCommand = takeOffCommand;

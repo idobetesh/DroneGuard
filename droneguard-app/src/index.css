@@ -1,10 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 @import "@fontsource/roboto";
+;
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.logo{
+  background-image: url('../../assets/droneguard-logo.png');
+  width: 100px;
+  height: 100px;
+  
 }
 
 body {
@@ -195,17 +204,13 @@ img {
   border-radius: 1px solid black;
   position: absolute;
   margin-top: 1%;
-  margin-left: 1%;
+  /* margin-left: 1%; */
   text-align: left;
   height: 460px;
   width: 680px;
   padding-left: 0.5vh;
 }
 
-.containerr {
-  position: relative;
-  margin: 30px;
-}
 .box {
   width: 30%;
   height: 25%;
@@ -234,7 +239,6 @@ img {
   margin-bottom: 10px;
 }
 .circle {
-  opacity: 50%;
   height: 100px;
   width: 100px;
   background-color: rgb(205, 16, 16);

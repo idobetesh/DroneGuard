@@ -92,45 +92,45 @@ describe('DroneGuard Navigation and Control 🚁', () => {
                     { direction: 'cw', distance: 163 },
                     { direction: 'forward', distance: 126 },
                     { direction: 'ccw', distance: 163 },
-                    { direction: 'down', distance: decsendAcsendFixedHeight },
-                    { direction: 'up', distance: decsendAcsendFixedHeight }
+                    { direction: 'down', distance: 100 },
+                    { direction: 'up', distance: 100 }
                 ]
             );
         });
         it('Should succeed (return a 5 moves array with cw and ccw)', () => {
             expect(TA.droneMovementByBearing({ x: 100, y: 100 }, fakeHeigth)).toEqual(
                 [
-                    { direction: 'cw', distance: 122 },
+                    { direction: 'ccw', distance: 58 },
                     { direction: 'forward', distance: 125 },
-                    { direction: 'ccw', distance: 122 },
-                    { direction: 'down', distance: decsendAcsendFixedHeight },
-                    { direction: 'up', distance: decsendAcsendFixedHeight }
+                    { direction: 'cw', distance: 58 },
+                    { direction: 'down', distance: 100 },
+                    { direction: 'up', distance: 100 }
                 ]
             );
         });
         it('Should succeed (return a 5 moves array with cw and ccw)', () => {
             expect(TA.droneMovementByBearing({ x: 0, y: 480 }, fakeHeigth)).toEqual([
-                { direction: 'cw', distance: 324 },
+                { direction: 'ccw', distance: 126 },
                 { direction: 'forward', distance: 189 },
-                { direction: 'ccw', distance: 324 },
-                { direction: 'down', distance: decsendAcsendFixedHeight },
-                { direction: 'up', distance: decsendAcsendFixedHeight }
+                { direction: 'cw', distance: 126 },
+                { direction: 'down', distance: 100 },
+                { direction: 'up', distance: 100 }
             ]);
         });
         it('Should succeed (return a 5 moves array with cw and ccw, more than 500)', () => {
             expect(TA.droneMovementByBearing({ x: 100, y: 0 }, 700)).toEqual([
-                { direction: 'cw', distance: 137 },
+                { direction: 'ccw', distance: 43 },
                 { direction: 'forward', distance: 363 },
-                { direction: 'ccw', distance: 137 },
+                { direction: 'cw', distance: 43 },
                 { direction: 'down', distance: decsendAcsendFixedHeight },
                 { direction: 'up', distance: decsendAcsendFixedHeight }
             ]);
         });
         it('Should succeed (return a 6 moves array with cw and ccw, more than 500 and less than 20)', () => {
             expect(TA.droneMovementByBearing({ x: 100, y: 0 }, 580)).toEqual([
-                { direction: 'cw', distance: 137 },
+                { direction: 'ccw', distance: 43 },
                 { direction: 'forward', distance: 301 },
-                { direction: 'ccw', distance: 137 },
+                { direction: 'cw', distance: 43 },
                 { direction: 'down', distance: decsendAcsendFixedHeight },
                 { direction: 'up', distance: decsendAcsendFixedHeight }
             ]);
@@ -220,4 +220,16 @@ describe('DroneGuard Navigation and Control 🚁', () => {
             expect(DroneGuardUtils.parseState(fakeState)).toEqual({});
         });
     });
+    describe('takeOffCommand', () => {
+        it('Should succeed (return a takeoff command rotation movement and rotations again)', () => {
+            expect(TA.takeOffCommand(fakeCurr, fakeDest)).toEqual([
+                { direction: 'up', distance: 400 },
+                { direction: 'cw', distance: 359 },
+                { direction: 'forward', distance: 500 },
+                { direction: 'forward', distance: 244 },
+                { direction: 'ccw', distance: 359 }
+            ]);
+        });
+    });
+
 });

@@ -25,8 +25,8 @@ const Video = () => {
   return (
     <iframe
       src='http://192.168.10.4:8002/index.html'
-      height={486}
       width={648}
+      height={486}
       frameBorder={'none'}
       scrolling={false}
       >

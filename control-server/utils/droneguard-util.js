@@ -11,8 +11,8 @@ const commandDelays = {
     right: 5000,
     forward: 5000,
     back: 5000,
-    cw: 5000,
-    ccw: 5000,
+    cw: 7000,
+    ccw: 7000,
     flip: 3000,
     speed: 3000,
     'battery?': 500, //0-100
@@ -67,6 +67,7 @@ const visualPromt = (str = '< DroneGuard / >') => {
         console.log(data);
     });
 };
+
 
 exports.sleep = sleep;
 exports.commandDelays = commandDelays;
