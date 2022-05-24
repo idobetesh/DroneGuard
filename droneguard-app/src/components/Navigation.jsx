@@ -66,7 +66,7 @@ const Navigation = ({ coordinate }) => {
   const [pressed, setpressed] = useState(false);
   const clickedMove= (point) => {
     return () => {
-      sendPressData(point)
+      sendPressData(point);
       handleClickEvent();
     }
   }
@@ -159,7 +159,6 @@ const Navigation = ({ coordinate }) => {
             <span className="symbol">Move</span>
           </Button>
           
-        </div>
         <Button
             // disabled={pressed}
             style={{ backgroundColor: "red", color: "white" }}
@@ -168,6 +167,8 @@ const Navigation = ({ coordinate }) => {
           >
             <span className="symbol">Emergency!</span>
           </Button>
+        </div>
+
         <div style={{opacity: pressed ? '20%' : '100%'}} className="takeoff-land">
           <Button
             disabled={pressed}
@@ -195,7 +196,9 @@ const Navigation = ({ coordinate }) => {
           >
             <span className="symbol">LAND</span>
           </Button>
-          <Button
+
+          {/* GPS Take off (We need to record this take off commands) */}
+          {/* <Button
             disabled={pressed}
             variant="contained"
             color="primary"
@@ -207,7 +210,7 @@ const Navigation = ({ coordinate }) => {
             onClick={sendTakeOff("takeoff")}
           >
             <span className="symbol">TAKEOFF2</span>
-          </Button>
+          </Button> */}
         </div>
       </div>
     </>

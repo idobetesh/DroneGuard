@@ -48,6 +48,9 @@ const getEndPoint = (lat1, lon1, bearing, dist) => {
   return direction;
 };
 
+/*
+This function calculates the total distance that the drone should fly (Forward).
+ */
 const totalMovementInCM = (moveX, moveY) => {
   const moves = [];
 
@@ -67,6 +70,11 @@ const totalMovementInCM = (moveX, moveY) => {
   return moves;
 };
 
+/*
+ * This function receives the X,Y coordinates and drone height
+ * and returns a list of movements that the drone needs to make.
+ * This functions decides whether the drone will start it's movement by turning CW or CCW.
+ */
 const droneMovementByBearing = (pressedPoint, height) => {
   const moves = [];
   //calculates the width/length in meters caought by the camera.
@@ -99,59 +107,6 @@ const droneMovementByBearing = (pressedPoint, height) => {
   return pushDescendAndAscend(moves, height);
 };
 
-/*
- * This function receives the X,Y coordinates and drone height
- * and returns a list of movements that the drone needs to make.
- * This functions includes drone rotation.
- */
-// const droneMovementByBearing = (pressedPoint, height) => {
-//     //calculates the width/length in meters caought by the camera.
-//     const Wr = getRealDimension(SensorWidth, height);
-//     const Lr = getRealDimension(SensorLength, height);
-//     // calculates the conversion for pixels per meter.
-//     const ConW = realSizeScreenSize(Wr, ScreenWidth);
-//     const ConL = realSizeScreenSize(Lr, ScreenLength);
-
-//     // find the (x,y) center of the screen.
-//     const centerX = ScreenWidth / 2;
-//     const centerY = ScreenLength / 2;
-
-//     const moveX = Math.round((pressedPoint.x * 4 - centerX) * ConW);
-//     const moveY = Math.round((pressedPoint.y * 4 - centerY) * ConL);
-
-//     let totalMove = Math.round((moveX ** 2 + moveY ** 2) ** 0.5);
-//     // moves = [{ direction: 'some-command', distance: Number (cm) }]
-//     const moves = [];
-
-//     let angle = Math.round(calculateBearing(moveY, moveX));
-//         console.log(`angle is before: `, angle);
-//         angle = (angle + 180) % 90;
-
-//     if (moveX > 0 && moveY < 0) {
-//         moves.push({ direction: 'cw', distance: angle });
-//     } else if (moveX > 0 && moveY > 0) {
-//         angle += 90;
-//         moves.push({ direction: 'cw', distance: angle });
-//     } else if (moveX < 0 && moveY > 0) {
-//         angle += 180;
-//         moves.push({ direction: 'cw', distance: angle });
-//     } else if (moveX < 0 && moveY < 0) {
-//         angle += 270;
-//         moves.push({ direction: 'cw', distance: angle });
-//     }
-
-//     if (totalMove > 500) {
-//         while (totalMove > 500) {
-//             moves.push({ direction: 'forward', distance: 500 });
-//             totalMove -= 500;
-//         }
-//     }
-
-//     moves.push({ direction: 'forward', distance: totalMove < 20 ? 20 : totalMove });
-//     moves.push({ direction: 'ccw', distance: angle });
-
-//     return pushDescendAndAscend(moves);
-// };
 
 /*
  * This function receives the X,Y coordinates and drone height
