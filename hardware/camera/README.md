@@ -36,9 +36,9 @@ run `$ npm start` </br>
 You should see the video stream!
 
 ### Relevan links:
-- <a href='https://github.com/muhdmirzamz/hls-stream' target='_blank'>hls-stream</a>
-- <a href='https://www.youtube.com/watch?v=Acmng0FHHqI' target='_blank'>How to stream IP Camera RTSP stream into browser</a>
-- <a href='https://siytek.com/raspberry-pi-rtsp-to-home-assistant/' target='_blank'>Raspberry Pi RTSP Camera</a>
-- <a href='https://github.com/mpromonet/v4l2rtspserver' target='_blank'>v4l2rtspserver</a>
-- <a href='https://www.ffmpeg.org/ffmpeg-protocols.html#rtsp' target='_blank'>ffmpeg-protocols</a>
+- [hls-stream](https://github.com/muhdmirzamz/hls-stream)
+- [How to stream IP Camera RTSP stream into browser](https://www.youtube.com/watch?v=Acmng0FHHqI)
+- [Raspberry Pi RTSP Camera](https://siytek.com/raspberry-pi-rtsp-to-home-assistant/)
+- [v4l2rtspserver](https://github.com/mpromonet/v4l2rtspserver)
+- [ffmpeg-protocols](https://www.ffmpeg.org/ffmpeg-protocols.html#rtsp)
 

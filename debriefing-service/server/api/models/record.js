@@ -11,7 +11,16 @@ const recordSchema = new mongoose.Schema({
         required: true
     },
     beach: {
-        type: String
+        type: String,
+        enum: ['Yamit',
+            'Poleg',
+            'Hasharon',
+            'Gordon',
+            'Frishman',
+            'Nitzanim',
+            'Dugit'
+        ],
+        default: 'Frishman'
         // required: true
     },
     thumbnailUrl: {

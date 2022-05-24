@@ -7,7 +7,7 @@
   \_\ |____/|_|  \___/|_| |_|\___|\____|\__,_|\__,_|_|  \__,_| /_/    /_/ 
 
 ```
-# Backend:
+# Backend
 
 Navigate to the server folder: 
 > `$cd ./server`
@@ -33,16 +33,16 @@ Response Example:
 ```
 
 ## Tests and Lint
-### Run tests:
+### Run tests
 > `$npm run test:unit`
 
 ### Validate code style with eslint:
 > `$npm run lint:validate`
 
-# Frontend:
+# Frontend
 
 Navigate to the client folder:
-> `$cd ../client/droneguard-debriefing`
+> `$cd ../client`
 
 Install all dependencies & Run the app in development mode:
 > `$npm install && npm start`
@@ -51,3 +51,6 @@ App is live!<br/>
 Open http://localhost:3000 to view it in the browser.<br />
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+# Videos Uploading Architecture
+![video-uploading-architecture](https://github.com/idobetesh/DroneGuard/blob/master/assets/video-uploading-architecture.png)

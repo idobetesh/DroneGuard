@@ -9,8 +9,8 @@ VOLUMES=$(shell docker volume ls -q)
 .SILENT install:
 	cd ./control-server && npm install; \
 	cd ../debriefing-service/server && npm install; \
-	cd ../../debriefing-service/client/droneguard-debriefing && npm install; \
-	cd ../../../droneguard-app && npm install --force;
+	cd ../../debriefing-service/client && npm install; \
+	cd ../../droneguard-app && npm install --force;
 
 # Build DroneGuard project images from internal docker files
 build:
@@ -43,7 +43,8 @@ all:
 copy:
 	cd ./hardware/scripts && ./scp-videos.sh;
 
-# Convert videos to MP4 and upload to S3 bucket
+# Convert videos to MP4 and upload to S3 bucket, 
+# add bucket URL before running the command
 upload:
-	cd ./hardware/scripts && ./record-conversion.sh;
+	cd ./hardware/scripts && ./record-conversion.sh '<ENTER-BUCKET-URL>';
 	

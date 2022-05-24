@@ -1,4 +1,4 @@
-# POC - Tranformations
+# DroneGuard Lambda Functions
 ```
    __  ____                        ____                     _      __ __  
   / / |  _ \ _ __ ___  _ __   ___ / ___|_   _  __ _ _ __ __| |    / / \ \ 
@@ -8,4 +8,5 @@
 
 ```
 
-![tranformation-gif](https://github.com/idobetesh/DroneGuard/blob/master/assets/tranformation.gif)
+# Videos Uploading Architecture
+![video-uploading-architecture](https://github.com/idobetesh/DroneGuard/blob/master/assets/video-uploading-architecture.png)

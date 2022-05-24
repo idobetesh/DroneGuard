@@ -10,15 +10,16 @@
 ```
 ## Relevant Links
 
-- <a href="https://www.balena.io/etcher/" target="_blank">Etcher</a>
-- <a href="https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy)" target="_blank">OS img</a>
-- <a href="https://youtu.be/3VO4vGlQ1pg">Setup Raspberry Pi Zero</a>
-- <a href="https://youtu.be/yn59qX-Td3E" target="_blank">Setup Raspberry Pi Zero (2022 version)</a>
+- [Etcher](https://www.balena.io/etcher/)
+- [OS image](https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy))
+- [Setup Raspberry Pi Zero](https://youtu.be/3VO4vGlQ1pg)
+- [Setup Raspberry Pi Zero (2022 version)](https://youtu.be/yn59qX-Td3E)
 
-## SD card essentials files
-- Create ssh file: <br/>
+## Set up new RP
+### 1. Use Etcher to flash the [OS](https://www.raspberrypi.com/software/operating-systems/#:~:text=Raspberry%20Pi%20OS%20Lite%20(Legacy)) image to the SD card
+### 2. Create ssh file
 > `$touch ssh`
-- Create / edit wpa_supplicant.conf file: <br/>
+### 3. Create / edit wpa_supplicant.conf file
 > `$vim wpa_supplicant.conf`
 ```js
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -31,3 +32,5 @@ network={
 	key_mgmt=WPA-PSK
 }
 ```
+### 4. Run `setup-new-rp.sh` to install relevant apps
+> `$chmod +x ./setup-new-rp.sh && ./setup-new-rp.sh`
