@@ -7,15 +7,6 @@
 ---
 <p align='center'>DroneGuard is a tool that lets lifeguards supervise the beaches with a drone in an intuitive way and without any prior knowledge of flying drones. The tool also records usage sequences thereby enabling a review and analysis of emergency events.</p>
 
-```
-   __  ____                        ____                     _      __ __  
-  / / |  _ \ _ __ ___  _ __   ___ / ___|_   _  __ _ _ __ __| |    / / \ \ 
- / /  | | | | '__/ _ \| '_ \ / _ \ |  _| | | |/ _` | '__/ _` |   / /   \ \
- \ \  | |_| | | | (_) | | | |  __/ |_| | |_| | (_| | | | (_| |  / /    / /
-  \_\ |____/|_|  \___/|_| |_|\___|\____|\__,_|\__,_|_|  \__,_| /_/    /_/ 
-
-```
-
 ## High Level Project Tree
 ```
 .

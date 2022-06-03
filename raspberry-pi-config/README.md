@@ -1,4 +1,4 @@
-# Rasperry Pi Configuration 
+# Raspberry Pi Configuration 
 
 ```
    __  ____                        ____                     _      __ __  
