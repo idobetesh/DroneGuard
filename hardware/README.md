@@ -19,3 +19,12 @@
 
 ## High-Level Architecture Design
 ![high-level-architecture-design](https://github.com/idobetesh/DroneGuard/blob/master/assets/high-level-architecture-design.png)
+
+### Data Transfer Overview
+Since the drone we purchased could not connect multiple devices, we had to create an internal network in which communication with the drone takes place.
+All data traffic passes through an extender to which all system components are connected and can communicate.
+
+#### Two servers run simultaniasly on the Raspberry Pi:
+1. Camera server through which the camera output reaches the ui and is also responsible for saving the video.
+2. Control server to which the information about the click performed by the rescuer [point (x, y)] is sent, on the control server our algorithm calculates the commands that must be performed in order to reach the desired point
+These commands sent (via the extender) to the drone that performs the movement.
