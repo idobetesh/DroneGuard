@@ -18,7 +18,7 @@
 - microSD
 
 ## High-Level Architecture Design
-![high-level-architecture-design](https://github.com/idobetesh/DroneGuard/blob/master/assets/high-level-architecture-design.png)
+![high-level-data-architecture-design-v2](https://github.com/idobetesh/DroneGuard/blob/master/assets/high-level-data-architecture-design-v2.png)
 
 ### Data Transfer Overview
 Since the drone we purchased could not connect multiple devices, we had to create an internal network in which communication with the drone takes place.
