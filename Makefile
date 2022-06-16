@@ -41,14 +41,14 @@ all:
 
 # Copy videos from RP to local machine
 copy:
-	cd ./hardware/scripts && ./scp-videos.sh;
+	cd ./scripts && ./scp-videos.sh;
 
 # Convert all .h264 videos to .mp4
 convert:
-	cd ./hardware/scripts && ./mp4-conversion.sh;
+	cd ./scripts && ./mp4-conversion.sh;
 	
 # Convert videos to MP4 and upload to S3 bucket, 
 # add bucket URL before running the command
 upload:
-	cd ./hardware/scripts && ./record-conversion-and-upload.sh '<ENTER-BUCKET-URL>';
+	cd ./scripts && ./record-conversion-and-upload.sh '<ENTER-BUCKET-URL>';
 	
