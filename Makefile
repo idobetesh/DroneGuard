@@ -43,6 +43,10 @@ all:
 copy:
 	cd ./hardware/scripts && ./scp-videos.sh;
 
+# Convert all .h264 videos to .mp4
+convert:
+	cd ./hardware/scripts && ./mp4-conversion.sh;
+	
 # Convert videos to MP4 and upload to S3 bucket, 
 # add bucket URL before running the command
 upload:
