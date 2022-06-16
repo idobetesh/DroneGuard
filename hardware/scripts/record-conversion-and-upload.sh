@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script converts, uploads videos to S3 Bucket and creates record objects in DG DB
-# Navigate to /DroneGuard/hardware/scripts/ and run => $./record-conversion.sh <BUCKET_URL>
+# Navigate to /DroneGuard/hardware/scripts/ and run => $./record-conversion-and-upload.sh <BUCKET_URL>
 
 # Run as a crontab job every hour [0 * * * *]
 
@@ -24,7 +24,7 @@ fi
 
 if [ $# -lt 1 ]; then
   echo 1>&2 "${ERR_MSG} $0: Bucket URL is missing${NC}"
-  echo '[$./record-conversion.sh <BUCKET_URL>]'
+  echo '[$./record-conversion-and-upload.sh <BUCKET_URL>]'
   exit 0
 fi
 

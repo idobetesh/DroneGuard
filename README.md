@@ -24,6 +24,7 @@
 │       ├── api
 │       ├── postman
 │       └── test
+├── docs
 ├── droneguard-app
 │   ├── public
 │   └── src

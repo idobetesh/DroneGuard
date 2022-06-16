@@ -15,7 +15,7 @@ for FILE in $DIR_NAME*;
 do
     if [[ "$FILE" == *.h264 ]]; then
         ffmpeg -framerate 24 -i "$FILE" -c copy "${FILE%.*}.mp4"
-        ffmpeg -i "$FILE" -ss 00:02:00.000 -vframes 1 "${FILE%.*}.png"
+        ffmpeg -i "$FILE" -ss 00:00:20.000 -vframes 1 "${FILE%.*}.png"
     fi
 done
 

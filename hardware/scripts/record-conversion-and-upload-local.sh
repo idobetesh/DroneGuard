@@ -19,7 +19,7 @@ DIR_NAME=/Users/ido/Desktop/local-videos/recordings/
 
 if [ $# -lt 3 ]; then
   echo 1>&2 "$0: One or more arguments are missing"
-  echo '[$./record-conversion.sh <BUCKET_URL> <USER_EMAIL> <USER_PASSWORD>]'
+  echo '[$./record-conversion-and-upload.sh <BUCKET_URL> <USER_EMAIL> <USER_PASSWORD>]'
   exit 0
 fi
 
