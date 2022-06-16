@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import socket from "../utils/socket";
+import { sleep } from "../utils/utils";
 const DEFAULT_DISTANCE = 200; //cm
 
 const sendCommand = (command) => {
@@ -14,10 +15,13 @@ const sendCommand = (command) => {
 // at the control-server, for that we'll send it coordinate & drone height
 // as an object: {coordinate, height: h}
 const sendPressData = (pressData) => {
-  return () => {
+
+  // return () => {
     console.log(`Sending pressData ${JSON.stringify(pressData)}`);
     socket.emit("pressData", pressData);
-  };
+
+
+  // };
 };
 
 const sendTakeOff = (takeoff) => {
@@ -73,10 +77,12 @@ const Navigation = ({ coordinate }) => {
   const handleClickEvent = () => {
     if (!pressed) {
       setpressed(true);
+
       setTimeout(() => {
         setpressed(false);
-      }, 5000);
+      }, 7000);
     }
+
   };
 
   return (
@@ -151,8 +157,8 @@ const Navigation = ({ coordinate }) => {
             color="primary"
             style={{ backgroundColor: "#488E7B", border: "#488E7B" }}
             onClick={
-              //clickedMove({ coordinate, height: droneState.h })
-              sendPressData({ coordinate, height: droneState.h })
+              clickedMove({ coordinate, height: droneState.h })
+              // sendPressData({ coordinate, height: droneState.h })
             }
             //  onClick={sendPressData({ coordinate, height: 500 })}
           >
