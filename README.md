@@ -7,7 +7,7 @@
 ---
 <p align='center'>DroneGuard is a tool that lets lifeguards supervise the beaches with a drone in an intuitive way and without any prior knowledge of flying drones. The tool also records usage sequences thereby enabling a review and analysis of emergency events.</p>
 
-## High Level Project Tree
+## High-Level Project Tree
 ```
 .
 ├── assets
@@ -40,8 +40,7 @@
 │   │   ├── pycam
 │   │   └── server
 │   ├── compass
-│   ├── gps
-│   └── scripts
+│   └── gps
 ├── poc
 │   ├── transformations
 │   │   ├── node-version
@@ -49,6 +48,7 @@
 │   └── views
 ├── raspberry-pi-config
 │   └── add-to-boot-drive
+├── scripts
 └── tello-basics
     ├── basics-node
     │   └── utils
