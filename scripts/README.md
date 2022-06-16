@@ -8,5 +8,5 @@
 
 ```
 
-Scripts that make DroneGuard routine jobs automated, convenient and fast.
+Scripts that make DroneGuard routine jobs automated, convenient and fast. </br>
 See [DroneGuard Makefile](https://github.com/idobetesh/DroneGuard/blob/master/Makefile) containing relevant `make` commands that are compatible with some of them for even more easy use.
