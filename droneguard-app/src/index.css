@@ -39,11 +39,11 @@ li {
 }
 
 h1,
-h2,
-h3 {
+h2{
   font-weight: 600;
   margin-bottom: 10px;
 }
+
 
 .container {
   width: 100%;
@@ -204,7 +204,7 @@ img {
   border-radius: 1px solid black;
   position: absolute;
   margin-top: 1%;
-  /* margin-left: 1%; */
+  margin-left: 1%;
   text-align: left;
   height: 460px;
   width: 680px;
